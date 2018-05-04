@@ -5,6 +5,6 @@ package delivery;
  * @author Gary Bagnall
  *
  */
-public class OrdinaryTruckTests {
+public class RefrigeratedTruck extends Truck {
 
 }
