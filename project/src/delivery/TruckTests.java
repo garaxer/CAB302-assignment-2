@@ -19,8 +19,9 @@ public class TruckTests {
 	}
 
 	// test 0
-	@Yrd
+	@Test
 	public void setUpTruck() {
+		int capacity = 800;
 		truck = new Truck(Capacity,);
 	}
 }
