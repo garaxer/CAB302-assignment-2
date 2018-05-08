@@ -1,4 +1,4 @@
-package CSVFormat;
+package GUI;
 
 public class CSVFormatException extends Exception {
 
