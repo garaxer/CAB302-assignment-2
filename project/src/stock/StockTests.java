@@ -20,7 +20,8 @@ public class StockTests {
 	int reorderAmount = 300;
 	Item item = new item(name,cost,price,reorderPoint,reorderAmount);
 	String nameTwo = "ice cream";
-	Item item2 = new item(nameTwo,cost,price,reorderPoint,reorderAmount,3);
+	int temperature = -10;
+	Item item2 = new item(nameTwo,cost,price,reorderPoint,reorderAmount,temperature);
 	
 	/* Test 0: Declaring Stock objects
 	 */
@@ -35,14 +36,14 @@ public class StockTests {
 	/* Test 2: Adding a new item to the list
 	 */
 	@Test public void addAnItem() {
-		stock.addItem(item);
+		stock.addItems(item);
 	}
 	
 	/* Test 3: Associating a quantity to an item 
 	 */
 	@Test 
 	public void addAQuantity() {
-		stock.addItem(item,500);
+		stock.addItems(item,500);
 	}
 	
 	/* Test 4: Get an item's amount from the list
@@ -51,7 +52,7 @@ public class StockTests {
 	public void getItemQuantity() throws StockException {
 		String name = "rice";
 		stock = new Stock();
-		stock.addItem(item);
+		stock.addItems(item);
 		assertEquals(0, stock.getQuantity(name));
 	}
 	
@@ -59,31 +60,31 @@ public class StockTests {
 	 */
 	@Test 
 	public void removeItemQuantity() throws StockException {
-		stock.addItem(item,100);
-		stock.removeItemQuantity(item,100);
+		stock.addItems(item,100);
+		stock.removeItems(item,100);
 	}
 	
-	/* Test 5: Error if no item exists
+	/* Test 6: Error if no item exists
 	 */
 	@Test(expected = StockException.class)
 	public void removeBadItem() throws StockException {
-		stock.addItem(item,100);
-		stock.removeItemQuantity(item2,100);
+		stock.addItems(item,100);
+		stock.removeItems(item2,100);
 	}
 		
-	/* Test 5: Error if item Quantity is below 0
+	/* Test 7: Error if item Quantity is below 0
 	 */
 	@Test(expected = StockException.class)
 	public void belowZero() throws StockException {
-		stock.addItem(item,100);
-		stock.removeItem(item,200);
+		stock.addItems(item,100);
+		stock.removeItems(item,200);
 	}
 	
 	/* Test 6: Test adding the same Item twice
 	 */
 	@Test public void getItemStockTwice() throws StockException  {
-		stock.addItem(item,100);
-		stock.addItem(item,100);
+		stock.addItems(item,100);
+		stock.addItems(item,100);
 		assertEquals(200, stock.getQuantity(name));
 	}
 	
@@ -93,8 +94,8 @@ public class StockTests {
 	@Test public void getList() throws StockException {
 		String listing = "rice,100,2,3,225,300,N/A\n" +
 				"ice cream,200,2,3,225,300,3\n";
-		stock.addItem(item,100);
-		stock.addItem(item2,200);
+		stock.addItems(item,100);
+		stock.addItems(item2,200);
 		assertEquals(listing,stock.getList());
 	}
 	
@@ -103,8 +104,8 @@ public class StockTests {
 	 */
 	@Test public void addStock() throws StockException {
 		Stock stock2 = new Stock();
-		stock2.addItem(item,100);
-		stock.addItem(item,100);
+		stock2.addItems(item,100);
+		stock.addItems(item,100);
 		stock.addStock(stock2);
 		assertEquals(200,stock.getQuantity("rice"));
 	}
@@ -115,8 +116,8 @@ public class StockTests {
 	 */
 	@Test public void removeStock() throws StockException {
 		Stock stock2 = new Stock();
-		stock2.addItem(item,100);
-		stock.addItem(item,100);
+		stock2.addItems(item,100);
+		stock.addItems(item,100);
 		stock.removeStock(stock2);
 		assertEquals(0,stock.getQuantity("rice"));
 	}
@@ -127,8 +128,8 @@ public class StockTests {
 	@Test(expected = StockException.class)
 	public void removeStock() throws StockException {
 		Stock stock2 = new Stock();
-		stock2.addItem(item,200);
-		stock.addItem(item,100);
+		stock2.addItems(item,200);
+		stock.addItems(item,100);
 		stock.removeStock(stock2);
 	}
 }
