@@ -19,7 +19,7 @@ public class StockTests {
 	int reorderPoint = 225;
 	int reorderAmount = 300;
 	Item item = new item(name,cost,price,reorderPoint,reorderAmount);
-	String nameTwo = "potato";
+	String nameTwo = "ice cream";
 	Item item2 = new item(nameTwo,cost,price,reorderPoint,reorderAmount);
 	
 	/* Test 0: Declaring Stock objects
@@ -91,8 +91,8 @@ public class StockTests {
 	/* Test 7: Get printable list of items
 	 */
 	@Test public void getList() throws StockException {
-		String listing = "rice, 100\n" +
-				"potato, 200\n";
+		String listing = "rice,100,2,3,225,300,N/A\n" +
+				"ice cream,200,2,3,300,425,3\n";
 		stock.addItem(item,100);
 		stock.addItem(item2,200);
 		assertEquals(listing,stock.getList());
