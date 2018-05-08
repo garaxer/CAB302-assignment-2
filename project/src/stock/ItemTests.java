@@ -45,20 +45,6 @@ public class ItemTests {
 		int temperature = 10;
 		item = new item(name,cost,price,reorderPoint,reorderAmount,temperature);
 	}
-	//mushrooms	2	4	200	325	10
-
-
-	/* Test 3: Get the Item Name
-	 */
-	@Test public void testName() {
-		String name = "mushrooms";
-		int cost = 2;
-		int price = 4;
-		int reorderPoint = 200;
-		int reorderAmount = 325;
-		int temperature = 10;
-		item = new item(name,cost,price,reorderPoint,reorderAmount,temperature);
-	}
 	
 	/* Test 3: Get the Item Name
 	 */
