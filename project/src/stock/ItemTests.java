@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import stock.Item;
 /**
  * 
  * @author Gary Bagnall
@@ -30,7 +32,7 @@ public class ItemTests {
 		int price = 3;
 		int reorderPoint = 225;
 		int reorderAmount = 300;
-		item = new item(name,cost,price,reorderPoint,reorderAmount);
+		item = new Item(name,cost,price,reorderPoint,reorderAmount);
 	}
 	
 	/* Test 2: Constructing an Item object with Temperature
@@ -43,7 +45,7 @@ public class ItemTests {
 		int reorderPoint = 200;
 		int reorderAmount = 325;
 		int temperature = 10;
-		item = new item(name,cost,price,reorderPoint,reorderAmount,temperature);
+		item = new Item(name,cost,price,reorderPoint,reorderAmount,temperature);
 	}
 	
 	/* Test 3: Get the Item Name
@@ -55,7 +57,7 @@ public class ItemTests {
 		int reorderPoint = 200;
 		int reorderAmount = 325;
 		int temperature = 10;
-		item = new item(name,cost,price,reorderPoint,reorderAmount,temperature);
+		item = new Item(name,cost,price,reorderPoint,reorderAmount,temperature);
 		assertEquals(name, item.getItemName());
 	}
 	
@@ -68,7 +70,7 @@ public class ItemTests {
 		int reorderPoint = 200;
 		int reorderAmount = 325;
 		int temperature = 10;
-		item = new item(name,cost,price,reorderPoint,reorderAmount,temperature);
+		item = new Item(name,cost,price,reorderPoint,reorderAmount,temperature);
 		assertEquals(cost, item.getItemCost());
 	}
 	
@@ -81,7 +83,7 @@ public class ItemTests {
 		int reorderPoint = 200;
 		int reorderAmount = 325;
 		int temperature = 10;
-		item = new item(name,cost,price,reorderPoint,reorderAmount,temperature);
+		item = new Item(name,cost,price,reorderPoint,reorderAmount,temperature);
 		assertEquals(price, item.getItemPrice());
 	}
 	
@@ -94,7 +96,7 @@ public class ItemTests {
 		int reorderPoint = 200;
 		int reorderAmount = 325;
 		int temperature = 10;
-		item = new item(name,cost,price,reorderPoint,reorderAmount,temperature);
+		item = new Item(name,cost,price,reorderPoint,reorderAmount,temperature);
 		assertEquals(reorderPoint, item.getItemReorderPoint());
 	}
 	
@@ -107,7 +109,7 @@ public class ItemTests {
 		int reorderPoint = 200;
 		int reorderAmount = 325;
 		int temperature = 10;
-		item = new item(name,cost,price,reorderPoint,reorderAmount,temperature);
+		item = new Item(name,cost,price,reorderPoint,reorderAmount,temperature);
 		assertEquals(reorderAmount, item.getItemReorderAmount());
 	}
 	
@@ -120,7 +122,7 @@ public class ItemTests {
 		int reorderPoint = 200;
 		int reorderAmount = 325;
 		int temperature = 10;
-		item = new item(name,cost,price,reorderPoint,reorderAmount,temperature);
+		item = new Item(name,cost,price,reorderPoint,reorderAmount,temperature);
 		assertEquals(temperature, item.getItemTemperature());
 	}
 	
