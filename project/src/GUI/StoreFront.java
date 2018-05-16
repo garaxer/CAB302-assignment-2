@@ -19,7 +19,7 @@ public class StoreFront {
 		// Create a store
 		Store store = new Store(100000.0,"inventory","Shop store the inventory");
 		//Create the GUI
-		GUI gui = new GUI(store.getName());
+		GUI gui = new GUI(store);
 		// Terminate if the user closes
 		gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// Make the GUI visible

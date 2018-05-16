@@ -7,14 +7,17 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class GUIComponents extends JPanel implements ActionListener{
 
-
+	//change to panel with the button, see slide37 of lecture 9
+	public Store store;
      
-     public GUIComponents() {
+     public GUIComponents(Store store){
+    	 this.store = store;
     	// Initialize the GUI Components
  		initialiseComponents();	 
      }
@@ -26,19 +29,20 @@ public class GUIComponents extends JPanel implements ActionListener{
  		JPanel p1 = new JPanel();
 		p1.setLayout(new BoxLayout(p1, BoxLayout.X_AXIS));
 		p1.add(Box.createHorizontalGlue());
-		p1.add(new JButton("Right Aligned"));
+		p1.add(new JLabel(store.getCapitalString()));
  	     
  	     
  	     
 		JPanel p2 = new JPanel();
 		p2.setLayout(new BoxLayout(p2, BoxLayout.X_AXIS));
 		p2.add(Box.createHorizontalGlue());
-		p2.add(new JButton("Center Aligned"));
 		p2.add(Box.createHorizontalGlue());
+		p2.add(new JButton("Center Aligned"));
+		//p2.add(Box.createHorizontalGlue());
  	     
         
         this.add(p1);
-        this.add(Box.createVerticalStrut(20));
+        this.add(Box.createVerticalStrut(10));
         this.add(p2);
  	}
 	@Override
