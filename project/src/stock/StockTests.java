@@ -18,10 +18,10 @@ public class StockTests {
 	int price = 3;
 	int reorderPoint = 225;
 	int reorderAmount = 300;
-	Item item = new item(name,cost,price,reorderPoint,reorderAmount);
+	Item item = new Item(name,cost,price,reorderPoint,reorderAmount);
 	String nameTwo = "ice cream";
 	int temperature = -10;
-	Item item2 = new item(nameTwo,cost,price,reorderPoint,reorderAmount,temperature);
+	Item item2 = new Item(nameTwo,cost,price,reorderPoint,reorderAmount,temperature);
 	
 	/* Test 0: Declaring Stock objects
 	 */
