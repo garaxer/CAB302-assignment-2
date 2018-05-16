@@ -36,12 +36,18 @@ public class TruckTests {
 	}
 	
 	@Test
+	public void getTruckStock() {
+		assertEquals(stock, truck.getStock());
+	}
+	
+	@Test
 	public void testAbstractMethods() {
 		Stock mockStock = null;
 		MockTruck mock = new MockTruck(mockStock);
 		
 		assertEquals(0,mock.getCapacity());
 		assertEquals(0,mock.getCost());
+		assertEquals(null,mock.getStock());
 		assertEquals(null,mock.getType());
 		assertEquals(null,mock.getManifest());
 	}
@@ -60,6 +66,10 @@ public class MockTruck extends Truck {
 	
 	public int getCost() {
 		return 0;
+	}
+
+	public String getStock() {
+		return null;
 	}
 	
 	public String getType() {
