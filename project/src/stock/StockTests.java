@@ -137,21 +137,13 @@ public class StockTests {
 	 * (sells more item in stock)
 	 */
 	@Test(expected = StockException.class)
-	public void removeStock() throws StockException {
+	public void removeMoreStock() throws StockException {
 		Stock stock2 = new Stock();
 		stock2.addItems(item,200);
 		stock.addItems(item,100);
 		stock.removeStock(stock2);
 	}
 	
-	/*
-	 * Test 13 get an iterable list of items
-	 */
-	@Test
-	public void testGetTotalQuantity() throws StockException {
-		stock.addItems(item,500);
-		assertEquals(500, stock.getTotalQuantity());
-	}
 	
 	/*
 	 * Test 12 get an iterable list of items
@@ -167,5 +159,14 @@ public class StockTests {
 		}
 		values = valuesProduced.toArray();
 		assertEquals(item,values[0]);
+	}
+	
+	/*
+	 * Test 13 Get the total quantity
+	 */
+	@Test
+	public void testGetTotalQuantity() throws StockException {
+		stock.addItems(item,500);
+		assertEquals(500, stock.getTotalQuantity());
 	}
 }
