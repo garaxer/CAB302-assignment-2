@@ -40,13 +40,14 @@ public class TruckTests {
 		assertEquals(stock, truck.getStock());
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testAbstractMethods() {
 		Stock mockStock = null;
 		MockTruck mock = new MockTruck(mockStock);
 		
 		assertEquals(0,mock.getCapacity());
-		assertEquals(0,mock.getCost());
+		assertEquals(0,mock.getCost(),0);
 		assertEquals(null,mock.getStock());
 		assertEquals(null,mock.getType());
 		assertEquals(null,mock.getManifest());
@@ -64,7 +65,7 @@ public class MockTruck extends Truck {
 		return 0;
 	}
 	
-	public int getCost() {
+	public double getCost() {
 		return 0;
 	}
 

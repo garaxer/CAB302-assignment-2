@@ -53,7 +53,7 @@ public class OrdinaryTruckTests {
 	 */
 	@Test
 	public void testCost() { 
-		int cost = 875; //750 + 0.25*500
+		double cost = 875; //750 + 0.25*500
 		assertEquals(cost, ordinaryTruck.getCost());
 	}
 	
