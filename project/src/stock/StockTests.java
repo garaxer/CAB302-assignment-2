@@ -2,6 +2,8 @@ package stock;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 /**
@@ -131,5 +133,21 @@ public class StockTests {
 		stock2.addItems(item,200);
 		stock.addItems(item,100);
 		stock.removeStock(stock2);
+	}
+	
+	/*
+	 * Test 11 get an iterable list of items
+	 */
+	@Test
+	public void itemIteration() throws StockException {
+		ArrayList<Item> valuesProduced = new ArrayList<Item>();
+		Object[] values;
+		stock.addItems(item,100);
+		stock.addItems(item2,200);
+		for (Item item : stock) {
+			valuesProduced.add(item);
+		}
+		values = valuesProduced.toArray();
+		assertEquals(item,values[0]);
 	}
 }
