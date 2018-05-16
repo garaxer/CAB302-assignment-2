@@ -51,7 +51,7 @@ public class StockTests {
 	/* Test 4: Get an item's amount from the list
 	 */
 	@Test 
-	public void getItemQuantity() throws StockException {
+	public void getItemQuantityByString() throws StockException {
 		String name = "rice";
 		stock = new Stock();
 		stock.addItems(item);
