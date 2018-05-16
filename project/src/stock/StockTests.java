@@ -58,6 +58,15 @@ public class StockTests {
 		assertEquals(0, stock.getQuantity(name));
 	}
 	
+	/* Test 4.5: Get an item's amount from the list
+	 */
+	@Test 
+	public void getItemQuantity() throws StockException {
+		stock = new Stock();
+		stock.addItems(item);
+		assertEquals(item, stock.getQuantity(item));
+	}
+	
 	/* Test 5: Remove a quantity from an item
 	 */
 	@Test 
@@ -136,7 +145,16 @@ public class StockTests {
 	}
 	
 	/*
-	 * Test 11 get an iterable list of items
+	 * Test 13 get an iterable list of items
+	 */
+	@Test
+	public void testGetTotalQuantity() throws StockException {
+		stock.addItems(item,500);
+		assertEquals(500, stock.getTotalQuantity());
+	}
+	
+	/*
+	 * Test 12 get an iterable list of items
 	 */
 	@Test
 	public void itemIteration() throws StockException {
@@ -144,7 +162,7 @@ public class StockTests {
 		Object[] values;
 		stock.addItems(item,100);
 		stock.addItems(item2,200);
-		for (Item item : stock) {
+		for (Item item : stock.toSet()) {
 			valuesProduced.add(item);
 		}
 		values = valuesProduced.toArray();
