@@ -31,60 +31,41 @@ public class GUIComponents extends JPanel implements ActionListener{
  		//Choose a box layout for the main frame
  		
  		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
- 		
- 		
- 		
-		JPanel topPanel = new JPanel();
-		topPanel.setBackground(Color.LIGHT_GRAY);
-		topPanel.setLayout(new FlowLayout());
+
+ 		JPanel topPanel = new JPanel();
+ 		topPanel.setBackground(Color.LIGHT_GRAY);
+ 		topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.X_AXIS));
 		
-		topPanel.setSize(100, 100);
 		JButton redButton = new JButton("Load in manifests");
 		redButton.setBackground(Color.RED);
 		redButton.addActionListener(this);
 		topPanel.add(redButton);
 		
+		topPanel.add(Box.createHorizontalGlue());
 		topPanel.add(new JLabel("Store Capital: "+store.getCapitalString()));
 		
+		topPanel.add(Box.createHorizontalGlue());
 		JButton blueButton = new JButton("Load in sales logs");
 		blueButton.setBackground(Color.BLUE);
 		blueButton.setForeground(Color.WHITE);
 		blueButton.addActionListener(this);
 		topPanel.add(blueButton);
-		topPanel.setSize(getMinimumSize());
-		//can just add 3 boxes, one left, one center and one right 
-		this.add(topPanel);
-
-		
- 		//JPanel p1 = new JPanel();
+		//topPanel.add(Box.createHorizontalStrut(10));
+	
+		JPanel p2 = new JPanel();
+		p2.setLayout(new BoxLayout(p2, BoxLayout.X_AXIS));
 		String data[][]={ {"1","2","3"},    
 		{"4","6","7"},    
 		{"8","9","10"}
 		};    
 		String column[]={"Name","stuff","stuff"};         
 		JTable table =new JTable(data,column);      
-		JScrollPane scroll = new JScrollPane(table);  
-		//p1.add(scroll);
-		this.add(scroll);          
-
- 		/*
- 		 * 	this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
- 		JPanel p1 = new JPanel();
-		p1.setLayout(new BoxLayout(p1, BoxLayout.X_AXIS));
-		p1.add(Box.createHorizontalGlue());
-		p1.add(new JLabel(store.getCapitalString()));
+		JScrollPane scroll = new JScrollPane(table); 
+		p2.add(scroll);
  	     
-     
-		JPanel p2 = new JPanel();
-		p2.setLayout(new BoxLayout(p2, BoxLayout.X_AXIS));
-		p2.add(Box.createHorizontalGlue());
-		p2.add(Box.createHorizontalGlue());
-		p2.add(new JButton("Center Aligned"));
-		//p2.add(Box.createHorizontalGlue());
- 	     
-        this.add(p1);
+        this.add(topPanel);
         this.add(Box.createVerticalStrut(10));
-        this.add(p2);*/
+        this.add(p2);
  	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
