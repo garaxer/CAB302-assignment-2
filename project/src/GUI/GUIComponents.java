@@ -6,11 +6,15 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -54,18 +58,24 @@ public class GUIComponents extends JPanel implements ActionListener{
 	
 		JPanel p2 = new JPanel();
 		p2.setLayout(new BoxLayout(p2, BoxLayout.X_AXIS));
-		String data[][]={ {"1","2","3"},    
-		{"4","6","7"},    
-		{"8","9","10"}
-		};    
-		String column[]={"Name","stuff","stuff"};         
-		JTable table =new JTable(data,column);      
+
+		//TODO Store.getInventoryInARRAYARRAY
+		String data[][]={ {"1","2","3","4","5","6"}    
+
+		};   
+		
+		
+		String column[]={"Name","Cost","Sell Price","Reorder Point","Reorder Amount","Temperature"};         
+		JTable table =new JTable(data,column);     
+		table.setEnabled(false);
+		table.setDragEnabled(false);
 		JScrollPane scroll = new JScrollPane(table); 
 		p2.add(scroll);
  	     
         this.add(topPanel);
         this.add(Box.createVerticalStrut(10));
         this.add(p2);
+
  	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
