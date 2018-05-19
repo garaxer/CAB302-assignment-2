@@ -16,12 +16,12 @@ public class GUI extends JFrame {
 		setTitle(store.getName());
 		
 		//load inventory into store. TODO make the below return a stock to give to store
-		CSV.getInventory(this);
-		
+		CSV csv = new CSV();
+		store.loadInventory(csv.getInventory(this));
+
 		getContentPane().add(new GUIComponents(store));
-		
 		// Resize the frame to fit its components
-		setPreferredSize(new Dimension(800, 1000));
+		setPreferredSize(new Dimension(800, 500));
 		pack();
 	}
 }

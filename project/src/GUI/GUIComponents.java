@@ -46,7 +46,7 @@ public class GUIComponents extends JPanel implements ActionListener{
 		topPanel.add(redButton);
 		
 		topPanel.add(Box.createHorizontalGlue());
-		topPanel.add(new JLabel("Store Capital: "+store.getCapitalString()));
+		topPanel.add(new JLabel("Store Capital: "+store.getCapitalString()));//
 		
 		topPanel.add(Box.createHorizontalGlue());
 		JButton blueButton = new JButton("Load in sales logs");
@@ -60,12 +60,9 @@ public class GUIComponents extends JPanel implements ActionListener{
 		p2.setLayout(new BoxLayout(p2, BoxLayout.X_AXIS));
 
 		//TODO Store.getInventoryInARRAYARRAY
-		String data[][]={ {"1","2","3","4","5","6"}    
-
-		};   
-		
-		
-		String column[]={"Name","Cost","Sell Price","Reorder Point","Reorder Amount","Temperature"};         
+		//String data[][]={ {"1","2","3","4","5","6"} };   
+		String data[][] = store.getInventory(); //
+		String column[]={"Name","Quantity","Cost","Sell Price","Reorder Point","Reorder Amount","Temperature"};         
 		JTable table =new JTable(data,column);     
 		table.setEnabled(false);
 		table.setDragEnabled(false);
@@ -78,9 +75,14 @@ public class GUIComponents extends JPanel implements ActionListener{
 
  	}
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) {
 		
+		 String buttonString = e.getActionCommand();
+		 if (buttonString.equals("Load in sales logs")) {
+			 
+			 CSV csv = new CSV();
+			 store.loadSales(csv.loadSalesLog(this));
+			 JOptionPane.showMessageDialog(null, "sales log loaded successfully");
+	     } 
 	}
-
 }

@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -14,7 +15,11 @@ import javax.swing.JOptionPane;
 public class CSV {
 
 	
-	public static void getInventory(GUI gui) {
+	private String[][] data; //change to stock
+	
+	private HashMap<String, Integer> salesLog;
+	
+	public String[][] getInventory(GUI gui) {
 		
 		boolean workingFile = true;
 		File dir = new File("item_properties.csv");
@@ -26,9 +31,10 @@ public class CSV {
 	        chooser.showOpenDialog(gui);	
 	        workingFile = processFile(chooser.getSelectedFile());
 	    }
+		return data;
 	}
 	
-	private static boolean processFile(File file){
+	private boolean processFile(File file){
 		boolean workingFile = true;
 	    //import the file
 		try {
@@ -44,7 +50,8 @@ public class CSV {
 		return workingFile;
 	}
 	
-	private static boolean processInventory(String fileName) throws IOException {
+	
+	private boolean processInventory(String fileName) throws IOException {
 		boolean workingFile = true;
 		
 		FileReader reader = new FileReader(fileName);
@@ -55,10 +62,7 @@ public class CSV {
 			JOptionPane.showMessageDialog(null, "The file was empty, please select another");
 			workingFile = false;
 		} else {
-			
-			//TODO: Create ITEM and add to stock
-			//String data[][] = null ;
-			
+			//TODO: Create ITEM and add to stock		
 			ArrayList<String[]> lists = new ArrayList<String[]>();
 	
 			System.out.println(line);
@@ -68,9 +72,8 @@ public class CSV {
 				System.out.println(line);
 				lists.add(line.split(",")); // create inventory, add to stock
 			}
-			
-			String data[][] = new String[lists.size()][6];
-			
+			//Junk code to see it displayed
+			data = new String[lists.size()][7];	
 			int i = 0;
 			for (String[] alist : lists) {
 				for (int j = 0; j < alist.length; j++) {
@@ -78,25 +81,61 @@ public class CSV {
 				}
 				i++;
 			}
-			
-			
-			System.out.println(data);
-			
-			/*
-			 * BufferedReader in = new BufferedReader(new FileReader("path/of/text"));
-				String str;
-				
-				List<String> list = new ArrayList<String>();
-				while((str = in.readLine()) != null){
-				    list.add(str);
-				}
-				
-				String[] stringArr = list.toArray(new String[0]);
-			 */
-			
+			//
 		}
 		bufferedReader.close();
 		return workingFile;
+	}
+
+	
+	//TODO combine with the above
+	private boolean processFileSales(File file){
+		try {
+			return processSales(file.getAbsolutePath());
+		} catch (IOException e1) {
+			JOptionPane.showMessageDialog(null, "Please select working inventory file. Error: "+e1);
+			return false;
+		}
+	}
+	//TODO combine with the above
+	private boolean processSales(String absolutePath) throws IOException {
+		FileReader reader = new FileReader(absolutePath);
+		BufferedReader bufferedReader = new BufferedReader(reader);
+		String line = bufferedReader.readLine();
+		if (line == null) {
+			System.out.println("The file was empty");
+			JOptionPane.showMessageDialog(null, "The file was empty, please select another");
+			bufferedReader.close();
+			return false;
+		} else { 
+			salesLog = new HashMap<String, Integer>();
+			
+			System.out.println(line);
+			String[] lineStart = line.split(",");
+			salesLog.put(lineStart[0], Integer.parseInt(lineStart[1]) ); 
+			
+			while((line = bufferedReader.readLine())!= null) {
+				System.out.println(line);
+				lineStart = line.split(",");
+				salesLog.put(lineStart[0], Integer.parseInt(lineStart[1])); 
+			}
+
+		}
+		bufferedReader.close();
+		return true;
+	}
+
+	public HashMap<String, Integer> loadSalesLog(GUIComponents guiComponents) {
+		boolean workingFile = false;
+
+	    while (!workingFile){ 
+	    	JFileChooser chooser = new JFileChooser();
+			chooser.setCurrentDirectory(new File(".\\"));
+	        chooser.showOpenDialog(guiComponents);	
+	        workingFile = processFileSales(chooser.getSelectedFile());
+	    }	
+	    
+	    return salesLog;
 	}
 	
 }
