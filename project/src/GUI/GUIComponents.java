@@ -40,7 +40,7 @@ public class GUIComponents extends JPanel implements ActionListener{
  		topPanel.setBackground(Color.LIGHT_GRAY);
  		topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.X_AXIS));
 		
-		JButton redButton = new JButton("Load in manifests");
+		JButton redButton = new JButton("Generate manifest");
 		redButton.setBackground(Color.RED);
 		redButton.addActionListener(this);
 		topPanel.add(redButton);
@@ -61,7 +61,8 @@ public class GUIComponents extends JPanel implements ActionListener{
 
 		//TODO Store.getInventoryInARRAYARRAY
 		//String data[][]={ {"1","2","3","4","5","6"} };   
-		String data[][] = store.getInventory(); //
+		
+		String data[][] = store.getInventoryArray(); //
 		String column[]={"Name","Quantity","Cost","Sell Price","Reorder Point","Reorder Amount","Temperature"};         
 		JTable table =new JTable(data,column);     
 		table.setEnabled(false);
@@ -84,5 +85,14 @@ public class GUIComponents extends JPanel implements ActionListener{
 			 store.loadSales(csv.loadSalesLog(this));
 			 JOptionPane.showMessageDialog(null, "sales log loaded successfully");
 	     } 
+		 else if (buttonString.equals("Generate manifest")) {
+			 
+			 //CSV csv = new CSV();
+			 //csv.exportManifest(store.generateManifest(),this)
+			 
+			 store.generateManifest();
+
+			 JOptionPane.showMessageDialog(null, "Generating Manifest - remove me");
+	     }
 	}
 }

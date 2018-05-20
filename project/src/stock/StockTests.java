@@ -35,13 +35,22 @@ public class StockTests {
 		stock = new Stock();
 	}
 	
+	
 	/* Test 2: Adding a new item to the list
 	 */
-	@Test public void addAnItem() {
+	@Test public void addAnItem() throws StockException {
 		stock.addItems(item);
 	}
 	
-	/* Test 3: Associating a quantity to an item 
+	/*  Adding a new item to the list that is already there
+	 */
+	@Test(expected = StockException.class)
+	public void addAnItemExists() throws StockException {
+		stock.addItems(item);
+		stock.addItems(item);
+	}
+	
+	/* Test 3: Associating a quantity to an item. Adds the quantity to the current quantity or creates a new item with that quantity
 	 */
 	@Test 
 	public void addAQuantity() {
@@ -63,8 +72,8 @@ public class StockTests {
 	@Test 
 	public void getItemQuantity() throws StockException {
 		stock = new Stock();
-		stock.addItems(item);
-		assertEquals(item, stock.getQuantity(item));
+		stock.addItems(item,100);
+		assertEquals(100, stock.getQuantity(item));
 	}
 	
 	/* Test 5: Remove a quantity from an item
@@ -168,5 +177,17 @@ public class StockTests {
 	public void testGetTotalQuantity() throws StockException {
 		stock.addItems(item,500);
 		assertEquals(500, stock.getTotalQuantity());
+	}
+	
+	/*
+	 * Want an array list needed for GUI
+	 */
+	@Test
+	public void getArrayList() throws StockException {
+		ArrayList<String[]> inventory = new ArrayList<String[]>();
+		String[] item = {"rice","2","3","225","300","NA"};
+		inventory.add(item);
+		stock.addItems(item,500);
+		assertEquals(inventory, stock.getTotalQuantity());
 	}
 }

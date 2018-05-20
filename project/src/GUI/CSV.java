@@ -15,11 +15,11 @@ import javax.swing.JOptionPane;
 public class CSV {
 
 	
-	private String[][] data; //change to stock
-	
+	//private String[][] data; //change to stock
+	private ArrayList<String[]> lists; // initial list of inventory 
 	private HashMap<String, Integer> salesLog;
 	
-	public String[][] getInventory(GUI gui) {
+	public ArrayList<String[]> getInventory(GUI gui) {
 		
 		boolean workingFile = true;
 		File dir = new File("item_properties.csv");
@@ -31,7 +31,7 @@ public class CSV {
 	        chooser.showOpenDialog(gui);	
 	        workingFile = processFile(chooser.getSelectedFile());
 	    }
-		return data;
+		return lists;
 	}
 	
 	private boolean processFile(File file){
@@ -63,7 +63,7 @@ public class CSV {
 			workingFile = false;
 		} else {
 			//TODO: Create ITEM and add to stock		
-			ArrayList<String[]> lists = new ArrayList<String[]>();
+			lists = new ArrayList<String[]>();
 	
 			System.out.println(line);
 			lists.add(line.split(",")); // create inventory, add to stock
@@ -72,21 +72,15 @@ public class CSV {
 				System.out.println(line);
 				lists.add(line.split(",")); // create inventory, add to stock
 			}
-			//Junk code to see it displayed
-			data = new String[lists.size()][7];	
-			int i = 0;
-			for (String[] alist : lists) {
-				for (int j = 0; j < alist.length; j++) {
-					 data[i][j] = alist[j];
-				}
-				i++;
-			}
-			//
 		}
 		bufferedReader.close();
 		return workingFile;
 	}
 
+	
+	
+	
+	//Sales log
 	
 	//TODO combine with the above
 	private boolean processFileSales(File file){
