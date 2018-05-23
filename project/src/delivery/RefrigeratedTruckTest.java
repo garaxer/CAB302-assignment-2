@@ -50,13 +50,25 @@ public class RefrigeratedTruckTest {
 		stock.addItems(item, 1200);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void checkCost(){
-		//900 + 200×0.7T/5 -- formula to calculate cost
+		int temp = -20;
 		Stock stock = new Stock();
-		Truck refrigerated = new RefrigeratedTruck();
+		Truck refrigerated = new RefrigeratedTruck(temp);
 		refrigerated.addStock(stock);
-		//assertEquals();
+		double cost = (900.0 + 200.0*Math.pow(0.7, (temp/5)));
+		assertEquals(cost, refrigerated.getCost());
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void checkCost2() {
+		int temp = -10;
+		Stock stock = new Stock();
+		Truck refrigerated = new RefrigeratedTruck(-10);
+		refrigerated.addStock(stock);
+		double cost = (900.0 + 200.0*Math.pow(0.7, (temp/5)));
+		assertEquals(cost, refrigerated.getCost());
 	}
 	
 	
@@ -68,21 +80,22 @@ public class RefrigeratedTruckTest {
 		stock.addItems(item, 700);
 		Truck refrigerated = new RefrigeratedTruck();
 		refrigerated.addStock(stock);
-		assertEquals(300, refrigerated.getRemainingCapacity());
+		assertEquals(100, refrigerated.getRemainingCapacity());
 	}
 	
+	
 	@Test
-	public void testGetManifest() throws DeliveryException{
-		String list = ">Ordinary\n" + 
-				"cookies,10\n" + 
-				"biscuits,50\n" 
-		Item cookies = new Item("cookies",50,100,5,25);
-		Item biscuits = new Item("biscuits",50,100,5,25);
+	public void checkCapacity2() {
+		Item item = new Item("rice", 2, 3, 225, 300);		 
 		Stock stock = new Stock();
-		stock.addItems(cookies,10);
-		stock.addItems(biscuits,50);
-		Truck ordinaryTruck = new OrdinaryTruck(stock);			
-		assertEquals(list, ordinaryTruck.getManifest());
+		stock.addItems(item, 700);
+		Truck refrigerated = new RefrigeratedTruck();
+		refrigerated.addStock(stock);
+		Stock stock2 = new Stock();
+		stock2.addItems(item, 300);
+		refrigerated.removeStock(stock2);
+		assertEquals(400, refrigerated.getRemainingCapacity());
 	}
+	
 	
 }
