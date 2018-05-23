@@ -1,13 +1,17 @@
 package delivery;
 
 import java.util.ArrayList;
+import java.util.Collection;
+
+//undo commit
 
 import stock.Stock;
 
 public class Manifest {
 
-	//ArrayList<Truck> trucks;
+//	/ArrayList<Truck> trucks;
 	private Stock stock;
+	private String[] inventory;
 
 	public Manifest(Stock stock, ArrayList<String[]> inventory) {
 		this.stock = stock;
@@ -20,6 +24,15 @@ public class Manifest {
 			//}
 		}
 	}
-	
+
+	public ArrayList<String[]> reStock() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public double getCapital() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
