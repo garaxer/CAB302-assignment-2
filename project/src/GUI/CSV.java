@@ -71,6 +71,7 @@ public class CSV {
 			while((line = bufferedReader.readLine())!= null) {
 				System.out.println(line);
 				lists.add(line.split(",")); // create inventory, add to stock
+				//return false if lists length is less that 5
 			}
 		}
 		bufferedReader.close();

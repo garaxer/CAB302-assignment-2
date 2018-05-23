@@ -118,7 +118,7 @@ public class StockTests {
 				"rice,100,2,3,225,300,N/A\n" ;
 		stock.addItems(item,100);
 		stock.addItems(item2,200);
-		assertTrue(listing == stock.getList() || listing2 == stock.getList());
+		assertTrue(listing.equals(stock.getList()) || listing2.equals(stock.getList()));
 	}
 	
 	/* Test 8: Adding another Stock 
@@ -187,8 +187,8 @@ public class StockTests {
 	@Test
 	public void getArrayList() throws StockException {
 		ArrayList<String[]> inventory = new ArrayList<String[]>();
-		String[] item = {"rice","2","3","225","300","N/A"};
-		inventory.add(item);
+		String[] items = {"rice","2","3","225","300","N/A"};
+		inventory.add(items);
 		stock.addItems(item,500);
 		assertEquals(inventory, stock.getTotalQuantity());
 	}
