@@ -7,6 +7,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import stock.StockException;
+
 /**
  * This class contains the main program for a shop.
  * 
@@ -17,9 +19,10 @@ public class StoreFront {
 	/** 
 	 * Program entry point.
 	 * Creates the GUI for the user to start managing inventory
+	 * @throws StockException 
 	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws StockException {
 		//Read in the stock
 		//Stock inventory = CSV.readInventory("item_properties.csv");
 		// Create a store

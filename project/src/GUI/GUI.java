@@ -8,10 +8,12 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import stock.StockException;
+
 @SuppressWarnings("serial") // We don't care
 public class GUI extends JFrame {
 
-	public GUI(Store store) {
+	public GUI(Store store) throws StockException {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		setTitle(store.getName());
 		
