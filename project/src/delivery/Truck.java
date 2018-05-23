@@ -47,7 +47,7 @@ public abstract class Truck {
 	public abstract void addStock(Stock stock);
 
 	
-	public abstract int getCost();
+	public abstract double getCost();
 
 	
 	public abstract String getType();
