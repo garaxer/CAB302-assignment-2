@@ -78,17 +78,19 @@ public class Stock {
 		Set<Item> items = stock.keySet();
 		for (Item item : items) {
 			outputString += item.getItemName()+",";
-			outputString += Integer.toString(stock.get(item));
+			outputString += Integer.toString(stock.get(item))+",";
 			outputString += Integer.toString(item.getItemCost())+",";
 			outputString += Integer.toString(item.getItemPrice())+",";
-			outputString += Integer.toString(item.getItemReorderAmount())+",";
 			outputString += Integer.toString(item.getItemReorderPoint())+",";
+			outputString += Integer.toString(item.getItemReorderAmount())+",";
 			int temp = item.getItemTemperature();
 			if (temp == 0) {
 				outputString += "N/A\n";
 			} else {
 				outputString += item.getItemTemperature()+"\n";
 			}
+			
+			
 			
 		}
 		return outputString;
