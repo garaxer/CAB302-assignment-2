@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import delivery.Manifest;
 import stock.Item;
 import stock.Stock;
+import stock.StockException;
 
 
 
@@ -51,7 +52,7 @@ public class Store {
 		return "$"+String.format("%,.2f", capital);
 	}
 	
-	public void loadInventory(ArrayList<String[]> arrayList) {
+	public void loadInventory(ArrayList<String[]> arrayList) throws StockException {
 		inventory = arrayList;
 		Item item = null;
 		for (String[] list : arrayList) {
