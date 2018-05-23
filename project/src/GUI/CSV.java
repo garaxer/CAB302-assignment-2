@@ -27,6 +27,7 @@ public class CSV {
 		
 	    while (!workingFile){ 
 	    	JFileChooser chooser = new JFileChooser();
+	    		System.out.println("Fine not found");
 			chooser.setCurrentDirectory(new File(".\\"));
 	        chooser.showOpenDialog(gui);	
 	        workingFile = processFile(chooser.getSelectedFile());
@@ -41,6 +42,7 @@ public class CSV {
 			workingFile = processInventory(file.getAbsolutePath());
 		}  catch (java.io.FileNotFoundException e) {
 			JOptionPane.showMessageDialog(null, "File not found please select another file. Error:"+e);
+			
 			workingFile = false;
 		} catch (IOException e1) {
 			JOptionPane.showMessageDialog(null, "Please select working inventory file. Error: "+e1);

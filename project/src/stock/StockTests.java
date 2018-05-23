@@ -187,9 +187,12 @@ public class StockTests {
 	@Test
 	public void getArrayList() throws StockException {
 		ArrayList<String[]> inventory = new ArrayList<String[]>();
-		String[] items = {"rice","2","3","225","300","N/A"};
-		inventory.add(items);
+		String[] theItem = {"rice","2","3","225","300","N/A"};
+		inventory.add(theItem);
 		stock.addItems(item,500);
-		assertEquals(inventory, stock.getTotalQuantity());
+		ArrayList<String[]> storeInventory = stock.getArrayList();
+		String[] storeItem =  storeInventory.get(0);
+		String[] testItem =  inventory.get(0);
+		assertTrue(storeItem[0].equals(testItem[0]) );
 	}
 }
