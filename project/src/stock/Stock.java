@@ -1,5 +1,6 @@
 package stock;
 
+import java.awt.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -87,7 +88,7 @@ public class Stock {
 			if (temp == 0) {
 				outputString += "N/A\n";
 			} else {
-				outputString += item.getItemTemperature()+"\n";
+				outputString += Integer.toString(item.getItemTemperature())+"\n";
 			}
 			
 			
@@ -133,7 +134,31 @@ public class Stock {
 		Set<Item> items= stock.keySet();
 		return items;
 	}
+	
+	public ArrayList<String[]> getArrayList() {
+		ArrayList<String[]> stockString = new ArrayList<String[]>();
+		String[] currentItem = new String[6];
+		Set<Item> allItems = stock.keySet();
+		for (Item curr : allItems) {
+			currentItem[0] = curr.getItemName();
+			currentItem[1] = Integer.toString(curr.getItemCost());
+			currentItem[2] = Integer.toString(curr.getItemPrice());
+			currentItem[3] = Integer.toString(curr.getItemReorderPoint());
+			currentItem[4] = Integer.toString(curr.getItemReorderAmount());
+			int temp = curr.getItemTemperature();
+			if (temp == 0) {
+				currentItem[5] += "N/A";
+			} else {
+				currentItem[5] = Integer.toString(curr.getItemTemperature());
+			
+			}
+			stockString.add(currentItem);
+		}
+		
+		return stockString;
+	}
 
+	
 	public int getTotalQuantity() {
 		Set<Item> keyset = stock.keySet();
 		int totalQuantity = 0;
