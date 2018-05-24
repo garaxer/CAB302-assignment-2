@@ -148,7 +148,7 @@ public class Stock {
 			currentItem[5] = Integer.toString(curr.getItemReorderAmount());
 			int temp = curr.getItemTemperature();
 			if (temp == 0) {
-				currentItem[6] += "N/A";
+				currentItem[6] = "N/A";
 			} else {
 				currentItem[6] = Integer.toString(curr.getItemTemperature());
 			
