@@ -2,6 +2,7 @@ package delivery;
 
 import stock.Item;
 import stock.Stock;
+import stock.StockException;
 
 /**
  * 
@@ -10,15 +11,29 @@ import stock.Stock;
  */
 public class RefrigeratedTruck extends Truck {
 	
-	public RefrigeratedTruck(Stock stock) throws DeliveryException {
+	/*public RefrigeratedTruck(Stock stock) throws DeliveryException {
 		super(800,stock);
-	}
+	}*/
+	
+	
+	private Stock stock;
+	public RefrigeratedTruck() {
 		
+	}
+	
+	public void addStock(Stock stockToAdd) throws DeliveryException {
+		int quantity = stockToAdd.getTotalQuantity();
+		if (quantity > getCapacity()) {
+			throw new DeliveryException("There isn't enough room on the truck");
+		}
+		this.stock = stockToAdd;
+	}
+	
 	@Override
 	public double getCost() {
-		int quantity = stock.getTotalQuantity();
-		int coldest;
-		for (Item item : stock) {
+		//int quantity = stock.getTotalQuantity();
+		int coldest = 1000; //Arbitary number Max
+		for (Item item : stock.toSet()) {
 			int temp = item.getItemTemperature();
 			if (temp != 0 && temp < coldest) {
 				coldest = temp;
@@ -28,7 +43,7 @@ public class RefrigeratedTruck extends Truck {
 	}
 	
 	@Override
-	public String getStock() {
+	public Stock getStock() {
 		return this.stock;
 	}
 	
@@ -37,12 +52,23 @@ public class RefrigeratedTruck extends Truck {
 		return "Refrigerated";
 	}
 	
+	public void removeStock(Stock stock) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public int getRemainingCapacity() {
+		return getCapacity() - stock.getTotalQuantity();
+		
+	}
+	
 	@Override
-	public String getManifest() {
-		String manifest = ">Refrigerated";
-		for (Item item : stock) {
-			manifest += item.getItemName() + ','  +  stock.getQuantity(item);
+	public String getManifest() throws StockException {
+		String manifest = ">Refrigerated\n";
+		for (Item item : stock.toSet()) {
+			manifest += item.getItemName() + ','  +  stock.getQuantity(item)+'\n';
 		}
+		System.out.println(manifest);
 		return manifest;
 	}
 	
