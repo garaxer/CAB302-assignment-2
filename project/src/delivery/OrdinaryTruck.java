@@ -16,12 +16,12 @@ import stock.StockException;
 
 public class OrdinaryTruck extends Truck {
 	
-	private int capacity = 1000;
+	public int capacity = 1000;
 	private Stock stock = new Stock();
 	private String type = "Ordinary";
 
 	public OrdinaryTruck(int capacity, Stock stock) throws DeliveryException{
-		this.capacity = capacity;
+		//this.capacity = capacity;
 		checkStockForColdItems(stock);
 	}
 	
@@ -64,7 +64,6 @@ public class OrdinaryTruck extends Truck {
 			} else {
 				int currentQuantity = this.stock.getTotalQuantity();
 				int newQuantity = stock.getTotalQuantity();		
-				System.out.println("This is the quantity:" + (currentQuantity+newQuantity) + "This is the cap:" + this.capacity);
 				if ((currentQuantity + newQuantity) > this.capacity) {
 					throw new DeliveryException("There isn't enough room on the truck");
 				} else {
@@ -80,10 +79,16 @@ public class OrdinaryTruck extends Truck {
 			if (item.getItemTemperature() < 0) {
 				throw new DeliveryException("This truck cannot carry refrigerated goods");
 			} else {
-				this.stock.addStock(stock);	
+				int newQuantity = stock.getTotalQuantity();		
+				if ((newQuantity) > this.capacity) {
+					throw new DeliveryException("There isn't enough room on the truck");
+				} else {
+					this.stock = stock;	
+				}
 			}
 		}
 	}
+	
 
 
 }
