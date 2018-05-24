@@ -137,19 +137,20 @@ public class Stock {
 	
 	public ArrayList<String[]> getArrayList() {
 		ArrayList<String[]> stockString = new ArrayList<String[]>();
-		String[] currentItem = new String[6];
 		Set<Item> allItems = stock.keySet();
 		for (Item curr : allItems) {
+			String[] currentItem = new String[7];
 			currentItem[0] = curr.getItemName();
-			currentItem[1] = Integer.toString(curr.getItemCost());
-			currentItem[2] = Integer.toString(curr.getItemPrice());
-			currentItem[3] = Integer.toString(curr.getItemReorderPoint());
-			currentItem[4] = Integer.toString(curr.getItemReorderAmount());
+			currentItem[1] = Integer.toString(stock.get(curr));
+			currentItem[2] = Integer.toString(curr.getItemCost());
+			currentItem[3] = Integer.toString(curr.getItemPrice());
+			currentItem[4] = Integer.toString(curr.getItemReorderPoint());
+			currentItem[5] = Integer.toString(curr.getItemReorderAmount());
 			int temp = curr.getItemTemperature();
 			if (temp == 0) {
-				currentItem[5] += "N/A";
+				currentItem[6] += "N/A";
 			} else {
-				currentItem[5] = Integer.toString(curr.getItemTemperature());
+				currentItem[6] = Integer.toString(curr.getItemTemperature());
 			
 			}
 			stockString.add(currentItem);
