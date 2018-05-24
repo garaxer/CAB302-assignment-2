@@ -18,7 +18,7 @@ public class RefrigeratedTruck extends Truck {
 	
 	private Stock stock;
 	public RefrigeratedTruck() {
-		
+		//super(800,Stock) //Tests need to be changed to allow this
 	}
 	
 	public void addStock(Stock stockToAdd) throws DeliveryException {
@@ -52,9 +52,9 @@ public class RefrigeratedTruck extends Truck {
 		return "Refrigerated";
 	}
 	
-	public void removeStock(Stock stock) {
+	public void removeStock(Stock stockToRemove) throws StockException {
 		// TODO Auto-generated method stub
-		
+		stock.removeStock(stockToRemove);
 	}
 	
 	public int getRemainingCapacity() {
