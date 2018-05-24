@@ -182,12 +182,12 @@ public class StockTests {
 	}
 	
 	/*
-	 * Want an array list needed for GUI
+	 * Want an array list needed for GUI, includes quantity
 	 */
 	@Test
 	public void getArrayList() throws StockException {
 		ArrayList<String[]> inventory = new ArrayList<String[]>();
-		String[] theItem = {"rice","2","3","225","300","N/A"};
+		String[] theItem = {"rice","500","2","3","225","300","N/A"};
 		inventory.add(theItem);
 		stock.addItems(item,500);
 		ArrayList<String[]> storeInventory = stock.getArrayList();

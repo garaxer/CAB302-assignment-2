@@ -27,7 +27,7 @@ public class CSV {
 		
 	    while (!workingFile){ 
 	    	JFileChooser chooser = new JFileChooser();
-	    		System.out.println("Fine not found");
+	    	System.out.println("Fine not found");
 			chooser.setCurrentDirectory(new File(".\\"));
 	        chooser.showOpenDialog(gui);	
 	        workingFile = processFile(chooser.getSelectedFile());
@@ -67,11 +67,11 @@ public class CSV {
 			//TODO: Create ITEM and add to stock		
 			lists = new ArrayList<String[]>();
 	
-			System.out.println(line);
+			//System.out.println(line);
 			lists.add(line.split(",")); // create inventory, add to stock
 			
 			while((line = bufferedReader.readLine())!= null) {
-				System.out.println(line);
+				//System.out.println(line);
 				lists.add(line.split(",")); // create inventory, add to stock
 				//return false if lists length is less that 5
 			}

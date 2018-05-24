@@ -22,12 +22,12 @@ import stock.StockException;
 public class Store {
 
 	public double capital = 100000;
-	private ArrayList<String[]> inventory; //change to Stock when created
+	//private ArrayList<String[]> inventory; //change to Stock when created
 	public String name;
-	public Stock stock;
+	public Stock inventory;
 	
 	protected Store() {
-		this.stock = new Stock();
+		this.inventory = new Stock();
 	}
 		
 	/**
@@ -53,7 +53,7 @@ public class Store {
 	}
 	
 	public void loadInventory(ArrayList<String[]> arrayList) throws StockException {
-		inventory = arrayList;
+		//inventory = arrayList;
 		Item item = null;
 		for (String[] list : arrayList) {
 			for (int j = 0; j < list.length; j++) {
@@ -66,16 +66,24 @@ public class Store {
 				}
 			}
 			//add to stock
-			stock.addItems(item);
+			//System.out.println(item.getItemName());
+			inventory.addItems(item);
 		}		
 	}
 
 	
 	public String[][] getInventoryArray() {
 		//Junk code to see it displayed
-		String[][] data = new String[inventory.size()][7];	
+		ArrayList<String[]> inventoryList = inventory.getArrayList();
+		//System.out.println(inventory.getList());
+		for (String[] alist : inventoryList) { 
+			//System.out.println(alist[0]);
+		}
+		
+		
+		String[][] data = new String[inventoryList.size()][7];	
 		int i = 0;
-		for (String[] alist : inventory) {
+		for (String[] alist : inventoryList) {
 			for (int j = 0; j < alist.length; j++) {
 				 data[i][j] = alist[j];
 			}
@@ -97,7 +105,7 @@ public class Store {
 	public void generateManifest() {
 		// TODO Auto-generated method stub
 		Stock stock = new Stock();
-		Manifest manifest = new Manifest(stock,inventory);
+		Manifest manifest = new Manifest(stock);
 		//inventory.addAll(manifest.reStock());
 		capital+= manifest.getCapital();
 	}
