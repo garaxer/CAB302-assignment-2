@@ -54,7 +54,7 @@ public class OrdinaryTruckTests {
 	@Test
 	public void testCost() { 
 		double cost = 875; //750 + 0.25*500
-		assertEquals(cost, ordinaryTruck.getCost());
+		assertEquals(cost, ordinaryTruck.getCost(),0);
 	}
 	
 	/* Test 5: See if the Truck can *deliver the items* 

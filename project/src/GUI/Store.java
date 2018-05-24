@@ -53,9 +53,8 @@ public class Store {
 	}
 	
 	public void loadInventory(ArrayList<String[]> arrayList) throws StockException {
-		//inventory = arrayList;
-		Item item = null;
 		for (String[] list : arrayList) {
+			Item item = null;
 			for (int j = 0; j < list.length; j++) {
 				if (list.length == 6) {
 					//create cold item
@@ -65,21 +64,14 @@ public class Store {
 					item = new Item(list[0],Integer.parseInt(list[1]),Integer.parseInt(list[2]),Integer.parseInt(list[3]),Integer.parseInt(list[4]));
 				}
 			}
-			//add to stock
-			//System.out.println(item.getItemName());
 			inventory.addItems(item);
 		}		
 	}
 
 	
 	public String[][] getInventoryArray() {
-		//Junk code to see it displayed
+
 		ArrayList<String[]> inventoryList = inventory.getArrayList();
-		//System.out.println(inventory.getList());
-		for (String[] alist : inventoryList) { 
-			//System.out.println(alist[0]);
-		}
-		
 		
 		String[][] data = new String[inventoryList.size()][7];	
 		int i = 0;
@@ -89,7 +81,6 @@ public class Store {
 			}
 			i++;
 		}
-		//
 		return data;
 	}
 
@@ -107,7 +98,7 @@ public class Store {
 		Stock stock = new Stock();
 		Manifest manifest = new Manifest(stock);
 		//inventory.addAll(manifest.reStock());
-		capital+= manifest.getCapital();
+		capital += manifest.getCapital();
 	}
 
 }
