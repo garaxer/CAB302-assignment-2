@@ -16,26 +16,19 @@ import stock.StockException;
 
 public class OrdinaryTruck extends Truck {
 	
-	public int capacity = 1000;
-	private Stock stock = new Stock();
+	//public int capacity = 1000;
+	//private Stock stock = new Stock();
 	private String type = "Ordinary";
 
-	public OrdinaryTruck(int capacity, Stock stock) throws DeliveryException{
-		//this.capacity = capacity;
-		checkStockForColdItems(stock);
-	}
-	
+
 	public OrdinaryTruck(Stock stock) throws DeliveryException {
+		super(1000,stock);
 		checkStockForColdItems(stock);	
 	}
 	
-	public Stock getStock() {
-		return stock;
-	}
-
 	@Override
 	public double getCost() {
-		double cost = 750 + 0.25*stock.getTotalQuantity();
+		double cost = 750 + 0.25*getStock().getTotalQuantity();
 		return cost;
 	}
 
@@ -48,9 +41,9 @@ public class OrdinaryTruck extends Truck {
 	public String getManifest() throws StockException {	
 		String output = "";
 		output += ">" + type + "\n";
-		for (Item item : stock.toSet()) {
+		for (Item item : getStock().toSet()) {
 			output += item.getItemName() + ",";
-			output += Integer.toString(stock.getQuantity(item)) + "\n";
+			output += Integer.toString(getStock().getQuantity(item)) + "\n";
 		}
 		return output;
 	}
@@ -62,12 +55,12 @@ public class OrdinaryTruck extends Truck {
 			if (item.getItemTemperature() < 0) {
 				throw new DeliveryException("This truck cannot carry refrigerated goods");
 			} else {
-				int currentQuantity = this.stock.getTotalQuantity();
+				int currentQuantity = getStock().getTotalQuantity();
 				int newQuantity = stock.getTotalQuantity();		
-				if ((currentQuantity + newQuantity) > this.capacity) {
+				if ((currentQuantity + newQuantity) > getCapacity()) {
 					throw new DeliveryException("There isn't enough room on the truck");
 				} else {
-					this.stock.addStock(stock);	
+					getStock().addStock(stock);	
 				}
 			}
 		}
@@ -80,11 +73,9 @@ public class OrdinaryTruck extends Truck {
 				throw new DeliveryException("This truck cannot carry refrigerated goods");
 			} else {
 				int newQuantity = stock.getTotalQuantity();		
-				if ((newQuantity) > this.capacity) {
+				if ((newQuantity) > getCapacity()) {
 					throw new DeliveryException("There isn't enough room on the truck");
-				} else {
-					this.stock = stock;	
-				}
+				} 
 			}
 		}
 	}
