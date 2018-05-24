@@ -1,6 +1,7 @@
 package delivery;
 
 import stock.Stock;
+import stock.StockException;
 
 /**
  * 
@@ -44,7 +45,7 @@ public abstract class Truck {
 		return stock;
 	}
 	
-	public abstract void addStock(Stock stock);
+	public abstract void addStock(Stock stock) throws DeliveryException;
 
 	
 	public abstract double getCost();
@@ -53,7 +54,7 @@ public abstract class Truck {
 	public abstract String getType();
 
 	
-	public abstract String getManifest();
+	public abstract String getManifest() throws StockException;
 
 
 	
