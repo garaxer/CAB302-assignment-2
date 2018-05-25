@@ -85,7 +85,7 @@ public class Stock {
 			outputString += Integer.toString(item.getItemReorderPoint())+",";
 			outputString += Integer.toString(item.getItemReorderAmount())+",";
 			int temp = item.getItemTemperature();
-			if (temp == 0) {
+			if (temp == 1000) {
 				outputString += "N/A\n";
 			} else {
 				outputString += Integer.toString(item.getItemTemperature())+"\n";
@@ -147,7 +147,7 @@ public class Stock {
 			currentItem[4] = Integer.toString(curr.getItemReorderPoint());
 			currentItem[5] = Integer.toString(curr.getItemReorderAmount());
 			int temp = curr.getItemTemperature();
-			if (temp == 0) {
+			if (temp == 1000) {
 				currentItem[6] = "N/A";
 			} else {
 				currentItem[6] = Integer.toString(curr.getItemTemperature());

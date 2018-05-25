@@ -24,7 +24,7 @@ public class Item {
 		this.sellPrice = sell;
 		this.reorderPoint = reordp;
 		this.reorderAmount = reorder;
-		this.temperature = 0;
+		this.temperature = 1000;
 	}
 
 	public String getItemName() {
