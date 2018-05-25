@@ -32,6 +32,11 @@ public abstract class Truck {
 		}				
 	}
 	
+	public Truck(int capacity) {
+		this.capacity = capacity;
+		this.stock = new Stock();
+	}
+	
 	public Truck() {
 		this.capacity = 1000;
 	}
