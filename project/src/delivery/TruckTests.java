@@ -28,5 +28,6 @@ public class TruckTests  {
 		assertEquals(null,mock.getStock());
 		assertEquals(null,mock.getType());
 		assertEquals(null,mock.getManifest());
+		assertEquals(0,mock.getRemainingCapacity());
 	}
 }

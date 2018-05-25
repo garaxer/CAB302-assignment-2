@@ -6,6 +6,12 @@ import java.util.Collection;
 import stock.Item;
 import stock.Stock;
 
+/**
+ *  A manifest Class.
+ *  Holds a list of trucks. Used to calculate the cost of restocking
+ * @author Gary Bagnall
+ *
+ */
 public class Manifest {
 
 //	/ArrayList<Truck> trucks;
@@ -28,7 +34,7 @@ public class Manifest {
 		Stock thisTruck = new Stock();
 		Truck newTruck  = null;
 		if (start.getItemTemperature() < 1000) {
-			newTruck = new RefrigeratedTruck();
+			newTruck = new RefrigeratedTruck(thisTruck);
 		} else {
 			newTruck = new OrdinaryTruck(thisTruck);
 		}
