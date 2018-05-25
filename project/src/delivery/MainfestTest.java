@@ -87,7 +87,10 @@ public class MainfestTest {
 	
 	@Test
 	public void testStringOneTruck() {
-		
+		Manifest manifest = new Manifest(stock);
+		String manifestString = ">Refrigerated\nbiscuits,575\nice cream,250\n";
+		String manifestString2 = ">Refrigerated\nice cream,250\nbiscuits,575\n";
+		assertTrue((manifestString.equals(manifest.getStockString())) ||(manifestString2.equals(manifest.getStockString()) ));
 	}
 	
 	@Test 
@@ -100,6 +103,28 @@ public class MainfestTest {
 		assertEquals(totalCost, manifest.getTotalCost());
 	}
 	
+	@Test
+	public void testStockObjectTwoTruck() {
+		Manifest manifest = new Manifest(stock);
+		Stock orderStock = new Stock();
+		orderStock.addItems(biscuits, 575);
+		orderStock.addItems(iceCream, 250);
+		orderStock.addItems(ice, 325);
+		assertEquals(orderStock, manifest.getReorderStock());
+	}
+	
+	@Test
+	public void testStringTwoTruck() {
+		Manifest manifest = new Manifest(stock);
+		String manifestString = ">Refrigerated\nbiscuits,575\nice cream,250\nice,325\n";
+		String manifestString2 = ">Refrigerated\nice cream,250\nbiscuits,575\nice,325\n";
+		String manifestString3 = ">Refrigerated\nice,325\nice cream,250\nbiscuits,575\n";
+		String manifestString4 = ">Refrigerated\nice cream,250\nice,325\nbiscuits,575\n";
+		String manifestString5 = ">Refrigerated\nice cream,250\nbiscuits,575\n";
+		String manifestString6 = ">Refrigerated\nice cream,250\nbiscuits,575\n";
+		assertTrue((manifestString.equals(manifest.getStockString())() ||(manifestString2.equals(manifest.getStockString())) );
+	}
+	
 	@Test 
 	public void testTwoTruckRefrig() {
 		stock.addItems(biscuits, 300);
@@ -110,6 +135,24 @@ public class MainfestTest {
 		double foodCost = ((250*8) + (575*10) + (325*2));
 		double totalCost = TruckCost + foodCost;	
 		assertEquals(totalCost, manifest.getTotalCost());
+	}
+	
+	@Test
+	public void testStockObjectOneTruck() {
+		Manifest manifest = new Manifest(stock);
+		Stock orderStock = new Stock();
+		orderStock.addItems(ice, 325);
+		orderStock.addItems(iceCream, 250);
+		orderStock.addItems(frozenMeat, 575);
+		assertEquals(orderStock, manifest.getReorderStock());
+	}
+	
+	@Test
+	public void testStringOneTruck() {
+		Manifest manifest = new Manifest(stock);
+		String manifestString = ">Refrigerated\nfrozen meat,575\nice cream,250\nice,325\n";
+		String manifestString2 = ">Refrigerated\nice cream,250\nbiscuits,575\n";
+		assertTrue((manifestString.equals(manifest.getStockString())) ||(manifestString2 == manifest.getStockString()) );
 	}
 	
 
