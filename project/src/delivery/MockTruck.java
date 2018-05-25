@@ -29,9 +29,13 @@ public class MockTruck extends Truck {
 		return null;
 	}
 
-	@Override
 	public void addStock(Stock stock) {
-		// TODO Auto-generated method stub
-		
+	}
+	
+	public void setStock(Stock stock) {
+	}
+	
+	public int getRemainingCapacity() {
+		return 0;
 	}
 }

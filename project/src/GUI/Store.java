@@ -93,12 +93,12 @@ public class Store {
 		}
 	}
 
-	public void generateManifest() {
+	public String generateManifest() {
 		// TODO Auto-generated method stub
-		Stock stock = new Stock();
-		Manifest manifest = new Manifest(stock);
-		//inventory.addAll(manifest.reStock());
+		Manifest manifest = new Manifest(inventory);
+		//inventory.addStock((manifest.reStock());
 		capital += manifest.getCapital();
+		return manifest.toString();
 	}
 
 }

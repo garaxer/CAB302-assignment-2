@@ -3,25 +3,59 @@ package delivery;
 import java.util.ArrayList;
 import java.util.Collection;
 
-//undo commit
-
+import stock.Item;
 import stock.Stock;
 
+/**
+ *  A manifest Class.
+ *  Holds a list of trucks. Used to calculate the cost of restocking
+ * @author Gary Bagnall
+ *
+ */
 public class Manifest {
 
 //	/ArrayList<Truck> trucks;
-	private Stock stock;
+	private Stock storeStock;
+	private Stock reducingStock;
+	//private Stock ;
 	
-	public Manifest(Stock stock) {
-		this.stock = stock;
-		System.out.println("Stock bro");
-		ArrayList<String[]> inventory = stock.getArrayList();
-		for (String[] alist : inventory) {
-			//for (int j = 0; j < alist.length; j++) {
-			System.out.println("name= "+alist[0]+" point= "+alist[3]+" amount= "+alist[4]);
-				//System.out.println(alist[0]);
-			//}
+	ArrayList<Truck> trucks;
+	
+	public Manifest(Stock storeStock) {
+		this.storeStock = storeStock;
+		this.reducingStock = storeStock;
+		trucks = new ArrayList<>();
+		populateTruck();
+	}
+	
+	private void populateTruck() {
+		
+		Item start = FindColdestItem();
+		Stock thisTruck = new Stock();
+		Truck newTruck  = null;
+		if (start.getItemTemperature() < 1000) {
+			newTruck = new RefrigeratedTruck(thisTruck);
+		} else {
+			newTruck = new OrdinaryTruck(thisTruck);
 		}
+		
+		if (getRemainingStock() < newTruck.getRemainingCapicity()) {
+			
+		}
+		
+		
+	}
+
+	private Item FindColdestItem() {
+		int lowestTemp = 1000;
+		Item coldItem = null;
+		for (Item item : reducingStock.toSet()){
+			if (item.getItemTemperature() < lowestTemp) {
+				lowestTemp = item.getItemTemperature();
+				coldItem = item;
+			}
+		}
+		return coldItem;
 	}
 
 	public ArrayList<String[]> reStock() {
@@ -29,7 +63,7 @@ public class Manifest {
 		return null;
 	}
 
-	public double getCapital() {
+	public double getTotalCost() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
