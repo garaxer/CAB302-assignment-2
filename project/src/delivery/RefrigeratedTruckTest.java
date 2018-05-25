@@ -29,6 +29,14 @@ public class RefrigeratedTruckTest {
 		Truck refrigerated = new RefrigeratedTruck();
 	}
 	
+	// 1: Test if a RefrigeratedTruck object can be constructed
+	@Test
+	public void checkCreationwithStock() {
+		Stock stock = new Stock();
+		stock.addItems(chocolate, 10);
+		Truck refrigerated = new RefrigeratedTruck(stock);
+	}
+	
 	// 2: Test of Stock can be added
 	@Test
 	public void checkAddingStock() {
