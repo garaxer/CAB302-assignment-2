@@ -52,6 +52,9 @@ public abstract class Truck {
 
 	
 	public abstract String getType();
+	
+	
+	public abstract int getRemainingCapacity();
 
 	
 	public abstract String getManifest() throws StockException;
