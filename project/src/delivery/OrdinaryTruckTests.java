@@ -101,4 +101,20 @@ public class OrdinaryTruckTests {
 		ordinaryTruck = new OrdinaryTruck(stock);			
 		assertEquals(list, ordinaryTruck.getManifest());
 	}
+	
+	/*
+	 * Get remaining capacity
+	 */
+	@Test
+	public void checkRemaining() {	 
+		assertEquals(500, ordinaryTruck.getRemainingCapacity());
+	}
+	
+	/* Test 1: Constructing a ordinaryTruck object with a stock
+	 */
+	@Test
+	public void setUpOrdinaryTruckWithoutStock() throws DeliveryException {
+		Truck ordinaryTruckTest = new OrdinaryTruck();
+		OrdinaryTruck ordinaryTruckTest2 = new OrdinaryTruck();
+	}
 }
