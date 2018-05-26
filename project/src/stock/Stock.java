@@ -97,7 +97,7 @@ public class Stock {
 		return outputString;
 	}
 
-	public void addStock(Stock stock2) {
+	public void addStock(Stock stock2) throws StockException {
 		Set<Item> keys = stock2.toSet();
 		for (Item key : keys) {
 			if (stock.containsKey(key)) {
@@ -107,6 +107,9 @@ public class Stock {
 				} catch (StockException e) {
 					
 				}
+			} else {
+				int quantity = stock2.getQuantity(key);
+				stock.put(key, quantity);
 			}
 		}
 		
