@@ -96,8 +96,8 @@ public class Store {
 	public String generateManifest() {
 		// TODO Auto-generated method stub
 		Manifest manifest = new Manifest(inventory);
-		//inventory.addStock((manifest.reStock());
-		//capital += manifest.getCapital();
+		inventory.addStock(manifest.getReorderStock());
+		capital -= manifest.getTotalCost();
 		return manifest.getStockString();
 	}
 

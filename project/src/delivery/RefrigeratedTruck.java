@@ -63,7 +63,6 @@ public class RefrigeratedTruck extends Truck {
 		for (Item item : getStock().toSet()) {
 			manifest += item.getItemName() + ','  +  getStock().getQuantity(item)+'\n';
 		}
-		System.out.println(manifest);
 		return manifest;
 	}
 	

@@ -92,22 +92,16 @@ public class Manifest {
 				}
 			}
 			try {
-				if (truckStock.getTotalQuantity() > 0) {
-					if (cold){
-						newTruck = new RefrigeratedTruck(truckStock);
-	
-					} else {
-						newTruck = new OrdinaryTruck(truckStock);
-	
-					}
-					trucks.add(newTruck);
+				if (cold){
+					newTruck = new RefrigeratedTruck(truckStock);
+
+				} else {
+					newTruck = new OrdinaryTruck(truckStock);
 				}
-				
-				//newTruck.addStock(truckStock);
+				trucks.add(newTruck);
 			} catch (DeliveryException e) {
 				e.printStackTrace();
 			}
-			
 		}
 	}
 
@@ -115,40 +109,24 @@ public class Manifest {
 		    return Integer.compare(o.getItemTemperature(), o2.getItemTemperature());
 	}
 	 
-	 //not used, replaced with List
-	private Item FindColdestItem() {
-		int lowestTemp = 1000;
-		Item coldItem = null;
-		for (Item item : storeStock.toSet()){
-			if (item.getItemTemperature() < lowestTemp && storeStock.getQuantity(item) > 0) {
-				lowestTemp = item.getItemTemperature();
-				coldItem = item;
-			}
-		}
-		return coldItem;
-	}
-
-	public ArrayList<String[]> reStock() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public double getTotalCost() {
 		// TODO Auto-generated method stub
-		return 0;
+		double cost = 0;
+		for (Truck truck : trucks) {
+			cost += truck.getCost();
+		}
+		return cost;
 	}
 	public Stock getReorderStock() {
 		return reorder;
 	}
 
 	public String getStockString() {
-		// TODO Auto-generated method stub
 		String list ="";
 		for (Truck truck : trucks) {
 			try {
 				list += truck.getManifest();
 			} catch (StockException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

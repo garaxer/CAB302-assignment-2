@@ -24,6 +24,8 @@ public class GUIComponents extends JPanel implements ActionListener{
 
 	//change to panel with the button, see slide37 of lecture 9
 	public Store store;
+	
+	private JLabel money;
      
      public GUIComponents(Store store){
     	 this.store = store;
@@ -46,7 +48,8 @@ public class GUIComponents extends JPanel implements ActionListener{
 		topPanel.add(redButton);
 		
 		topPanel.add(Box.createHorizontalGlue());
-		topPanel.add(new JLabel("Store Capital: "+store.getCapitalString()));//
+		money = new JLabel("Store Capital: "+store.getCapitalString());
+		topPanel.add(money);//
 		
 		topPanel.add(Box.createHorizontalGlue());
 		JButton blueButton = new JButton("Load in sales logs");
@@ -87,12 +90,16 @@ public class GUIComponents extends JPanel implements ActionListener{
 	     } 
 		 else if (buttonString.equals("Generate manifest")) {
 			 
-			 //CSV csv = new CSV();
-			 //csv.exportManifest(store.generateManifest(),this)
 			 
 			 System.out.println(store.generateManifest());
-
+			 
+			 System.out.println(store.getCapitalString());
+			 
 			 JOptionPane.showMessageDialog(null, "Generating Manifest - remove me");
+			 money = new JLabel("Store Capital: "+store.getCapitalString());
+			 money.repaint();
+			 money.revalidate();
+			 money.repaint();
 	     }
 	}
 }
