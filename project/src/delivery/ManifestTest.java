@@ -2,6 +2,7 @@ package delivery;
 
 import static org.junit.Assert.*;
 
+import org.junit.Assert;
 import org.junit.Before;
 
 /**
@@ -13,8 +14,12 @@ import org.junit.Test;
 
 import stock.Item;
 import stock.Stock;
+import stock.StockException;
 
-public class MainfestTest {
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+public class ManifestTest {
 	
 	Item biscuits = new Item("biscuits",	2,	5,	450,	575);	
 	Item nuts = new Item("nuts",	5,	9,	125,	250);	
@@ -82,7 +87,12 @@ public class MainfestTest {
 		Stock orderStock = new Stock();
 		orderStock.addItems(biscuits, 575);
 		orderStock.addItems(iceCream, 250);
-		assertEquals(orderStock, manifest.getReorderStock());
+		Stock expectedStock = manifest.getReorderStock();
+		for (Item item : expectedStock.toSet()) {
+			if (orderStock.getQuantity(item) != expectedStock.getQuantity(item) ) {
+				fail();
+			}
+		}
 	}
 	
 	@Test
@@ -94,7 +104,7 @@ public class MainfestTest {
 	}
 	
 	@Test 
-	public void testTwoTruckRefrigandOrd() {
+	public void testTwoTruckRefrigandOrd() throws StockException {
 		stock.removeItems(ice, 200);
 		Manifest manifest = new Manifest(stock);
 		double TruckCost = (900.0 + 200.0*Math.pow(0.7, (-20/5))) + (750 + 0.25*350);
@@ -110,7 +120,12 @@ public class MainfestTest {
 		orderStock.addItems(biscuits, 575);
 		orderStock.addItems(iceCream, 250);
 		orderStock.addItems(ice, 325);
-		assertEquals(orderStock, manifest.getReorderStock());
+		Stock expectedStock = manifest.getReorderStock();
+		for (Item item : expectedStock.toSet()) {
+			if (orderStock.getQuantity(item) != expectedStock.getQuantity(item) ) {
+				fail();
+			}
+		}
 	}
 	
 	@Test
@@ -126,7 +141,7 @@ public class MainfestTest {
 	}
 	
 	@Test 
-	public void testTwoTruckRefrig() {
+	public void testTwoTruckRefrig() throws StockException {
 		stock.addItems(biscuits, 300);
 		stock.removeItems(ice, 200);
 		stock.removeItems(frozenMeat, 200);
@@ -138,125 +153,27 @@ public class MainfestTest {
 	}
 	
 	@Test
-	public void testStockObjectOneTruck() {
+	public void testStockObjectTwoRefrigeratedTrucks() {
 		Manifest manifest = new Manifest(stock);
 		Stock orderStock = new Stock();
 		orderStock.addItems(ice, 325);
 		orderStock.addItems(iceCream, 250);
 		orderStock.addItems(frozenMeat, 575);
-		assertEquals(orderStock, manifest.getReorderStock());
+		Stock expectedStock = manifest.getReorderStock();
+		for (Item item : expectedStock.toSet()) {
+			if (orderStock.getQuantity(item) != expectedStock.getQuantity(item) ) {
+				fail();
+			}
+		}
 	}
 	
 	@Test
-	public void testStringOneTruck() {
+	public void testStringTwoRefrigeratedTrucks() {
 		Manifest manifest = new Manifest(stock);
 		String manifestString = ">Refrigerated\nfrozen meat,575\nice cream,250\nice,325\n";
 		String manifestString2 = ">Refrigerated\nice cream,250\nbiscuits,575\n";
-		assertTrue((manifestString.equals(manifest.getStockString())) ||(manifestString2 == manifest.getStockString()) );
+		assertTrue((manifestString.equals(manifest.getStockString())) ||(manifestString2.equals(getStockString()) ));
 	}
 	
-
-
-	/*
-	@Test
-	public void testSalesAmount() {
-		stock.addItems(ice, 200);
-		stock.addItems(iceCream, 200);
-		stock.addItems(chocolate, 200);
-		manifest = new Manifest(stock);
-		double profit = (200*8) + (200*5) + (200*14);
-		assertEquals(profit, manifest.getSalesAmount());
-	}
-	
-	@Test
-	public void testSalesAmount2() {
-		stock.addItems(iceCream, 100);
-		stock.addItems(chocolate, 1100);
-		manifest = new Manifest(stock);
-		double profit = (1100*8) + (100*14);
-		assertEquals(profit, manifest.getSalesAmount());
-		
-	}
-	
-	@Test
-	public void testSalesAmountEmptyStock() {
-		manifest = new Manifest(stock);
-		double profit = 0;
-		assertEquals(profit, manifest.getSalesAmount());
-		
-	}
-	*/
-	
-	@Test 
-	public void testOrderCost() {
-		stock.addItems(ice, 200);
-		stock.addItems(iceCream, 200);
-		stock.addItems(chocolate, 200);
-		manifest = new Manifest(stock);
-		double cost = (200*5) + (200*2) + (200*8);
-		assertEquals(cost, manifest.getReorderCost());
-	}
-	
-	@Test 
-	public void testOrderCost2() {
-		stock.addItems(iceCream, 100);
-		stock.addItems(chocolate, 1100);
-		manifest = new Manifest(stock);
-		double cost = (1100*5) + (100*8);
-		assertEquals(cost, manifest.getReorderCost());
-	}
-	
-	@Test 
-	public void testOrderCostEmptyStock() {
-		manifest = new Manifest(stock);
-		double cost = 0;
-		assertEquals(cost, manifest.getReorderCost());
-	}
-	
-	@Test
-	public void testReorderAmount() {
-		stock.addItems(ice, 200);
-		stock.addItems(iceCream, 150);
-		stock.addItems(chocolate, 200);
-		manifest = new Manifest(stock);
-		Stock newStock = new Stock();
-		newStock.addItems(ice, 235);
-		newStock.addItems(iceCream, 250);
-		newStock.addItems(chocolate, 375);
-		assertEquals(newStock, manifest.getReorderStock());
-	}
-	
-	@Test 
-	public void testReorderAmount2() {
-		stock.addItems(ice, 200);
-		stock.addItems(iceCream, 220);
-		stock.addItems(chocolate, 200);
-		manifest = new Manifest(stock);
-		Stock newStock = new Stock();
-		newStock.addItems(ice, 235);
-		newStock.addItems(chocolate, 375);
-		assertEquals(newStock, manifest.getReorderStock());		
-	}
-	
-	@Test 
-	public void testUnderReorderAmount() {
-		stock.addItems(ice, 300);
-		stock.addItems(iceCream, 300);
-		stock.addItems(chocolate, 300);
-		manifest = new Manifest(stock);
-		Stock newStock = new Stock();
-		assertEquals(newStock, manifest.getReorderStock());		
-	}
-	
-	/**@Test 
-	public void testSalesLogStock() {
-		
-	}
-	
-	@Test 
-	public void testSalesLogStock2() {
-		
-	}
-	**/
 
 }
