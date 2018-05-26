@@ -78,7 +78,7 @@ public class ManifestTest {
 		double TruckCost = (900.0 + 200.0*Math.pow(0.7, (-20/5)));
 		double foodCost = ((250*8) + (575*2));
 		double totalCost = TruckCost + foodCost;	
-		assertEquals(totalCost, manifest.getTotalCost());
+		assertEquals(totalCost, manifest.getTotalCost(), 0);
 	}
 	
 	@Test
@@ -110,7 +110,7 @@ public class ManifestTest {
 		double TruckCost = (900.0 + 200.0*Math.pow(0.7, (-20/5))) + (750 + 0.25*350);
 		double foodCost = ((250*8) + (575*2) + (325*2));
 		double totalCost = TruckCost + foodCost;	
-		assertEquals(totalCost, manifest.getTotalCost());
+		assertEquals(totalCost, manifest.getTotalCost(), 0);
 	}
 	
 	@Test
@@ -137,7 +137,7 @@ public class ManifestTest {
 		String manifestString4 = ">Refrigerated\nice cream,250\nice,325\nbiscuits,575\n";
 		String manifestString5 = ">Refrigerated\nice cream,250\nbiscuits,575\n";
 		String manifestString6 = ">Refrigerated\nice cream,250\nbiscuits,575\n";
-		assertTrue((manifestString.equals(manifest.getStockString())() ||(manifestString2.equals(manifest.getStockString())) );
+		assertTrue((manifestString.equals(manifest.getStockString())) ||(manifestString2.equals(manifest.getStockString())) );
 	}
 	
 	@Test 
@@ -149,7 +149,7 @@ public class ManifestTest {
 		double TruckCost = (900.0 + 200.0*Math.pow(0.7, (-20/5))) + (900.0 + 200.0*Math.pow(0.7, (-14/5)));
 		double foodCost = ((250*8) + (575*10) + (325*2));
 		double totalCost = TruckCost + foodCost;	
-		assertEquals(totalCost, manifest.getTotalCost());
+		assertEquals(totalCost, manifest.getTotalCost(), 0);
 	}
 	
 	@Test
@@ -172,7 +172,7 @@ public class ManifestTest {
 		Manifest manifest = new Manifest(stock);
 		String manifestString = ">Refrigerated\nfrozen meat,575\nice cream,250\nice,325\n";
 		String manifestString2 = ">Refrigerated\nice cream,250\nbiscuits,575\n";
-		assertTrue((manifestString.equals(manifest.getStockString())) ||(manifestString2.equals(getStockString()) ));
+		assertTrue((manifestString.equals(manifest.getStockString())) ||(manifestString2.equals(manifest.getStockString()) ));
 	}
 	
 
