@@ -114,9 +114,15 @@ public class Manifest {
 	public double getTotalCost() {
 		// TODO Auto-generated method stub
 		double cost = 0;
+		
 		for (Truck truck : trucks) {
-			cost += truck.getCost();
+			cost += truck.getCost();//cost of Trucks
+			//cost of items
+			for(Item item : truck.getStock().toSet()) {
+				cost += truck.getStock().getQuantity(item)*item.getItemCost();
+			}
 		}
+		
 		return cost;
 	}
 	public Stock getReorderStock() {
