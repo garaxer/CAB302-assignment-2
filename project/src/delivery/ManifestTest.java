@@ -49,8 +49,8 @@ public class ManifestTest {
 	
 	@Before 
 	public void setUp() {
-		stock.addItems(biscuits, 200);
-		stock.addItems(nuts, 220);
+		stock.addItems(biscuits, 500);
+		stock.addItems(nuts, 100);
 		stock.addItems(chips, 200);
 		stock.addItems(chocolate, 300);
 		stock.addItems(bread, 180);
@@ -76,7 +76,7 @@ public class ManifestTest {
 	public void testOneTruckCost() {
 		Manifest manifest = new Manifest(stock);
 		double TruckCost = (900.0 + 200.0*Math.pow(0.7, (-20/5)));
-		double foodCost = ((250*8) + (575*2));
+		double foodCost = (iceCream.getItemCost()*iceCream.getItemReorderAmount()) + (nuts.getItemCost()*nuts.getItemReorderAmount());
 		double totalCost = TruckCost + foodCost;	
 		assertEquals(totalCost, manifest.getTotalCost(), 0);
 	}
@@ -85,8 +85,8 @@ public class ManifestTest {
 	public void testStockObjectOneTruck() {
 		Manifest manifest = new Manifest(stock);
 		Stock orderStock = new Stock();
-		orderStock.addItems(biscuits, 575);
-		orderStock.addItems(iceCream, 250);
+		orderStock.addItems(nuts, nuts.getItemReorderAmount());
+		orderStock.addItems(iceCream, iceCream.getItemReorderAmount());
 		Stock expectedStock = manifest.getReorderStock();
 		for (Item item : expectedStock.toSet()) {
 			if (orderStock.getQuantity(item) != expectedStock.getQuantity(item) ) {
@@ -98,8 +98,8 @@ public class ManifestTest {
 	@Test
 	public void testStringOneTruck() {
 		Manifest manifest = new Manifest(stock);
-		String manifestString = ">Refrigerated\nbiscuits,575\nice cream,250\n";
-		String manifestString2 = ">Refrigerated\nice cream,250\nbiscuits,575\n";
+		String manifestString = ">Refrigerated\nnuts,250\nice cream,250\n";
+		String manifestString2 = ">Refrigerated\nice cream,250\nnuts,250\n";
 		assertTrue((manifestString.equals(manifest.getStockString())) ||(manifestString2.equals(manifest.getStockString()) ));
 	}
 	
@@ -107,19 +107,20 @@ public class ManifestTest {
 	public void testTwoTruckRefrigandOrd() throws StockException {
 		stock.removeItems(ice, 200);
 		Manifest manifest = new Manifest(stock);
-		double TruckCost = (900.0 + 200.0*Math.pow(0.7, (-20/5))) + (750 + 0.25*350);
-		double foodCost = ((250*8) + (575*2) + (325*2));
+		double TruckCost = (900.0 + 200.0*Math.pow(0.7, (-20/5))) + (750 + 0.25*25);
+		double foodCost = ((iceCream.getItemReorderAmount()*iceCream.getItemCost()) + (nuts.getItemReorderAmount()*nuts.getItemCost()) + (ice.getItemReorderAmount()*ice.getItemCost()));
 		double totalCost = TruckCost + foodCost;	
 		assertEquals(totalCost, manifest.getTotalCost(), 0);
 	}
 	
 	@Test
-	public void testStockObjectTwoTruck() {
+	public void testStockObjectTwoTruck() throws StockException {
+		stock.removeItems(ice, 200);
 		Manifest manifest = new Manifest(stock);
 		Stock orderStock = new Stock();
-		orderStock.addItems(biscuits, 575);
-		orderStock.addItems(iceCream, 250);
-		orderStock.addItems(ice, 325);
+		orderStock.addItems(nuts, nuts.getItemReorderAmount());
+		orderStock.addItems(iceCream, iceCream.getItemReorderAmount());
+		orderStock.addItems(ice, ice.getItemReorderAmount());
 		Stock expectedStock = manifest.getReorderStock();
 		for (Item item : expectedStock.toSet()) {
 			if (orderStock.getQuantity(item) != expectedStock.getQuantity(item) ) {
@@ -129,20 +130,23 @@ public class ManifestTest {
 	}
 	
 	@Test
-	public void testStringTwoTruck() {
+	public void testStringTwoTruck() throws StockException {
+		stock.removeItems(ice, 200);
 		Manifest manifest = new Manifest(stock);
-		String manifestString = ">Refrigerated\nbiscuits,575\nice cream,250\nice,325\n";
-		String manifestString2 = ">Refrigerated\nice cream,250\nbiscuits,575\nice,325\n";
-		String manifestString3 = ">Refrigerated\nice,325\nice cream,250\nbiscuits,575\n";
-		String manifestString4 = ">Refrigerated\nice cream,250\nice,325\nbiscuits,575\n";
-		String manifestString5 = ">Refrigerated\nice cream,250\nbiscuits,575\n";
-		String manifestString6 = ">Refrigerated\nice cream,250\nbiscuits,575\n";
-		assertTrue((manifestString.equals(manifest.getStockString())) ||(manifestString2.equals(manifest.getStockString())) );
+		String manifestString = ">Refrigerated\nnuts,225\nice,325\nice cream,250\n>Ordinary\nnuts,25\n";
+		String manifestString2 = ">Refrigerated\nnuts,225\nice cream,250\nice,325\n>Ordinary\nnuts,25\n";
+		String manifestString3 = ">Refrigerated\nice cream,250\nice,325\nnuts,250\n>Ordinary\nnuts,25\n";
+		String manifestString4 = ">Refrigerated\nice cream,250\nnuts,225\nice,325\n>Ordinary\nnuts,25\n";
+		String manifestString5 = ">Refrigerated\nice,325\nnuts,225\nice cream,250\n>Ordinary\nnuts,25\n";
+		String manifestString6 = ">Refrigerated\nice,325\nice cream,250\nnuts,225\n>Ordinary\nnuts,25\n";
+		assertTrue((manifestString.equals(manifest.getStockString())) ||(manifestString2.equals(manifest.getStockString())) ||
+				(manifestString3.equals(manifest.getStockString())) || (manifestString4.equals(manifest.getStockString())) ||
+				(manifestString5.equals(manifest.getStockString())) ||(manifestString6.equals(manifest.getStockString())));
 	}
 	
 	@Test 
 	public void testTwoTruckRefrig() throws StockException {
-		stock.addItems(biscuits, 300);
+		stock.addItems(nuts, 100);
 		stock.removeItems(ice, 200);
 		stock.removeItems(frozenMeat, 200);
 		Manifest manifest = new Manifest(stock);
@@ -153,7 +157,10 @@ public class ManifestTest {
 	}
 	
 	@Test
-	public void testStockObjectTwoRefrigeratedTrucks() {
+	public void testStockObjectTwoRefrigeratedTrucks() throws StockException {
+		stock.addItems(nuts, 100);
+		stock.removeItems(ice, 200);
+		stock.removeItems(frozenMeat, 200);
 		Manifest manifest = new Manifest(stock);
 		Stock orderStock = new Stock();
 		orderStock.addItems(ice, 325);
@@ -168,11 +175,13 @@ public class ManifestTest {
 	}
 	
 	@Test
-	public void testStringTwoRefrigeratedTrucks() {
+	public void testStringTwoRefrigeratedTrucks() throws StockException {
+		stock.addItems(nuts, 100);
+		stock.removeItems(ice, 200);
+		stock.removeItems(frozenMeat, 200);
 		Manifest manifest = new Manifest(stock);
-		String manifestString = ">Refrigerated\nfrozen meat,575\nice cream,250\nice,325\n";
-		String manifestString2 = ">Refrigerated\nice cream,250\nbiscuits,575\n";
-		assertTrue((manifestString.equals(manifest.getStockString())) ||(manifestString2.equals(manifest.getStockString()) ));
+		String manifestString = ">Refrigerated\nfrozen meat,550\nice cream,250\n>Refrigerated\nice,325\nfrozen meat,25\n";
+		assertTrue((manifestString.equals(manifest.getStockString())));
 	}
 	
 
