@@ -34,11 +34,13 @@ public class RefrigeratedTruck extends Truck {
 		int coldest = 1000; //Arbitary number Max
 		for (Item item : getStock().toSet()) {
 			int temp = item.getItemTemperature();
-			if (temp != 0 && temp < coldest) {
+			if (temp < coldest) {
 				coldest = temp;
 			}
 		}
-		return 900 + (200 * Math.pow(0.7, coldest/5));
+		
+		double pow = (double) coldest/5;
+		return 900 + (200 * Math.pow(0.7, pow));
 	}
 	
 		

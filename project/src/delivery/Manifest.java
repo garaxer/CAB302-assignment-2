@@ -111,19 +111,28 @@ public class Manifest {
 		    return Integer.compare(o.getItemTemperature(), o2.getItemTemperature());
 	}
 	 
+	 /*The items alone will cost $45,025
+		Leaving the capital at $54,975
+		Given that the remaining capital after hiring the optimum number of trucks is $42,717.88, 
+		The optimum hiring cost of the trucks is $12,257.12 - this is wrong
+		*/
 	public double getTotalCost() {
 		// TODO Auto-generated method stub
 		double cost = 0;
-		
+		double itemcost = 0;
 		for (Truck truck : trucks) {
+			//System.out.println(truck.getType() + " "+truck.getCost());
 			cost += truck.getCost();//cost of Trucks
+			
 			//cost of items
 			for(Item item : truck.getStock().toSet()) {
-				cost += truck.getStock().getQuantity(item)*item.getItemCost();
+				itemcost += truck.getStock().getQuantity(item)*item.getItemCost();
 			}
+			
 		}
-		
-		return cost;
+		//System.out.println("Total Truck Cost"+cost);
+		//System.out.println("items Cost"+itemcost);
+		return cost+itemcost;
 	}
 	public Stock getReorderStock() {
 		return reorder;
