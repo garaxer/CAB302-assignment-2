@@ -40,117 +40,79 @@ public class Manifest {
 		reducingStock = new Stock();
 		List<Item> sortedItem  =new ArrayList<Item>();
 		for (Item itemToOrder : storeStock.toSet()){
-			try {
-				int quantity = storeStock.getQuantity(itemToOrder);
-				if (quantity <= itemToOrder.getItemReorderPoint()) {
-					reorder.addItems(itemToOrder, itemToOrder.getItemReorderAmount());
-					reducingStock.addItems(itemToOrder, itemToOrder.getItemReorderAmount());
-					sortedItem.add(itemToOrder);
-				}
-			} catch (StockException e) {
-				e.printStackTrace();
+			int quantity = storeStock.getQuantity(itemToOrder);
+			if (quantity <= itemToOrder.getItemReorderPoint()) {
+				reorder.addItems(itemToOrder, itemToOrder.getItemReorderAmount());
+				reducingStock.addItems(itemToOrder, itemToOrder.getItemReorderAmount());
+				sortedItem.add(itemToOrder);
 			}
-		//	System.out.println(itemToOrder.getItemName() +"  "+itemToOrder.getItemReorderAmount());
 		}
 		
 	
-		sortedItem.sort((Item o1, Item o2)-> (compareTo(o1,o2)));
+		sortedItem.sort((Item o1, Item o2)-> (compareTo(o1,o2))); //A list of sorted item by their temp Desc
 		int i = 0;
-		while (reducingStock.getTotalQuantity() > 0) {
+		int leftOver = 0;
+		//while (reducingStock.getTotalQuantity() > 0) {
+		while (i < sortedItem.size()-1) {
 			Item start = sortedItem.get(i);
-			
+			System.out.println("Start i"+i);
 			Truck newTruck;
-			Stock truckStock;
-			if (start.getItemTemperature() < 1000) {
-				newTruck = new RefrigeratedTruck();
-			} else {
-				newTruck = new OrdinaryTruck();
-			}
-			int capacity = newTruck.getRemainingCapacity();
-			
-			
-			//int capacity = newTruck.g
-					
-			/*while (newTruck.getRemainingCapacity() > 0) {
-				newTruck.addStock(stock);
-			}*/
-			
-		}
-		
-		/*
-		int leftOverAmount = 0;
-	
-		
-		for (int i = 0; i < sortedItem.size(); i++) {
-			
-			Item nextItem = sortedItem.get(i);
-	
-			System.out.println(nextItem.getItemName());
-	
-			Truck newTruck;
-			Stock thisTruck = new Stock();
-			if (nextItem.getItemTemperature() < 1000) {
-				newTruck = new RefrigeratedTruck();
-			} else {
-				newTruck = new OrdinaryTruck();
-			}
-			
-			while
-			
-			if (nextItem.getItemReorderAmount() < newTruck.getRemainingCapacity() ) {
-				
-			}
-			
-			
-			
-			
-			trucks.add(newTruck);
-		}
-		*/
-		
-		
-		
-		
-		//sortedItem = new TreeSet<Item>(compareTo());
-		
-		//Comparator<Item> items = (Item o1, Item o2) -> (compareTo(o1,o2));
-		//Set<String> ts = new TreeSet<>((Item o1, Item o2) -> (compareTo(o1,o2));
-
-		
-		//check if reducingStock is not null ie don't bother ordering nuthin.		
-		/*
-		while (reducingStock.getTotalQuantity() > 0) {
-			System.out.println(reducingStock.getTotalQuantity());
-
 			boolean cold = false;
-			Item start = FindColdestItem(); //find the coldestItem	
-		
-			Truck newTruck;
 			if (start.getItemTemperature() < 1000) {
 				newTruck = new RefrigeratedTruck();
+				cold = true;
 			} else {
 				newTruck = new OrdinaryTruck();
 			}
 			
-			Stock thisTruck = new Stock();
-			thisTruck.addItems(start,start.getItemReorderAmount());
+			Stock truckStock = new Stock();
+			//Fill a truck Stock
+			int remainingCapacity = newTruck.getRemainingCapacity();
+
+			while (remainingCapacity > 0) {
+				start = sortedItem.get(i);
+				int itemQuantity = start.getItemReorderAmount();
+				
+				if (leftOver > 0) {
+					itemQuantity = leftOver;
+					leftOver=0;
+				}
+				
+				//if there is room add it.	
+				System.out.println("remainingCapacity"+remainingCapacity);
+				System.out.println("itemQuantity"+itemQuantity);
+				if (remainingCapacity >= itemQuantity) {
+					truckStock.addItems(start, itemQuantity);
+					remainingCapacity-=itemQuantity;
+					i++;
+				} else {
+					truckStock.addItems(start, remainingCapacity);
+					remainingCapacity = 0;
+					leftOver = itemQuantity - remainingCapacity;
+				}
+			}
 			
+			//System.out.println(truckStock.getList());
+			System.out.println(truckStock.getTotalQuantity());
 			try {
-				reducingStock.removeStock(thisTruck);
-			} catch (StockException e) {
+				if (cold){
+					newTruck = new RefrigeratedTruck(truckStock);
+				}
+				newTruck = new OrdinaryTruck(truckStock);
+				System.out.println("success");
+				//newTruck.addStock(truckStock);
+			} catch (DeliveryException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println(reducingStock.getTotalQuantity());
-			trucks.add(newTruck);
-		}*/
-
+		}
 	}
 
 	 private int compareTo(Item o, Item o2) {
 		    return Integer.compare(o.getItemTemperature(), o2.getItemTemperature());
 	}
-
+	 
+	 //not used, replaced with List
 	private Item FindColdestItem() {
 		int lowestTemp = 1000;
 		Item coldItem = null;
