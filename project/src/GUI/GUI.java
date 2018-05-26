@@ -26,5 +26,6 @@ public class GUI extends JFrame {
 		setPreferredSize(new Dimension(800, 500));
 		pack();
 	}
+	
 }
 

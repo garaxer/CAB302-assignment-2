@@ -84,17 +84,21 @@ public class Store {
 		return data;
 	}
 
-	public void loadSales(HashMap<String, Integer> log) {
-		// TODO Auto-generated method stub
+	public void loadSales(HashMap<String, Integer> log) throws StockException {
 		for (Entry<String, Integer> entry : log.entrySet()) {
 		    String key = entry.getKey();
-		    Object value = entry.getValue();
-		    System.out.println(key + "=" + value);
+		    int value = entry.getValue();
+		    //System.out.println(key + "=" + value); 
+		    for(Item item : inventory.toSet()) {
+		    	if (item.getItemName().equals(key)) {
+		    		inventory.removeItems(item, value);
+		    		capital += item.getItemPrice()*value;
+		    	}
+		    }
 		}
 	}
 
 	public String generateManifest() {
-		// TODO Auto-generated method stub
 		Manifest manifest = new Manifest(inventory);
 		this.inventory.addStock(manifest.getReorderStock());
 		capital -= manifest.getTotalCost();
