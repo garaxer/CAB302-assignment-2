@@ -30,7 +30,7 @@ public class RefrigeratedTruckTest {
 		Truck refrigerated = new RefrigeratedTruck();
 	}
 	
-	// 1: Test if a RefrigeratedTruck object can be constructed
+	// 
 	@Test
 	public void checkCreationwithStock() throws DeliveryException {
 		Stock stock = new Stock();
@@ -38,22 +38,26 @@ public class RefrigeratedTruckTest {
 		Truck refrigerated = new RefrigeratedTruck(stock);
 	}
 	
-	// 2: Test of Stock can be added
+	// 
 	@Test
 	public void checkAddingStock() throws DeliveryException {
 		Truck refrigerated = new RefrigeratedTruck();
 		Stock stock = new Stock();
 		refrigerated.addStock(stock);		
 	}
-	
-	// 3: Test 
+	 
 	@Test
 	public void checkStock() throws DeliveryException, StockException {
 		Stock stock = new Stock();
 		stock.addItems(ice);
 		Truck refrigerated = new RefrigeratedTruck();
 		refrigerated.addStock(stock);
-		assertEquals(stock, refrigerated.getStock());
+		Stock expectedStock = refrigerated.getStock();
+		for (Item item : expectedStock.toSet()) {
+			if (stock.getQuantity(item) != expectedStock.getQuantity(item) ) {
+				fail();
+			}
+		}
 	}
 	
 	@Test (expected = DeliveryException.class)
@@ -61,6 +65,7 @@ public class RefrigeratedTruckTest {
 		Truck refrigerated = new RefrigeratedTruck();	
 		Stock stock = new Stock();
 		stock.addItems(ice, 1200);
+		refrigerated.addStock(stock);
 	}
 	
 	@Test
@@ -84,7 +89,8 @@ public class RefrigeratedTruckTest {
 		double cost = (900.0 + 200.0*Math.pow(0.7, (temp/5)));
 		assertEquals(cost, refrigerated.getCost(), 0);
 	}
-		
+	
+	
 	@Test
 	public void checkCapacity() throws DeliveryException {	 
 		Stock stock = new Stock();
@@ -109,8 +115,8 @@ public class RefrigeratedTruckTest {
 	
 	@Test
 	public void checkManifest() throws DeliveryException, StockException {
-		String dummyManifest = ">Refrigerated\nchocolate,50\nice,400\n";
-		String dummyManifest2 = ">Refrigerated\nice,400\nchocolate,50\n";
+		String dummyManifest = ">Refrigerated\nchocolate,50\nice,500\n";
+		String dummyManifest2 = ">Refrigerated\nice,500\nchocolate,50\n";
 		Stock stock = new Stock();
 		stock.addItems(chocolate, 50);
 		stock.addItems(ice, 500);
