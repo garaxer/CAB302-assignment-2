@@ -98,7 +98,7 @@ public class Store {
 		Manifest manifest = new Manifest(inventory);
 		//inventory.addStock((manifest.reStock());
 		//capital += manifest.getCapital();
-		return manifest.toString();
+		return manifest.getStockString();
 	}
 
 }

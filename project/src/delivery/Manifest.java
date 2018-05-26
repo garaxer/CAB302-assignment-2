@@ -50,7 +50,7 @@ public class Manifest {
 		
 		sortedItem.sort((Item o1, Item o2)-> (compareTo(o1,o2))); //A list of sorted item by their temp Desc
 		int i = 0;
-		int leftOver = 0;
+		int leftOver = 0; 
 		//while (reducingStock.getTotalQuantity() > 0) {
 		while (i < sortedItem.size()-1) {
 			Item start = sortedItem.get(i);
@@ -87,20 +87,27 @@ public class Manifest {
 
 				} else {
 					truckStock.addItems(start, remainingCapacity);
-					remainingCapacity = 0;
 					leftOver = itemQuantity - remainingCapacity;
+					remainingCapacity = 0;
 				}
 			}
 			try {
-				if (cold){
-					newTruck = new RefrigeratedTruck(truckStock);
-				} else {
-					newTruck = new OrdinaryTruck(truckStock);
+				if (truckStock.getTotalQuantity() > 0) {
+					if (cold){
+						newTruck = new RefrigeratedTruck(truckStock);
+	
+					} else {
+						newTruck = new OrdinaryTruck(truckStock);
+	
+					}
+					trucks.add(newTruck);
 				}
+				
 				//newTruck.addStock(truckStock);
 			} catch (DeliveryException e) {
 				e.printStackTrace();
 			}
+			
 		}
 	}
 
@@ -132,6 +139,20 @@ public class Manifest {
 	}
 	public Stock getReorderStock() {
 		return reorder;
+	}
+
+	public String getStockString() {
+		// TODO Auto-generated method stub
+		String list ="";
+		for (Truck truck : trucks) {
+			try {
+				list += truck.getManifest();
+			} catch (StockException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
 	}
 	
 }
