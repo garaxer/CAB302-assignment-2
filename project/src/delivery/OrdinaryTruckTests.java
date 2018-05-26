@@ -96,7 +96,6 @@ public class OrdinaryTruckTests {
 		Item cookies = new Item("cookies",50,100,5,25);
 		stock = new Stock();
 		stock.addItems(cookies,10);
-		stock.addItems(biscuits,50);
 		ordinaryTruck = new OrdinaryTruck(stock);			
 		assertEquals(list, ordinaryTruck.getManifest());
 	}
