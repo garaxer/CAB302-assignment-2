@@ -30,30 +30,24 @@ public class Stock {
 		}
 	}
 	
-	public int getQuantity(String name) throws StockException{
+	public int getQuantity(String name) {
 		Set<Item> keyset = stock.keySet();
-		int quantity = -1;
+		int quantity = 0;
 		for (Item key : keyset) {
 			if (key.getItemName() == name) {
 				quantity = stock.get(key);
 			}
 		}
-		if (quantity < 0){
-			throw new StockException();
-		}
 		return quantity;
 	}
 	
-	public int getQuantity(Item item) throws StockException{
+	public int getQuantity(Item item) {
 		Set<Item> keyset = stock.keySet();
-		int quantity = -1;
+		int quantity = 0;
 		for (Item key : keyset) {
 			if (key == item) {
 				quantity = stock.get(key);
 			}
-		}
-		if (quantity < 0) {
-			throw new StockException();
 		}
 		return quantity;
 	}
@@ -97,22 +91,17 @@ public class Stock {
 		return outputString;
 	}
 
-	public void addStock(Stock stock2) throws StockException {
+	public void addStock(Stock stock2) {
 		Set<Item> keys = stock2.toSet();
 		for (Item key : keys) {
 			if (stock.containsKey(key)) {
-				try {
-					int newQuantity = stock.get(key) + stock2.getQuantity(key);
-					stock.put(key, newQuantity);
-				} catch (StockException e) {
-					
-				}
+				int newQuantity = stock.get(key) + stock2.getQuantity(key);
+				stock.put(key, newQuantity);
 			} else {
 				int quantity = stock2.getQuantity(key);
 				stock.put(key, quantity);
 			}
-		}
-		
+		}		
 	}
 
 	public void removeStock(Stock stock2) throws StockException {

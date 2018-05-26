@@ -26,6 +26,10 @@ public class OrdinaryTruck extends Truck {
 		checkStockForColdItems(stock);	
 	}
 	
+	public OrdinaryTruck() {
+		super(1000);	
+	}
+	
 	@Override
 	public double getCost() {
 		double cost = 750 + 0.25*getStock().getTotalQuantity();
@@ -49,7 +53,7 @@ public class OrdinaryTruck extends Truck {
 	}
 
 	@Override
-	public void addStock(Stock stock) throws DeliveryException {
+	public void addStock(Stock stock) throws DeliveryException{
 		Set<Item> allItems = stock.toSet();
 		for (Item item : allItems) {
 			if (item.getItemTemperature() < 0) {
@@ -78,6 +82,11 @@ public class OrdinaryTruck extends Truck {
 				} 
 			}
 		}
+	}
+
+	@Override
+	public int getRemainingCapacity() {
+		return getCapacity() - getStock().getTotalQuantity();
 	}
 	
 
