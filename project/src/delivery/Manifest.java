@@ -48,14 +48,12 @@ public class Manifest {
 			}
 		}
 		
-	
 		sortedItem.sort((Item o1, Item o2)-> (compareTo(o1,o2))); //A list of sorted item by their temp Desc
 		int i = 0;
 		int leftOver = 0;
 		//while (reducingStock.getTotalQuantity() > 0) {
 		while (i < sortedItem.size()-1) {
 			Item start = sortedItem.get(i);
-			System.out.println("Start i"+i);
 			Truck newTruck;
 			boolean cold = false;
 			if (start.getItemTemperature() < 1000) {
@@ -68,41 +66,39 @@ public class Manifest {
 			Stock truckStock = new Stock();
 			//Fill a truck Stock
 			int remainingCapacity = newTruck.getRemainingCapacity();
-
 			while (remainingCapacity > 0) {
 				start = sortedItem.get(i);
+				//Don't add cold item to ordinary Truck
+				if (start.getItemTemperature() < 1000 && cold == false) {
+					remainingCapacity = 0;
+				}
 				int itemQuantity = start.getItemReorderAmount();
-				
 				if (leftOver > 0) {
 					itemQuantity = leftOver;
 					leftOver=0;
 				}
-				
 				//if there is room add it.	
-				System.out.println("remainingCapacity"+remainingCapacity);
-				System.out.println("itemQuantity"+itemQuantity);
+				//System.out.println("remainingCapacity"+remainingCapacity);
+				//System.out.println("itemQuantity"+itemQuantity);
 				if (remainingCapacity >= itemQuantity) {
 					truckStock.addItems(start, itemQuantity);
 					remainingCapacity-=itemQuantity;
 					i++;
+
 				} else {
 					truckStock.addItems(start, remainingCapacity);
 					remainingCapacity = 0;
 					leftOver = itemQuantity - remainingCapacity;
 				}
 			}
-			
-			//System.out.println(truckStock.getList());
-			System.out.println(truckStock.getTotalQuantity());
 			try {
 				if (cold){
 					newTruck = new RefrigeratedTruck(truckStock);
+				} else {
+					newTruck = new OrdinaryTruck(truckStock);
 				}
-				newTruck = new OrdinaryTruck(truckStock);
-				System.out.println("success");
 				//newTruck.addStock(truckStock);
 			} catch (DeliveryException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -117,13 +113,9 @@ public class Manifest {
 		int lowestTemp = 1000;
 		Item coldItem = null;
 		for (Item item : storeStock.toSet()){
-			try {
-				if (item.getItemTemperature() < lowestTemp && storeStock.getQuantity(item) > 0) {
-					lowestTemp = item.getItemTemperature();
-					coldItem = item;
-				}
-			} catch (StockException e) {
-				e.printStackTrace();
+			if (item.getItemTemperature() < lowestTemp && storeStock.getQuantity(item) > 0) {
+				lowestTemp = item.getItemTemperature();
+				coldItem = item;
 			}
 		}
 		return coldItem;
