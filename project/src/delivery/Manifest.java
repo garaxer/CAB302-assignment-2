@@ -52,7 +52,7 @@ public class Manifest {
 		int i = 0;
 		int leftOver = 0; 
 		//while (reducingStock.getTotalQuantity() > 0) {
-		while (i < sortedItem.size()-1) {
+		while (i < sortedItem.size()) {
 			Item start = sortedItem.get(i);
 			Truck newTruck;
 			boolean cold = false;
@@ -84,7 +84,9 @@ public class Manifest {
 					truckStock.addItems(start, itemQuantity);
 					remainingCapacity-=itemQuantity;
 					i++;
-
+					if (i == sortedItem.size()) { //no more items
+						remainingCapacity = 0;
+					}
 				} else {
 					truckStock.addItems(start, remainingCapacity);
 					leftOver = itemQuantity - remainingCapacity;
@@ -112,9 +114,15 @@ public class Manifest {
 	public double getTotalCost() {
 		// TODO Auto-generated method stub
 		double cost = 0;
+		
 		for (Truck truck : trucks) {
-			cost += truck.getCost();
+			cost += truck.getCost();//cost of Trucks
+			//cost of items
+			for(Item item : truck.getStock().toSet()) {
+				cost += truck.getStock().getQuantity(item)*item.getItemCost();
+			}
 		}
+		
 		return cost;
 	}
 	public Stock getReorderStock() {
