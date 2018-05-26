@@ -90,7 +90,7 @@ public class GUIComponents extends JPanel implements ActionListener{
 			 //CSV csv = new CSV();
 			 //csv.exportManifest(store.generateManifest(),this)
 			 
-			 store.generateManifest();
+			 System.out.println(store.generateManifest());
 
 			 JOptionPane.showMessageDialog(null, "Generating Manifest - remove me");
 	     }
