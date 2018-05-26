@@ -92,10 +92,8 @@ public class OrdinaryTruckTests {
 	@Test
 	public void testGetManifest() throws DeliveryException, StockException{
 		String list = ">Ordinary\n" + 
-				"cookies,10\n" + 
-				"biscuits,50\n";
+				"cookies,10\n";
 		Item cookies = new Item("cookies",50,100,5,25);
-		Item biscuits = new Item("biscuits",50,100,5,25);
 		stock = new Stock();
 		stock.addItems(cookies,10);
 		stock.addItems(biscuits,50);
