@@ -16,7 +16,7 @@ public abstract class Truck {
 		
 	public Truck(int capacity, Stock stock) throws DeliveryException {
 		this.capacity = capacity;
-		if (stock.getTotalQuantity() < capacity) {
+		if (stock.getTotalQuantity() <= capacity) {
 			this.stock = stock;
 		} else {
 			throw new DeliveryException("Stock does not fit in truck");
@@ -25,7 +25,7 @@ public abstract class Truck {
 	
 	public Truck(Stock stock) throws DeliveryException {
 		this.capacity = 1000;
-		if (stock.getTotalQuantity() < capacity) {
+		if (stock.getTotalQuantity() <= capacity) {
 			this.stock = stock;
 		} else {
 			throw new DeliveryException("Stock does not fit in truck");
