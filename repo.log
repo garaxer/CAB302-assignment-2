@@ -1,0 +1,1215 @@
+Alex (1):
+      Completed Item class and add Stock class
+
+Alex Koppon (44):
+      Added basic tests for Store class
+      Added Truck class with basic constructor
+      Stock class partially implemented
+      Update to Truck Class
+      Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+      Updated RefigeratedTruckTests
+      Updated Stock Class
+      Added Test Class for ManifestTest
+      Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+      Updated Stock class to ensure getArrayList works
+      Added more tests
+      Updated OrdinaryTruck
+      Updated OrdinaryTruck to pass most tests
+      Updated Truck.java with needed Exceptions
+      Added more tests
+      Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+      Fixed elements in converting to list
+      Fixes to Stock
+      Updated function to reflect inheritance
+      Added tests to ManifestTest
+      Added method to Truck
+      Changed the value of temperature
+      Added creation of Truck without Stock
+      Added test to check Constructor without Stock
+      Updated manifest tests
+      Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+      Fixed outdated methods
+      Update to stock required for Truck use
+      Updated to better use Inheritance
+      Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+      Updated to reflect Truck
+      Fixed boundary error
+      Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+      Changed tests to more accuately compare doubles
+      Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+      Fixed a test
+      Changed test to properly compare stock objects
+      Updated tests
+      Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+      Added better comments to methods
+      Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+      Updated some methods with comments
+      Changed location of double calculation
+      Changed @return desciption for compatability with javadoc
+
+Gary N. Bagnall (59):
+      Created Eclipse Project
+      Added Exception classes
+      Added Junit4 to class path
+      Added blank OrdinaryTruckTests, RefrigeratedTruckTests and Truck classes
+      Added RefridgeratedTruck
+      Removed RefridgeratedTruckTests
+      Added test cases to TruckTests and OrdinaryTest
+      Added Blank ItemTests, StockTests,Store,TruckTests files
+      Added Tests into ItemTests
+      Removed duplicate test
+      Added test cases to StockTests
+      Corrected test in stocktest
+      Correct test in StockTests
+      Changed tests in StockTests
+      Moved CSVException to GUI package
+      Added test cases for Truck and OrdinaryTruck
+      Added another test to TruckTests
+      added iterator test to StockTests
+      Added more tests to StockTests
+      Fixed tests in StockTests
+      More fixes to StockTests
+      Added fixes to OrdinaryTruckTests
+      Made corrections to OrdinaryTruckTests and TruckTests
+      Added StoreFront,GUI and GUIComponent classes
+      Added boxes to GUI
+      Added boxes to GUIComponents
+      Added box layout to GUI components
+      Add importCSV function
+      added Test CSV's
+      Added CSV function to read in sales data
+      1 more test to StockTests and Load Manifest functions to GUI and CSV
+      Created Manifest constructor
+      Added stock test
+      Fixed test in StockTest, created Stocks in store.
+      Fixed OrdinaryTruckTest
+      Implemented RefridgeratedTruck.
+      made changes to refridgeratedTruck
+      Added inherited methods to RefridgeratedTruck
+      added more Tests To OrdinaryTruck and started Manifest
+      Added More tests
+      Added loop to Manifest
+      Attempted Manifest p1.
+      Completed populateTrucks in Manifest
+      Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2.git into Development
+      Added bug fixed (variable in wrong position) to manifest
+      Added some comments to Store for bug testing
+      Got the last truck
+      Completed getTotalCost in Manifest
+      Bug fixed to RefridgeratedStock - made the result of the fraction double
+      Added loadSales to Store
+      Fixed ManifestTestin OrdinaryTruckTest
+      Fixed test in OrdinaryTruckTests
+      Added Comments to Store.java
+      Added more comments to store
+      Completed Import Manifest
+      Moved exceptions into GUIComponents
+      Moved error in Stock.
+      Removed extra spacing
+      Created JavaDoc and added in missing comments
+
+Owner (1):
+      Created Ordinary Truck
+
+alexkoppon (1):
+      Added RefrigeratedTruckTest
+
+garybagnall (13):
+      Renamed item to Item class in tests
+      Moved Mock Truck to seperate class
+      Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+      Fixed test in Stocktests. Fixed methods in CSV
+      Made more fixes to StockTest
+      Added constructors to Store, RefridgeratedTruck and Manifest
+      Added stockException
+      Added javadoc comments
+      Added Javadoc and refactored StoreFront to main
+      Added javaDoc comments
+      Changed pop-up message
+      Added import manifest button
+      Added manifest constructor
+
+* 36b02a8 Created JavaDoc and added in missing comments
+* c7bac17 Changed @return desciption for compatability with javadoc
+* 7b0c3b2 Changed location of double calculation
+* f9c122b Updated some methods with comments
+* b0bffcd Removed extra spacing
+* 5eed252 Moved error in Stock.
+* 6b5adfd Moved exceptions into GUIComponents
+* b6a0dd3 Completed Import Manifest
+*   a195a49 Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+|\  
+| * ac692a2 Added manifest constructor
+| * 360f483 Added import manifest button
+* | 6988c8a Added better comments to methods
+|/  
+* f4156e5 Changed pop-up message
+* 29c7792 Added javaDoc comments
+* da44536 Added Javadoc and refactored StoreFront to main
+*   da1d355 Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+|\  
+| * 5cc2dea Added javadoc comments
+* | 0d7bb97 Updated tests
+|/  
+* 9cefb1a Added more comments to store
+* 67c8070 Added Comments to Store.java
+* ce6eb61 Fixed test in OrdinaryTruckTests
+* f413e3f Fixed ManifestTestin OrdinaryTruckTest
+* 4cfdc8b Added loadSales to Store
+* 67c2098 Bug fixed to RefridgeratedStock - made the result of the fraction double
+* 2f7bf35 Changed test to properly compare stock objects
+* 1fe93ea Fixed a test
+*   a0393cd Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+|\  
+| * 6d06943 Completed getTotalCost in Manifest
+| * fbe0055 Got the last truck
+* | beabe74 Changed tests to more accuately compare doubles
+|/  
+* 4cbee79 Added some comments to Store for bug testing
+* f3161b9 Added bug fixed (variable in wrong position) to manifest
+*   6b14765 Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2.git into Development
+|\  
+| *   444c155 Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+| |\  
+| * | c3bb7cd Fixed boundary error
+* | | 6308b67 Completed populateTrucks in Manifest
+| |/  
+|/|   
+* | 2319209 Attempted Manifest p1.
+|/  
+* 44a84e2 Updated to reflect Truck
+*   f94abca Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+|\  
+| * fcecbcc Added loop to Manifest
+* | a864706 Updated to better use Inheritance
+|/  
+* 6f83058 Update to stock required for Truck use
+* 0ea62dd Fixed outdated methods
+*   1d513f8 Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+|\  
+| * 5667969 Added More tests
+| * 66afdc3 added more Tests To OrdinaryTruck and started Manifest
+| * e0d4865 Added inherited methods to RefridgeratedTruck
+* | d6712bd Updated manifest tests
+|/  
+* 62ebe7f Added test to check Constructor without Stock
+* 6eb7f89 Added creation of Truck without Stock
+* a857b98 Changed the value of temperature
+* 73ba985 Added method to Truck
+* 4dbbe9a Added tests to ManifestTest
+* a79f980 made changes to refridgeratedTruck
+* a3603a9 Implemented RefridgeratedTruck.
+* 8ade351 Updated function to reflect inheritance
+* 7b95b91 Fixed OrdinaryTruckTest
+* f7517a1 Fixes to Stock
+* aa78bdf Fixed elements in converting to list
+*   6125865 Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+|\  
+| * 3ac9883 Fixed test in StockTest, created Stocks in store.
+* | ab8496e Added more tests
+* | 80cb380 Updated Truck.java with needed Exceptions
+* | 4a9a8b8 Updated OrdinaryTruck to pass most tests
+|/  
+* e232eae Updated OrdinaryTruck
+* ed30766 Added more tests
+* 00ba0a9 Updated Stock class to ensure getArrayList works
+*   0fbe1c0 Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+|\  
+| * e8a8f56 Added stockException
+* | 2505f7c Added Test Class for ManifestTest
+|/  
+* d8d61a5 Added constructors to Store, RefridgeratedTruck and Manifest
+* 132d4f8 Made more fixes to StockTest
+* c52d6a7 Fixed test in Stocktests. Fixed methods in CSV
+* b34a8b3 Updated Stock Class
+* 1a63405 Updated RefigeratedTruckTests
+*   e906768 Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+|\  
+| *   581f035 Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+| |\  
+| * | 3dfd5d0 Moved Mock Truck to seperate class
+* | | 90b75b2 Update to Truck Class
+* | | 5d14ed4 Stock class partially implemented
+| |/  
+|/|   
+* | 663323a Added Truck class with basic constructor
+* | 89adbb3 Added basic tests for Store class
+|/  
+* fc4d7fb Added stock test
+* b8f76da Created Manifest constructor
+* 2f14c62 1 more test to StockTests and Load Manifest functions to GUI and CSV
+* 6bc8f60 Added CSV function to read in sales data
+* 28ba92e added Test CSV's
+* 4d1ca84 Add importCSV function
+* 650e40b Added box layout to GUI components
+* e09dd57 Added boxes to GUIComponents
+* fbea9f8 Added boxes to GUI
+* 542e928 Added StoreFront,GUI and GUIComponent classes
+* 2df8cb5 Made corrections to OrdinaryTruckTests and TruckTests
+* 842d89f Added fixes to OrdinaryTruckTests
+* 417cef0 More fixes to StockTests
+* b09b168 Fixed tests in StockTests
+* 2056ac4 Added more tests to StockTests
+* f7d858d added iterator test to StockTests
+* ceef390 Added another test to TruckTests
+* 30c5846 Added test cases for Truck and OrdinaryTruck
+* 75a24f0 Completed Item class and add Stock class
+* 2cea257 Renamed item to Item class in tests
+* 890c650 Moved CSVException to GUI package
+* 69c129e Changed tests in StockTests
+* 25480c3 Correct test in StockTests
+* 8315b38 Corrected test in stocktest
+* 155981a Added test cases to StockTests
+* 852210f Removed duplicate test
+* 3a70c43 Added Tests into ItemTests
+* 507f386 Added Blank ItemTests, StockTests,Store,TruckTests files
+* 043b74b Added test cases to TruckTests and OrdinaryTest
+* aa3f56c Added RefrigeratedTruckTest
+* 3fff093 Created Ordinary Truck
+* 77c76c9 Removed RefridgeratedTruckTests
+* ea24d7f Added RefridgeratedTruck
+* aef537c Added blank OrdinaryTruckTests, RefrigeratedTruckTests and Truck classes
+* 0b2cad5 Added Junit4 to class path
+* 2103637 Added Exception classes
+* 440e92e Created Eclipse Project
+commit 36b02a8433bce0f3187b0637e306ca1e01fd6227
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sun May 27 22:41:22 2018 +1000
+
+    Created JavaDoc and added in missing comments
+
+ 94 files changed, 18467 insertions(+), 38 deletions(-)
+
+commit c7bac175d8d65416a0816f84510fed9cceb5bb8b
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sun May 27 22:26:00 2018 +1000
+
+    Changed @return desciption for compatability with javadoc
+
+ 3 files changed, 17 insertions(+), 17 deletions(-)
+
+commit 7b0c3b224e0c573c1118d99cd42427b1f5bb60cb
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sun May 27 22:14:24 2018 +1000
+
+    Changed location of double calculation
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit f9c122b23c0fe8fc9e98e5f2d44362a62bd45558
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sun May 27 22:09:49 2018 +1000
+
+    Updated some methods with comments
+
+ 1 file changed, 145 insertions(+), 20 deletions(-)
+
+commit b0bffcd689cd5fd00939c308c816b7d7717fadb0
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sun May 27 22:07:50 2018 +1000
+
+    Removed extra spacing
+
+ 1 file changed, 12 insertions(+), 13 deletions(-)
+
+commit 5eed25273930979faea2ddb3715ae462daa7085a
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sun May 27 21:50:58 2018 +1000
+
+    Moved error in Stock.
+
+ 2 files changed, 60 insertions(+), 53 deletions(-)
+
+commit 6b5adfd2783bb859ac9c55ce4c26744e5a5b6a4f
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sun May 27 21:25:16 2018 +1000
+
+    Moved exceptions into GUIComponents
+
+ 3 files changed, 97 insertions(+), 116 deletions(-)
+
+commit b6a0dd3ec3ddbd4af8b669ee08a08ed463037ec3
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sun May 27 20:41:53 2018 +1000
+
+    Completed Import Manifest
+
+ 5 files changed, 74 insertions(+), 17 deletions(-)
+
+commit a195a4995d39914158160dcc94fe46692fc88f90
+Merge: 6988c8a ac692a2
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sun May 27 20:20:24 2018 +1000
+
+    Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+
+commit 6988c8a5423c22583cf0ce4ed75b0d2c9856a030
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sun May 27 20:20:01 2018 +1000
+
+    Added better comments to methods
+
+ 6 files changed, 337 insertions(+), 36 deletions(-)
+
+commit ac692a2f49442a5922822629602a3f0180e31e56
+Author: garybagnall <garybagnall@10.0.0.15>
+Date:   Sun May 27 18:21:55 2018 +1000
+
+    Added manifest constructor
+
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+commit 360f483b6494126dc3dd47af6d1b1517e0e6d77c
+Author: garybagnall <garybagnall@10.0.0.15>
+Date:   Sun May 27 18:14:23 2018 +1000
+
+    Added import manifest button
+
+ 6 files changed, 158 insertions(+), 28 deletions(-)
+
+commit f4156e576c94edd3d8dff6e5ae16034705124fce
+Author: garybagnall <garybagnall@10.0.0.15>
+Date:   Sun May 27 15:13:46 2018 +1000
+
+    Changed pop-up message
+
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 29c7792804b90838425a12e26e93d1c0c4e40569
+Author: garybagnall <garybagnall@10.0.0.15>
+Date:   Sun May 27 14:38:59 2018 +1000
+
+    Added javaDoc comments
+
+ 5 files changed, 15 insertions(+), 18 deletions(-)
+
+commit da445367980c6c36f9c051c07e914dafed9274ce
+Author: garybagnall <garybagnall@10.0.0.15>
+Date:   Sun May 27 14:25:29 2018 +1000
+
+    Added Javadoc and refactored StoreFront to main
+
+ 4 files changed, 69 insertions(+), 46 deletions(-)
+
+commit da1d3555ec7da5208155651837aea68ba4408dca
+Merge: 0d7bb97 5cc2dea
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sun May 27 14:07:32 2018 +1000
+
+    Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+
+commit 0d7bb97fd6098c9df1a27ec8fd393bc0b79d766e
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sun May 27 14:06:40 2018 +1000
+
+    Updated tests
+
+ 3 files changed, 66 insertions(+), 27 deletions(-)
+
+commit 5cc2dea7d85d93fd598e452648f5505d4776285e
+Author: garybagnall <garybagnall@10.0.0.15>
+Date:   Sun May 27 14:05:02 2018 +1000
+
+    Added javadoc comments
+
+ 8 files changed, 83 insertions(+), 49 deletions(-)
+
+commit 9cefb1acbb550bedb6d9f00757c039568f348a0d
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sun May 27 12:19:53 2018 +1000
+
+    Added more comments to store
+
+ 2 files changed, 42 insertions(+), 29 deletions(-)
+
+commit 67c8070245b6df6f31d745c41e1b6fd08553633f
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sun May 27 11:37:12 2018 +1000
+
+    Added Comments to Store.java
+
+ 1 file changed, 57 insertions(+), 9 deletions(-)
+
+commit ce6eb61ed8702d2ea8e9f37f66eb8a03e2303811
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sun May 27 01:17:03 2018 +1000
+
+    Fixed test in OrdinaryTruckTests
+
+ 2 files changed, 4 insertions(+), 16 deletions(-)
+
+commit f413e3f9e85780c7c101827e298dc3963b573b75
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sun May 27 01:15:40 2018 +1000
+
+    Fixed ManifestTestin OrdinaryTruckTest
+
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+commit 4cfdc8b23b96395b07601d5256394205034705d0
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sun May 27 01:13:37 2018 +1000
+
+    Added loadSales to Store
+
+ 3 files changed, 61 insertions(+), 34 deletions(-)
+
+commit 67c209851c7d0124fbdfc989580dcf3b79be470d
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sun May 27 00:19:42 2018 +1000
+
+    Bug fixed to RefridgeratedStock - made the result of the fraction double
+
+ 3 files changed, 18 insertions(+), 7 deletions(-)
+
+commit 2f7bf35306c5d524fc393296ecfd8f6e471f84e2
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sat May 26 18:42:47 2018 +1000
+
+    Changed test to properly compare stock objects
+
+ 1 file changed, 14 insertions(+), 8 deletions(-)
+
+commit 1fe93eaa92e996951f486945bb0c5c61213539b3
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sat May 26 18:41:51 2018 +1000
+
+    Fixed a test
+
+ 1 file changed, 36 insertions(+), 27 deletions(-)
+
+commit a0393cd93ee49e853e79d9ed6265de30d64f1c4e
+Merge: beabe74 6d06943
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sat May 26 16:22:33 2018 +1000
+
+    Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+
+commit 6d06943c0059214c9507dde8cb1942b533c8b725
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sat May 26 16:21:50 2018 +1000
+
+    Completed getTotalCost in Manifest
+
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+commit beabe74bc79f26ebe24a4a010cd73aaee5755363
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sat May 26 16:21:43 2018 +1000
+
+    Changed tests to more accuately compare doubles
+
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit fbe0055fceaec75d8f4441f01cc543a15dd4dc38
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sat May 26 15:59:22 2018 +1000
+
+    Got the last truck
+
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit 4cbee7925ceaf16baf7bfce99b2e4e8168fef6aa
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sat May 26 15:34:14 2018 +1000
+
+    Added some comments to Store for bug testing
+
+ 4 files changed, 24 insertions(+), 40 deletions(-)
+
+commit f3161b939607d385317ea22c816ff5e1f6f81d54
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sat May 26 15:17:14 2018 +1000
+
+    Added bug fixed (variable in wrong position) to manifest
+
+ 2 files changed, 28 insertions(+), 7 deletions(-)
+
+commit 6b14765b956c9595340c1f8981fa7be55e9d230b
+Merge: 6308b67 444c155
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sat May 26 15:01:44 2018 +1000
+
+    Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2.git into Development
+
+commit 6308b675eb389c7e42a318929f3629d679a261ac
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sat May 26 15:01:11 2018 +1000
+
+    Completed populateTrucks in Manifest
+
+ 1 file changed, 12 insertions(+), 20 deletions(-)
+
+commit 444c155e33a86ec57289e3b061b23e4bc4b3f8b5
+Merge: c3bb7cd 2319209
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sat May 26 14:37:56 2018 +1000
+
+    Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+
+commit c3bb7cda16658536caa4bac5501a062e4b5452ce
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sat May 26 14:37:41 2018 +1000
+
+    Fixed boundary error
+
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 23192096add640c48b207a0bddfe77df2115b466
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sat May 26 14:33:23 2018 +1000
+
+    Attempted Manifest p1.
+
+ 1 file changed, 48 insertions(+), 86 deletions(-)
+
+commit 44a84e29a03003cf49ecee0e79dde6973979ae92
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sat May 26 14:07:39 2018 +1000
+
+    Updated to reflect Truck
+
+ 1 file changed, 16 insertions(+), 17 deletions(-)
+
+commit f94abcad49e65e3cada6ab7080f4ed0039e38ccd
+Merge: a864706 fcecbcc
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sat May 26 14:00:36 2018 +1000
+
+    Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+
+commit a864706fcc106426014102dbbc6d1e6c6f159cf5
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sat May 26 14:00:09 2018 +1000
+
+    Updated to better use Inheritance
+
+ 2 files changed, 18 insertions(+), 20 deletions(-)
+
+commit fcecbcc7d12e4ab259e1bd833f8655fd100f02d1
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sat May 26 13:37:53 2018 +1000
+
+    Added loop to Manifest
+
+ 5 files changed, 142 insertions(+), 54 deletions(-)
+
+commit 6f830588f84c8d39390f3b9ca1a5d110205b3827
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sat May 26 13:29:55 2018 +1000
+
+    Update to stock required for Truck use
+
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit 0ea62dd1bef30295626c37220bba26755cc713a8
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sat May 26 13:23:14 2018 +1000
+
+    Fixed outdated methods
+
+ 1 file changed, 29 insertions(+), 112 deletions(-)
+
+commit 1d513f852db47cb53b39141bf58d41ee502f5f6a
+Merge: d6712bd 5667969
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sat May 26 00:33:01 2018 +1000
+
+    Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+
+commit d6712bd04b74cbcbcdbcfd42c9d5a3ca63c90f0f
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Sat May 26 00:30:49 2018 +1000
+
+    Updated manifest tests
+
+ 1 file changed, 44 insertions(+), 1 deletion(-)
+
+commit 5667969dcd3a9aec91787418c72c225c01fedd21
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Fri May 25 23:57:16 2018 +1000
+
+    Added More tests
+
+ 4 files changed, 30 insertions(+), 6 deletions(-)
+
+commit 66afdc3433a603df30b45d6711f7afc496809566
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Fri May 25 23:17:29 2018 +1000
+
+    added more Tests To OrdinaryTruck and started Manifest
+
+ 2 files changed, 57 insertions(+), 13 deletions(-)
+
+commit e0d4865d835cddf62fa0ce95e17dae64f8ee1af6
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Fri May 25 23:09:26 2018 +1000
+
+    Added inherited methods to RefridgeratedTruck
+
+ 2 files changed, 14 insertions(+), 19 deletions(-)
+
+commit 62ebe7fc96277f004e1768d9c49c34ea92a8323e
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Fri May 25 20:51:29 2018 +1000
+
+    Added test to check Constructor without Stock
+
+ 1 file changed, 8 insertions(+)
+
+commit 6eb7f89564a7b4ac984dedf5d6f5150d26fc79ba
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Fri May 25 20:49:32 2018 +1000
+
+    Added creation of Truck without Stock
+
+ 1 file changed, 5 insertions(+)
+
+commit a857b9893e0e19cbb3173a4bf057ce6a33ced076
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Fri May 25 20:25:16 2018 +1000
+
+    Changed the value of temperature
+
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 73ba9853713146d6c8c253b34bab63075b929226
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Fri May 25 20:22:26 2018 +1000
+
+    Added method to Truck
+
+ 1 file changed, 3 insertions(+)
+
+commit 4dbbe9af2dec28ebe2fa46e559537b2643479e8a
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Fri May 25 20:08:54 2018 +1000
+
+    Added tests to ManifestTest
+
+ 1 file changed, 202 insertions(+), 2 deletions(-)
+
+commit a79f980485d6d9c24490bb97a1545903ba2d7314
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Thu May 24 23:05:25 2018 +1000
+
+    made changes to refridgeratedTruck
+
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit a3603a9a4bdbed8479334364238f7d3a7e5d4db4
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Thu May 24 23:02:25 2018 +1000
+
+    Implemented RefridgeratedTruck.
+
+ 1 file changed, 36 insertions(+), 10 deletions(-)
+
+commit 8ade3511a2d50b84039b25e4f9e2204410304507
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Thu May 24 22:52:04 2018 +1000
+
+    Updated function to reflect inheritance
+
+ 1 file changed, 12 insertions(+), 21 deletions(-)
+
+commit 7b95b91aeecddd61d60933018cc019f4c78cb3f1
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Thu May 24 22:29:15 2018 +1000
+
+    Fixed OrdinaryTruckTest
+
+ 2 files changed, 4 insertions(+), 13 deletions(-)
+
+commit f7517a19fd2f0ef4015cf4f01310f79da4433dbb
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Thu May 24 22:02:10 2018 +1000
+
+    Fixes to Stock
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit aa78bdf3698ce5b74d13d6ce71f4dcb82ce1eb4a
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Thu May 24 21:27:43 2018 +1000
+
+    Fixed elements in converting to list
+
+ 1 file changed, 8 insertions(+), 7 deletions(-)
+
+commit 612586555eae06f44e44f142f6ccac8c139d472f
+Merge: ab8496e 3ac9883
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Thu May 24 21:25:10 2018 +1000
+
+    Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+
+commit 3ac9883629f7f45c22c8d59d9b249dac139f311b
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Thu May 24 21:23:18 2018 +1000
+
+    Fixed test in StockTest, created Stocks in store.
+
+ 4 files changed, 24 insertions(+), 17 deletions(-)
+
+commit ab8496e9a60a304fcd0a9abd66f8ea64e6296e93
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Thu May 24 21:19:28 2018 +1000
+
+    Added more tests
+
+ 1 file changed, 31 insertions(+), 15 deletions(-)
+
+commit 80cb380b0a6ff602067f80ace9c86f066d1588f1
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Thu May 24 20:54:10 2018 +1000
+
+    Updated Truck.java with needed Exceptions
+
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+commit 4a9a8b8796ec2f2d1f3fed02106a7714ed7e1a86
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Thu May 24 20:49:54 2018 +1000
+
+    Updated OrdinaryTruck to pass most tests
+
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+commit e232eae20d0c56138f8454e429f2dd2666f0fafc
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Thu May 24 20:37:59 2018 +1000
+
+    Updated OrdinaryTruck
+
+ 1 file changed, 85 insertions(+), 1 deletion(-)
+
+commit ed30766f4169741731983e75a8f0705b57c2737b
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Wed May 23 21:53:37 2018 +1000
+
+    Added more tests
+
+ 1 file changed, 27 insertions(+), 14 deletions(-)
+
+commit 00ba0a977c16bf3d291220a6fc82c870ccad47af
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Wed May 23 21:31:21 2018 +1000
+
+    Updated Stock class to ensure getArrayList works
+
+ 1 file changed, 26 insertions(+), 1 deletion(-)
+
+commit 0fbe1c023f6f0d8bb458a76040d8b6bb73c40411
+Merge: 2505f7c e8a8f56
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Wed May 23 19:52:50 2018 +1000
+
+    Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+
+commit 2505f7c06534ad2d39e300b85f918ad8ab70244e
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Wed May 23 19:52:27 2018 +1000
+
+    Added Test Class for ManifestTest
+
+ 1 file changed, 19 insertions(+)
+
+commit e8a8f5667ef3ff5464e291250d30b7fd88c26ace
+Author: garybagnall <garybagnall@10.0.0.20>
+Date:   Wed May 23 19:50:51 2018 +1000
+
+    Added stockException
+
+ 3 files changed, 9 insertions(+), 3 deletions(-)
+
+commit d8d61a58445938653b53df25b7776a7c52770d1b
+Author: garybagnall <garybagnall@10.0.0.20>
+Date:   Wed May 23 19:45:06 2018 +1000
+
+    Added constructors to Store, RefridgeratedTruck and Manifest
+
+ 3 files changed, 149 insertions(+), 3 deletions(-)
+
+commit 132d4f880fc12dffc4a3665e21e025d7369b48e1
+Author: garybagnall <garybagnall@10.0.0.20>
+Date:   Wed May 23 19:44:32 2018 +1000
+
+    Made more fixes to StockTest
+
+ 2 files changed, 8 insertions(+), 3 deletions(-)
+
+commit c52d6a7bf69a5d0f8acd1bf1c6e7601de97b8a7c
+Author: garybagnall <garybagnall@10.0.0.20>
+Date:   Wed May 23 19:17:48 2018 +1000
+
+    Fixed test in Stocktests. Fixed methods in CSV
+
+ 3 files changed, 7 insertions(+), 7 deletions(-)
+
+commit b34a8b342ae18478f2785fd909edef462d70c523
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Wed May 23 19:11:48 2018 +1000
+
+    Updated Stock Class
+
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit 1a6340583605bda4535d6031ef47b68d46261be0
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Wed May 23 18:51:50 2018 +1000
+
+    Updated RefigeratedTruckTests
+
+ 1 file changed, 77 insertions(+), 3 deletions(-)
+
+commit e906768c078b3af8b6385bd8052712df117cb689
+Merge: 90b75b2 581f035
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Wed May 23 18:47:03 2018 +1000
+
+    Merge branch 'Development' of https://github.com/garaxer/CAB302-assignment-2 into Development
+
+commit 90b75b283f7e262f58655b223ed161861f9bdc9b
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Wed May 23 18:43:54 2018 +1000
+
+    Update to Truck Class
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 581f035b68ac8a3987c60f2c1b478ef1fdbd4f2e
+Merge: 3dfd5d0 663323a
+Author: garybagnall <garybagnall@10.0.0.20>
+Date:   Wed May 23 18:41:43 2018 +1000
+
+    Merge branch 'Development' of
+    https://github.com/garaxer/CAB302-assignment-2 into Development
+
+commit 3dfd5d0f935016f816047510953dd649e9b536c7
+Author: garybagnall <garybagnall@10.0.0.20>
+Date:   Wed May 23 18:35:45 2018 +1000
+
+    Moved Mock Truck to seperate class
+
+ 2 files changed, 41 insertions(+), 55 deletions(-)
+
+commit 5d14ed41c7384ded4f2e7579c9259d12bd2f47dd
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Wed May 23 13:35:49 2018 +1000
+
+    Stock class partially implemented
+
+ 1 file changed, 143 insertions(+)
+
+commit 663323aba8b6b7cd53e2e8744303e1395d98004c
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Wed May 23 13:34:14 2018 +1000
+
+    Added Truck class with basic constructor
+
+ 1 file changed, 61 insertions(+)
+
+commit 89adbb3477a0632f1bd4bb009f569d498fd070c4
+Author: Alex Koppon <alexkoppon@gmail.com>
+Date:   Wed May 23 13:33:04 2018 +1000
+
+    Added basic tests for Store class
+
+ 1 file changed, 57 insertions(+)
+
+commit fc4d7fb59a7834115eacbfaffaa5df5082679dfc
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Tue May 22 19:06:43 2018 +1000
+
+    Added stock test
+
+ 1 file changed, 7 insertions(+), 5 deletions(-)
+
+commit b8f76da2aa9ae0ae7491bbb35cfe22f6a4a72e5f
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sun May 20 22:26:24 2018 +1000
+
+    Created Manifest constructor
+
+ 1 file changed, 25 insertions(+)
+
+commit 2f14c623c6207f0592052ea3077d417b119e88af
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sun May 20 21:30:52 2018 +1000
+
+    1 more test to StockTests and Load Manifest functions to GUI and CSV
+
+ 3 files changed, 46 insertions(+), 21 deletions(-)
+
+commit 6bc8f60ea23d1d684cb87264217be6a8eb05876a
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sun May 20 00:05:17 2018 +1000
+
+    Added CSV function to read in sales data
+
+ 4 files changed, 104 insertions(+), 39 deletions(-)
+
+commit 28ba92e1ba7db1a832ced0d309f855b0a7eec0a2
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sat May 19 15:30:53 2018 +1000
+
+    added Test CSV's
+
+ 8 files changed, 151 insertions(+)
+
+commit 4d1ca846b9815f5d4b25f749f7394afc300a2097
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sat May 19 15:30:27 2018 +1000
+
+    Add importCSV function
+
+ 4 files changed, 137 insertions(+), 9 deletions(-)
+
+commit 650e40b983d07fc57fb0c2ac1fd2ddf94a27db4f
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Thu May 17 21:50:17 2018 +1000
+
+    Added box layout to GUI components
+
+ 1 file changed, 14 insertions(+), 33 deletions(-)
+
+commit e09dd576aaab0826b54a9e611fc18776ec5a1c00
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Thu May 17 21:33:40 2018 +1000
+
+    Added boxes to GUIComponents
+
+ 1 file changed, 45 insertions(+), 4 deletions(-)
+
+commit fbea9f82716914d9fd1949bb4101e9880c803cf6
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Wed May 16 21:54:03 2018 +1000
+
+    Added boxes to GUI
+
+ 3 files changed, 15 insertions(+), 10 deletions(-)
+
+commit 542e928b9aa02af0bacee9954ef9c967c770a88e
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Wed May 16 21:33:42 2018 +1000
+
+    Added StoreFront,GUI and GUIComponent classes
+
+ 3 files changed, 98 insertions(+)
+
+commit 2df8cb5b49f4f6b6ecc2f60c6036f44793917237
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Wed May 16 21:33:08 2018 +1000
+
+    Made corrections to OrdinaryTruckTests and TruckTests
+
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+commit 842d89f2de791a6ef9f01e960ba0ce53855ad71c
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Wed May 16 17:49:18 2018 +1000
+
+    Added fixes to OrdinaryTruckTests
+
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 417cef0531c3d7bac8104481ce7285d6f9b2e3e7
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Wed May 16 17:43:20 2018 +1000
+
+    More fixes to StockTests
+
+ 1 file changed, 10 insertions(+), 9 deletions(-)
+
+commit b09b168b1ab57356034140eb0fd6f5b9b4be2010
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Wed May 16 17:33:42 2018 +1000
+
+    Fixed tests in StockTests
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 2056ac4c3a19db0dc3bd1542ca7440e5bae1cbbd
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Wed May 16 17:33:16 2018 +1000
+
+    Added more tests to StockTests
+
+ 1 file changed, 20 insertions(+), 2 deletions(-)
+
+commit f7d858d621a50e3802ae6b39cfd8cf5fb735c22b
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Wed May 16 16:57:38 2018 +1000
+
+    added iterator test to StockTests
+
+ 1 file changed, 18 insertions(+)
+
+commit ceef39098a906c255f373d053c5aa51edccae837
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Wed May 16 16:27:24 2018 +1000
+
+    Added another test to TruckTests
+
+ 1 file changed, 10 insertions(+)
+
+commit 30c58464ae788d6deb5fb7b2c5052973c83c0d0b
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Wed May 16 16:15:23 2018 +1000
+
+    Added test cases for Truck and OrdinaryTruck
+
+ 3 files changed, 100 insertions(+), 34 deletions(-)
+
+commit 75a24f0b5326fd9f1546b683e3021f7d42e5b896
+Author: Alex <Alex>
+Date:   Fri May 11 22:31:34 2018 +1000
+
+    Completed Item class and add Stock class
+
+ 2 files changed, 58 insertions(+)
+
+commit 2cea257d200c64520f76766fd84a0c839e335681
+Author: garybagnall <garybagnall@10.0.0.20>
+Date:   Fri May 11 22:21:31 2018 +1000
+
+    Renamed item to Item class in tests
+
+ 1 file changed, 10 insertions(+), 8 deletions(-)
+
+commit 890c650032cc305761b9fb6e13b2cf9d02534d8d
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Tue May 8 19:45:33 2018 +1000
+
+    Moved CSVException to GUI package
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 69c129ea3723a2a3534c66dd8bde394808b626ee
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Tue May 8 19:37:48 2018 +1000
+
+    Changed tests in StockTests
+
+ 1 file changed, 23 insertions(+), 22 deletions(-)
+
+commit 25480c3afc6b129585c1de841cb8cdf5b6ce1190
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Tue May 8 19:21:59 2018 +1000
+
+    Correct test in StockTests
+
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 8315b38cf0dda9341664242f4583bba25a1f2b7d
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Tue May 8 19:20:49 2018 +1000
+
+    Corrected test in stocktest
+
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 155981a8afbea0b571b64e0bcf791df4e2dfc65f
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Tue May 8 18:58:52 2018 +1000
+
+    Added test cases to StockTests
+
+ 1 file changed, 120 insertions(+)
+
+commit 852210f7ec899cb0f5408285c7b74dd670dffe27
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Tue May 8 14:49:26 2018 +1000
+
+    Removed duplicate test
+
+ 1 file changed, 14 deletions(-)
+
+commit 3a70c4366100c36c34472b97c19f7d4b71177cc2
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Tue May 8 14:48:29 2018 +1000
+
+    Added Tests into ItemTests
+
+ 1 file changed, 127 insertions(+)
+
+commit 507f386753d642f3d8a6a6442e1bf771b01fe163
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Tue May 8 14:03:54 2018 +1000
+
+    Added Blank ItemTests, StockTests,Store,TruckTests files
+
+ 5 files changed, 40 insertions(+), 6 deletions(-)
+
+commit 043b74b226b1269fc9025ebe8877023e5f331efd
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Mon May 7 23:02:02 2018 +1000
+
+    Added test cases to TruckTests and OrdinaryTest
+
+ 2 files changed, 99 insertions(+)
+
+commit aa3f56c38dfb416557c57b57827e96cbb3ce8062
+Author: alexkoppon <alexandra.koppon@connect.qut.edu.au>
+Date:   Fri May 4 21:55:50 2018 +1000
+
+    Added RefrigeratedTruckTest
+
+ 1 file changed, 14 insertions(+)
+
+commit 3fff093fec311f43290b65befa40167b696d93b0
+Author: Owner <Owner@IBM-X230>
+Date:   Fri May 4 21:43:56 2018 +1000
+
+    Created Ordinary Truck
+
+ 1 file changed, 5 insertions(+)
+
+commit 77c76c97aefac68ea30a8c71c393a49a8b533f8e
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Fri May 4 21:27:56 2018 +1000
+
+    Removed RefridgeratedTruckTests
+
+ 1 file changed, 5 deletions(-)
+
+commit ea24d7f1d5f4163d1dc7b9b10244cd9933fa974b
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Fri May 4 21:20:57 2018 +1000
+
+    Added RefridgeratedTruck
+
+ 2 files changed, 15 insertions(+)
+
+commit aef537cc6b78cb398bfa9e1cb5ceb2ca19a6abe9
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Fri May 4 20:53:24 2018 +1000
+
+    Added blank OrdinaryTruckTests, RefrigeratedTruckTests and Truck classes
+
+ 3 files changed, 15 insertions(+)
+
+commit 0b2cad548c8e4abbdc8e07c0a5d72921bde21d6a
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Fri May 4 20:36:10 2018 +1000
+
+    Added Junit4 to class path
+
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
+commit 210363716c459f386e36bd630d1464788e9d74ef
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Sun Apr 29 12:43:01 2018 +1000
+
+    Added Exception classes
+
+ 3 files changed, 86 insertions(+)
+
+commit 440e92e4d89bd4d275f2ae18b6846dde37f4b9ec
+Author: Gary N. Bagnall <gbagnall8@gmail.com>
+Date:   Fri Apr 27 23:50:35 2018 +1000
+
+    Created Eclipse Project
+
+ 5 files changed, 36 insertions(+)
