@@ -1,5 +1,9 @@
 package stock;
 
+@SuppressWarnings("serial")
+/**
+ * An exception for when Processing Stock
+ */
 public class StockException extends Exception {
 
 	public StockException() {

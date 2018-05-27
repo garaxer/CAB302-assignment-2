@@ -7,10 +7,11 @@ import org.junit.Test;
 
 import stock.Item;
 import stock.Stock;
+import stock.StockException;
 
 
 /**
- * 
+ * Tests the OrdinaryTruck class
  * @author Gary Bagnall
  *
  */
@@ -54,7 +55,7 @@ public class OrdinaryTruckTests {
 	@Test
 	public void testCost() { 
 		double cost = 875; //750 + 0.25*500
-		assertEquals(cost, ordinaryTruck.getCost());
+		assertEquals(cost, ordinaryTruck.getCost(),0);
 	}
 	
 	/* Test 5: See if the Truck can *deliver the items* 
@@ -67,7 +68,7 @@ public class OrdinaryTruckTests {
 	
 	/**
 	 * 	Test 7: Error if going over capacity
-	 * @throws DeliveryException
+	 * @throws DeliveryException when it is over capacity
 	 */
 	@Test(expected = DeliveryException.class)
 	public void setUpOverCapacityTruck() throws DeliveryException {
@@ -77,7 +78,7 @@ public class OrdinaryTruckTests {
 	
 	/**
 	 * 	Test 8: Error if adding a Stock with temperature controlled good(s)
-	 * @throws DeliveryException
+	 * @throws DeliveryException when it has cold goods
 	 */
 	@Test(expected = DeliveryException.class)
 	public void setColdTruck() throws DeliveryException {
@@ -89,16 +90,41 @@ public class OrdinaryTruckTests {
 	/* Test 5: See if the Truck can return the item and quantity as a string
 	 */
 	@Test
-	public void testGetManifest() throws DeliveryException{
+	public void testGetManifest() throws DeliveryException, StockException{
 		String list = ">Ordinary\n" + 
-				"cookies,10\n" + 
-				"biscuits,50\n";
+				"cookies,10\n";
 		Item cookies = new Item("cookies",50,100,5,25);
-		Item biscuits = new Item("biscuits",50,100,5,25);
 		stock = new Stock();
 		stock.addItems(cookies,10);
-		stock.addItems(biscuits,50);
 		ordinaryTruck = new OrdinaryTruck(stock);			
 		assertEquals(list, ordinaryTruck.getManifest());
 	}
+	
+	/*
+	 * Get remaining capacity
+	 */
+	@Test
+	public void checkRemaining() {	 
+		//assertEquals(500, ordinaryTruck.getRemainingCapacity());
+	}
+	
+	/* Test 1: Constructing a ordinaryTruck object with a stock
+	 */
+	@SuppressWarnings("unused")
+	@Test
+	public void setUpOrdinaryTruckWithoutStock() throws DeliveryException {
+		Truck ordinaryTruckTest = new OrdinaryTruck();
+		OrdinaryTruck ordinaryTruckTest2 = new OrdinaryTruck();
+	}
+	
+	//Check if adding items to an empty truck works.
+	@Test
+	public void checkCapacity() throws DeliveryException {	 
+		Stock stock = new Stock();
+		stock.addItems(item, 700);
+		Truck o = new OrdinaryTruck();
+		o.addStock(stock);
+		assertEquals(300, o.getRemainingCapacity());
+	}
+	
 }

@@ -1,15 +1,14 @@
 package stock;
 
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import stock.Item;
+
 /**
- * 
+ * Unit tests for the Item class
  * @author Gary Bagnall
- *
  */
 public class ItemTests {
 	

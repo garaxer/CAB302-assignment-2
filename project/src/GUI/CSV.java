@@ -1,138 +1,187 @@
 package GUI;
 
-import java.awt.List;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import delivery.DeliveryException;
+import delivery.Manifest;
+import delivery.OrdinaryTruck;
+import delivery.RefrigeratedTruck;
+import delivery.Truck;
+import stock.Item;
+import stock.Stock;
+import stock.StockException;
 
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-
+/**
+ * Used to import CSV files that are used in the store
+ * @author Gary Bagnall
+ *
+ */
 public class CSV {
-
-	
-	//private String[][] data; //change to stock
-	private ArrayList<String[]> lists; // initial list of inventory 
-	private HashMap<String, Integer> salesLog;
-	
-	public ArrayList<String[]> getInventory(GUI gui) {
-		
-		boolean workingFile = true;
-		File dir = new File("item_properties.csv");
-		workingFile = processFile(dir);
-		
-	    while (!workingFile){ 
-	    	JFileChooser chooser = new JFileChooser();
-	    	System.out.println("Fine not found");
-			chooser.setCurrentDirectory(new File(".\\"));
-	        chooser.showOpenDialog(gui);	
-	        workingFile = processFile(chooser.getSelectedFile());
-	    }
-		return lists;
-	}
-	
-	private boolean processFile(File file){
-		boolean workingFile = true;
-	    //import the file
-		try {
-			workingFile = processInventory(file.getAbsolutePath());
-		}  catch (java.io.FileNotFoundException e) {
-			JOptionPane.showMessageDialog(null, "File not found please select another file. Error:"+e);
-			
-			workingFile = false;
-		} catch (IOException e1) {
-			JOptionPane.showMessageDialog(null, "Please select working inventory file. Error: "+e1);
-			workingFile = false;
-		}
-	    //return true if the reading works properly, and false otherwise    
-		return workingFile;
-	}
-	
-	
-	private boolean processInventory(String fileName) throws IOException {
-		boolean workingFile = true;
-		
-		FileReader reader = new FileReader(fileName);
+	/**
+	 * Populates the contents of the file into an ArrayList
+	 * @param fileName the file to read and populate the array list with
+	 * @return an ArrayList of items
+	 * @throws IOException if something is wrong with the file
+	 * @throws CSVFormatException 
+	 */
+	@SuppressWarnings("resource")
+	public ArrayList<String[]> processInventory(File file) throws IOException, CSVFormatException {
+		ArrayList<String[]> itemList = null;
+		FileReader reader = new FileReader(file.getAbsolutePath());
 		BufferedReader bufferedReader = new BufferedReader(reader);
 		String line = bufferedReader.readLine();
 		if (line == null) {
 			System.out.println("The file was empty");
-			JOptionPane.showMessageDialog(null, "The file was empty, please select another");
-			workingFile = false;
+			throw new CSVFormatException("The file was empty, please select another");
 		} else {
-			//TODO: Create ITEM and add to stock		
-			lists = new ArrayList<String[]>();
-	
-			//System.out.println(line);
-			lists.add(line.split(",")); // create inventory, add to stock
-			
+			itemList = new ArrayList<String[]>();
+			itemList.add(line.split(",")); // create inventory, add to stock instead so we can throw error if it doesn't work
+
 			while((line = bufferedReader.readLine())!= null) {
-				//System.out.println(line);
-				lists.add(line.split(",")); // create inventory, add to stock
+				itemList.add(line.split(",")); // create inventory, add to stock
 				//return false if lists length is less that 5
 			}
 		}
 		bufferedReader.close();
-		return workingFile;
+		return itemList;
 	}
 
-	
-	
-	
-	//Sales log
-	
-	//TODO combine with the above
-	private boolean processFileSales(File file){
-		try {
-			return processSales(file.getAbsolutePath());
-		} catch (IOException e1) {
-			JOptionPane.showMessageDialog(null, "Please select working inventory file. Error: "+e1);
-			return false;
-		}
-	}
-	//TODO combine with the above
-	private boolean processSales(String absolutePath) throws IOException {
-		FileReader reader = new FileReader(absolutePath);
+	/**
+	 * Adds the contents of the sales log into list and returns true if successfully did so.
+	 * TODO: change to stock
+	 * @param absolutePath
+	 * @return true if the file was working
+	 * @throws IOException if the file isn't readable
+	 * @throws CSVFormatException 
+	 */
+	@SuppressWarnings("resource")
+	public  HashMap<String, Integer> processSales(File file) throws IOException, CSVFormatException {
+		HashMap<String, Integer> salesLog;
+		FileReader reader = new FileReader(file.getAbsolutePath());
 		BufferedReader bufferedReader = new BufferedReader(reader);
 		String line = bufferedReader.readLine();
 		if (line == null) {
 			System.out.println("The file was empty");
-			JOptionPane.showMessageDialog(null, "The file was empty, please select another");
 			bufferedReader.close();
-			return false;
+			throw new CSVFormatException("The file was empty, please select another");
 		} else { 
 			salesLog = new HashMap<String, Integer>();
-			
+
 			System.out.println(line);
 			String[] lineStart = line.split(",");
-			salesLog.put(lineStart[0], Integer.parseInt(lineStart[1]) ); 
-			
+			try {
+				salesLog.put(lineStart[0], Integer.parseInt(lineStart[1]) ); 
+			} catch (Exception e) {
+				throw new CSVFormatException("Saleslog CSV format isn't correct. Error when splitting first line into seperate commas" + e);
+			}
 			while((line = bufferedReader.readLine())!= null) {
 				System.out.println(line);
 				lineStart = line.split(",");
-				salesLog.put(lineStart[0], Integer.parseInt(lineStart[1])); 
+				try {
+					salesLog.put(lineStart[0], Integer.parseInt(lineStart[1])); 
+				} catch (Exception e) {
+					throw new CSVFormatException("Saleslog CSV format isn't correct. Error when splitting other line into seperate commas" + e);
+				}
 			}
 
 		}
 		bufferedReader.close();
-		return true;
+		return salesLog;
 	}
 
-	public HashMap<String, Integer> loadSalesLog(GUIComponents guiComponents) {
-		boolean workingFile = false;
+	/**
+	 * read in the manifest file and 
+	 * @param selectedFile
+	 * @return manifest - a manifest filled with Truck's stock
+	 * @throws CSVFormatException 
+	 * @throws IOException 
+	 * @throws StockException 
+	 * @throws DeliveryException 
+	 */
+	public Manifest processManifest(File selectedFile) throws CSVFormatException, IOException, StockException, DeliveryException {
+		Store store = Store.getInstance();
+		Manifest manifest = null;
+		FileReader reader = new FileReader(selectedFile.getAbsolutePath());
+		BufferedReader bufferedReader = new BufferedReader(reader);
+		String line = bufferedReader.readLine();
+		if (line == null) {	
+			bufferedReader.close();
+			throw new CSVFormatException("The file was empty, please select another");	
+		} else { 
+			ArrayList<Truck> truckList = new ArrayList<Truck>();
 
-	    while (!workingFile){ 
-	    	JFileChooser chooser = new JFileChooser();
-			chooser.setCurrentDirectory(new File(".\\"));
-	        chooser.showOpenDialog(guiComponents);	
-	        workingFile = processFileSales(chooser.getSelectedFile());
-	    }	
-	    
-	    return salesLog;
+			System.out.println(line);
+			//String[] lineStart = line.split(",");
+			//salesLog.put(lineStart[0], Integer.parseInt(lineStart[1]) ); 
+			boolean cold = false;
+			if (line.equals(">Refrigerated")) {
+				cold = true;
+			} else if (line.equals(">Ordinary")) {
+				cold = false;
+			} else {
+				bufferedReader.close();
+				throw new CSVFormatException("Refridgereated or Ordinary truck not found in first line: "+line);
+			}
+			Stock stock = new Stock();
+			while((line = bufferedReader.readLine())!= null) {
+
+				if (!( line.equals(">Refrigerated") || line.equals(">Ordinary"))) {
+
+					String[] lineStart = line.split(",");
+					Item item = store.getStock().getItem(lineStart[0]);
+					if (item == null) {
+						bufferedReader.close();
+						throw new CSVFormatException("Item not found: "+line);
+					}
+					stock.addItems(item, Integer.parseInt(lineStart[1]));
+				} else {
+					Truck truck = null;
+					if (stock.getTotalQuantity() > 0) {
+						System.out.println(stock.getTotalQuantity());
+						if (cold) {
+							truck = new RefrigeratedTruck(stock);
+							truckList.add(truck);
+							stock = new Stock();
+						}
+						else {
+							truck = new OrdinaryTruck(stock);
+							truckList.add(truck);
+							stock = new Stock();
+						}
+					}
+					if (line.equals(">Refrigerated")) {
+						cold = true;
+					} else if (line.equals(">Ordinary")) {
+						cold = false;
+					} 
+
+				}
+			}
+
+			Truck truck = null;
+			if (stock.getTotalQuantity() > 0) {
+				System.out.println(stock.getTotalQuantity());
+				if (cold) {
+					truck = new RefrigeratedTruck(stock);
+					truckList.add(truck);
+					stock = new Stock();
+				}
+				else {
+					truck = new OrdinaryTruck(stock);
+					truckList.add(truck);
+					stock = new Stock();
+				}
+			}
+
+			manifest = new Manifest(truckList);
+			System.out.println(manifest.getStockString());
+		}
+		bufferedReader.close();
+		return manifest;
 	}
-	
+
 }
