@@ -19,9 +19,9 @@ import stock.StockException;
  */
 public class Store {
 
-	private double capital = 100000;
+	public double capital = 0;
 	private String name = "";
-	private Stock inventory;
+	public Stock inventory;
 	
 	/**
 	 * Sets up the store with a blank stock

@@ -6,7 +6,7 @@ import stock.StockException;
 /**
  * This class contains the main program for a shop.
  * 
- * @author Gary and Alex
+ * @author Gary Bagnall and Alex Koppon
  */
 public class StoreFront {
 	
@@ -19,6 +19,7 @@ public class StoreFront {
 		// Create a store
 		Store store = Store.getInstance();
 		store.setName("Shop store the inventory");
+		store.addCapital(100000);
 		//Create the GUI
 		GUI gui = new GUI(store);
 		// Terminate if the user closes
