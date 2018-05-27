@@ -160,6 +160,17 @@ public class Stock {
 		}
 		return totalQuantity;
 	}
+	
+	public Item getItem(String itemString) {
+		Item item = null;
+		Set<Item> allItems = stock.keySet();
+		for (Item curr : allItems) {
+			if (curr.getItemName().equals(itemString)) {
+				item = curr;
+			}
+		}
+		return item;
+	}
 
 	public void addItems(String[] details, int quantity) {
 	}

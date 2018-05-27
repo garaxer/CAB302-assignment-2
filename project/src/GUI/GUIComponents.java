@@ -20,6 +20,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import delivery.DeliveryException;
 import stock.StockException;
 
 @SuppressWarnings("serial")
@@ -33,6 +34,7 @@ public class GUIComponents extends JPanel implements ActionListener{
 	public Store store; //public to be accessed by CSV
 	private JLabel costLabel; //the current capital
 	private JTable table; // the table of items
+	private CSV csv = new CSV();
 
 	/**
 	 * The Constructor for the GUI Components
@@ -60,6 +62,11 @@ public class GUIComponents extends JPanel implements ActionListener{
 		redButton.setBackground(Color.RED);
 		redButton.addActionListener(this);
 		topPanel.add(redButton);
+		
+		JButton greenButton = new JButton("Import manifest");
+		greenButton.setBackground(Color.GREEN);
+		greenButton.addActionListener(this);
+		topPanel.add(greenButton);
 
 		topPanel.add(Box.createHorizontalGlue());
 		costLabel = new JLabel("Store Capital: "+store.getCapitalString());
@@ -67,7 +74,7 @@ public class GUIComponents extends JPanel implements ActionListener{
 
 		topPanel.add(Box.createHorizontalGlue());
 		JButton blueButton = new JButton("Load in sales logs");
-		blueButton.setBackground(Color.GREEN);
+		blueButton.setBackground(Color.BLUE);
 		blueButton.addActionListener(this);
 		topPanel.add(blueButton);
 
@@ -97,31 +104,45 @@ public class GUIComponents extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 
 		String buttonString = e.getActionCommand();
-		if (buttonString.equals("Load in sales logs")) {
-			CSV csv = new CSV();
-			try {
+		try {
+			if (buttonString.equals("Load in sales logs")) {
 				store.loadSales(csv.loadSalesLog(this));
 				JOptionPane.showMessageDialog(null, "sales log loaded successfully");
 				updateGUI();
-			} catch (StockException e1) {
-				JOptionPane.showMessageDialog(null, "Can't remove more Stock than exists, pleaes reload new file or generate Manifest. Error:"+e1);
-			}
-		} 
-		else if (buttonString.equals("Generate manifest")) {
-			JFileChooser chooser = new JFileChooser();
-			chooser.setSelectedFile(new File("manifest.csv"));
-			chooser.setCurrentDirectory(new File(".\\"));
-			chooser.showSaveDialog(this);
-			try {
+			} 
+			else if (buttonString.equals("Generate manifest")) {
+				JFileChooser chooser = new JFileChooser();
+				chooser.setSelectedFile(new File("manifest.csv"));
+				chooser.setCurrentDirectory(new File(".\\"));
+				chooser.showSaveDialog(this);
 				WriteManifest(store.generateManifest(), chooser.getSelectedFile());
-			} catch (IOException e1) {
-				e1.printStackTrace();
-				JOptionPane.showMessageDialog(null, e1+"The file couldn't be found");
+				updateGUI();
+			} else if (buttonString.equals("Import manifest")) { 
+				JFileChooser chooser = new JFileChooser();
+				chooser.setCurrentDirectory(new File(".\\"));
+				chooser.setSelectedFile(new File("manifest.csv"));
+				chooser.showOpenDialog(this);	
+				store.importManifest(csv.processManifest(chooser.getSelectedFile()));
+				JOptionPane.showMessageDialog(null, "manifest loaded successfully");
+				updateGUI();
 			}
-			updateGUI();
+		} catch (StockException e1) {
+			JOptionPane.showMessageDialog(null, "Error: "+e1);
+		} catch (CSVFormatException e1) {
+			JOptionPane.showMessageDialog(null, "CSV file is incorrect. "+e1);
+			e1.printStackTrace();
+		}  catch (java.io.FileNotFoundException e1) {
+			JOptionPane.showMessageDialog(null, "File not found. "+e1);
+		} catch (IOException e1) {
+			JOptionPane.showMessageDialog(null, "IO"+e1);
+			e1.printStackTrace();
+		} catch (DeliveryException e1) {
+			JOptionPane.showMessageDialog(null, "Delivery "+e1);
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Refreshes the gui by re-adding the components that have changed
 	 */

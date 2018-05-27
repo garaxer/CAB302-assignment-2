@@ -53,18 +53,18 @@ public class OrdinaryTruck extends Truck {
 	}
 
 	@Override
-	public void addStock(Stock stock) throws DeliveryException{
-		Set<Item> allItems = stock.toSet();
+	public void addStock(Stock stocktoAdd) throws DeliveryException{
+		Set<Item> allItems = stocktoAdd.toSet();
 		for (Item item : allItems) {
 			if (item.getItemTemperature() < 0) {
 				throw new DeliveryException("This truck cannot carry refrigerated goods");
-			} else {
-				int currentQuantity = getStock().getTotalQuantity();
-				int newQuantity = stock.getTotalQuantity();		
-				if ((currentQuantity + newQuantity) > getCapacity()) {
+			} else {		
+				if (stocktoAdd.getTotalQuantity() > getRemainingCapacity()) {
+					System.out.println("capacity"+getCapacity());
+					System.out.println("c"+stocktoAdd.getTotalQuantity() + " "+ getRemainingCapacity());
 					throw new DeliveryException("There isn't enough room on the truck");
 				} else {
-					getStock().addStock(stock);	
+					getStock().addStock(stocktoAdd);	
 				}
 			}
 		}
