@@ -8,7 +8,7 @@ import stock.StockException;
  * 
  * @author Gary Bagnall and Alex Koppon
  */
-public class StoreFront {
+public class Main {
 	
 	/** 
 	 * Program entry point.
