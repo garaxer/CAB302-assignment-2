@@ -203,7 +203,7 @@ public class ManifestTest {
 		stock.removeItems(frozenMeat, 200);
 		Manifest manifest = new Manifest(stock);
 		// calculate the expected cost
-		double TruckCost = (900.0 + 200.0*Math.pow(0.7, (-20/5))) + (900.0 + 200.0*Math.pow(0.7, (-14/5)));
+		double TruckCost = (900.0 + 200.0*Math.pow(0.7, ((double)-20/5))) + (900.0 + 200.0*Math.pow(0.7, ((double)-14/5)));
 		double foodCost = ((250*8) + (575*10) + (325*2));
 		double totalCost = TruckCost + foodCost;	
 		assertEquals(totalCost, manifest.getTotalCost(), 0);
