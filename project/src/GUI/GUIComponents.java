@@ -75,7 +75,7 @@ public class GUIComponents extends JPanel implements ActionListener{
 		p2.setLayout(new BoxLayout(p2, BoxLayout.X_AXIS));
 
 		String data[][] = store.getInventoryArray();
-		String column[]={"Name","Quantity","Cost","Sell Price","Reorder Point","Reorder Amount","Temperature"};         
+		String column[]={"Name","Quantity","Cost ($)","Price ($)","Reorder Point","Reorder Amount","Temperature C"};         
 		table = new JTable(data,column);     
 		table.setEnabled(false);
 		table.setDragEnabled(false);
@@ -128,7 +128,7 @@ public class GUIComponents extends JPanel implements ActionListener{
 	private void updateGUI() {
 		costLabel.setText("Store Capital: "+store.getCapitalString());
 		String data[][] = store.getInventoryArray();
-		String column[]={"Name","Quantity","Cost","Sell Price","Reorder Point","Reorder Amount","Temperature"};       
+		String column[]={"Name","Quantity","Cost ($)","Price ($)","Reorder Point","Reorder Amount","Temperature C"};        
 		TableModel dataModel = new DefaultTableModel(data,column);
 		table.setModel(dataModel);
 	}

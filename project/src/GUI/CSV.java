@@ -52,7 +52,7 @@ public class CSV {
 		try {
 			workingFile = processInventory(file.getAbsolutePath());
 		}  catch (java.io.FileNotFoundException e) {
-			JOptionPane.showMessageDialog(null, "File not found please select another file. Error:"+e);
+			JOptionPane.showMessageDialog(null, "item_properties.csv not found please select another file:");
 			workingFile = false;
 		} catch (IOException e1) {
 			JOptionPane.showMessageDialog(null, "Please select working inventory file. Error: "+e1);
