@@ -19,9 +19,9 @@ import stock.StockException;
  */
 public class Store {
 
-	public double capital = 100000;
-	public String name;
-	public Stock inventory;
+	private double capital = 100000;
+	private String name = "";
+	private Stock inventory;
 	
 	/**
 	 * Sets up the store with a blank stock
@@ -58,16 +58,16 @@ public class Store {
 	
 	/**
 	 * 
-	 * @return
+	 * @return the capital in a string of format $10,000.00
 	 */
 	public String getCapitalString() {
 		return "$"+String.format("%,.2f", capital);
 	}
 	
 	/**
-	 * 
-	 * @param arrayList
-	 * @throws StockException
+	 * Adds items into the store from the data passed into from the CSV
+	 * @param arrayList The list of items in a String
+	 * @throws StockException Can be thrown if we add an item that isn't formatted correctly.
 	 */
 	public void loadInventory(ArrayList<String[]> arrayList) throws StockException {
 		for (String[] list : arrayList) {
@@ -86,8 +86,7 @@ public class Store {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * @return a String[][] of items to be used with the GUI's table
 	 */
 	public String[][] getInventoryArray() {
 
@@ -106,8 +105,8 @@ public class Store {
 
 	/**
 	 * 
-	 * @param log
-	 * @throws StockException
+	 * @param log the sales log data passed in from reading a csv
+	 * @throws StockException could be thrown if removing an item that doesn't exist.
 	 */
 	public void loadSales(HashMap<String, Integer> log) throws StockException {
 		for (Entry<String, Integer> entry : log.entrySet()) {
@@ -123,8 +122,10 @@ public class Store {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Creates a new manifest and passes in the store's current inventory
+	 * Adds the reordered stock to inventory
+	 * removes the capital.
+	 * @return the manifest in a CSV format
 	 */
 	public String generateManifest() {
 		Manifest manifest = new Manifest(inventory);
@@ -133,24 +134,46 @@ public class Store {
 		return manifest.getStockString();
 	}
 
+	/**
+	 * @return the current store's captial
+	 */
 	public double getCapital() {
 		return capital;
 	}
 
+	/**
+	 * @return the Store's stock
+	 */
 	public Stock getStock() {
 		return inventory;
 	}
 
-	public void addCapital(double i) {
-		capital += i;
+	/**
+	 * @param money adds capital 
+	 */
+	public void addCapital(double money) {
+		capital += money;
+	}
+	
+	/**
+	  * @param money
+	 */
+	public void removeCapital(double money) {
+		capital -= money;
 	}
 
-	public void removeCapital(double i) {
-		capital -= i;
-	}
-
+	/**
+	 * @return the Store's stock
+	 */
 	public void addStock(Stock stock) {
 		inventory.addStock(stock);
+	}
+
+	/**
+	 * @return the Store's stock
+	 */
+	public void setName(String string) {
+		name = string;
 	}
 
 }

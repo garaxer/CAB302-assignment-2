@@ -1,12 +1,6 @@
 package GUI;
 
-import java.io.File;
-import java.io.IOException;
-
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 import stock.StockException;
 
 /**
@@ -20,15 +14,11 @@ public class StoreFront {
 	 * Program entry point.
 	 * Creates the GUI for the user to start managing inventory
 	 * @throws StockException 
-	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws StockException {
-		//Read in the stock
-		//Stock inventory = CSV.readInventory("item_properties.csv");
 		// Create a store
 		Store store = Store.getInstance();
-		store.name = "Shop store the inventory";
-		
+		store.setName("Shop store the inventory");
 		//Create the GUI
 		GUI gui = new GUI(store);
 		// Terminate if the user closes
