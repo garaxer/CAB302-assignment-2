@@ -177,11 +177,10 @@ public class Store {
 	}
 
 	public void importManifest(Manifest manifest) {
-		if (manifest != null) {
-			this.inventory.addStock(manifest.getReorderStock());
-		}
 		
+		this.inventory.addStock(manifest.getReorderStock());	
 		capital -= manifest.getTotalCost();
+		//System.out.println(manifest.getStockString());
 	}
 
 }

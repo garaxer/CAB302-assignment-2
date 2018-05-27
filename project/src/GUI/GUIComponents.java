@@ -125,6 +125,7 @@ public class GUIComponents extends JPanel implements ActionListener{
 				store.importManifest(csv.processManifest(chooser.getSelectedFile()));
 				JOptionPane.showMessageDialog(null, "manifest loaded successfully");
 				updateGUI();
+				System.out.println(store.getCapital());
 			}
 		} catch (StockException e1) {
 			JOptionPane.showMessageDialog(null, "Error: "+e1);

@@ -2,7 +2,6 @@ package GUI;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -167,9 +166,9 @@ public class CSV {
 	}
 
 	/**
-	 * read in the manifest file
+	 * read in the manifest file and 
 	 * @param selectedFile
-	 * @return a manifest
+	 * @return manifest - a manifest filled with Truck's stock
 	 * @throws CSVFormatException 
 	 * @throws IOException 
 	 * @throws StockException 
@@ -199,10 +198,9 @@ public class CSV {
 				bufferedReader.close();
 				throw new CSVFormatException("Refridgereated or Ordinary truck not found in first line: "+line);
 			}
-			
+			Stock stock = new Stock();
 			while((line = bufferedReader.readLine())!= null) {
-				System.out.println(line);
-				Stock stock = new Stock();
+	
 				if (!( line.equals(">Refrigerated") || line.equals(">Ordinary"))) {
 					
 					String[] lineStart = line.split(",");
@@ -215,13 +213,16 @@ public class CSV {
 				} else {
 					Truck truck = null;
 					if (stock.getTotalQuantity() > 0) {
+						System.out.println(stock.getTotalQuantity());
 						if (cold) {
 							truck = new RefrigeratedTruck(stock);
 							truckList.add(truck);
+							stock = new Stock();
 						}
 						else {
 							truck = new OrdinaryTruck(stock);
 							truckList.add(truck);
+							stock = new Stock();
 						}
 					}
 					if (line.equals(">Refrigerated")) {
@@ -232,7 +233,24 @@ public class CSV {
 					
 				}
 			}
+			
+			Truck truck = null;
+			if (stock.getTotalQuantity() > 0) {
+				System.out.println(stock.getTotalQuantity());
+				if (cold) {
+					truck = new RefrigeratedTruck(stock);
+					truckList.add(truck);
+					stock = new Stock();
+				}
+				else {
+					truck = new OrdinaryTruck(stock);
+					truckList.add(truck);
+					stock = new Stock();
+				}
+			}
+	
 			manifest = new Manifest(truckList);
+			System.out.println(manifest.getStockString());
 		}
 		bufferedReader.close();
 		return manifest;
