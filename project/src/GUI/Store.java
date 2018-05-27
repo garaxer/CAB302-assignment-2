@@ -1,11 +1,8 @@
 package GUI;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
-
-import javax.swing.JFrame;
 
 import delivery.Manifest;
 import stock.Item;
@@ -15,17 +12,20 @@ import stock.StockException;
 
 
 /**
- * 
+ * A Store class that holds information regarding the current state of the store.
+ * This is a singleton pattern class.
+ * Only one instance of this class can be made.
  * @author Gary Bagnall
- *
  */
 public class Store {
 
 	public double capital = 100000;
-	//private ArrayList<String[]> inventory; //change to Stock when created
 	public String name;
 	public Stock inventory;
 	
+	/**
+	 * Sets up the store with a blank stock
+	 */
 	protected Store() {
 		this.inventory = new Stock();
 	}
@@ -40,18 +40,35 @@ public class Store {
 		private final static Store INSTANCE = new Store();
 	}
 	
+	/**
+	 * Gets the current instance of this class
+	 * @return The same instance of store every time.
+	 */
 	public static Store getInstance() {
 		return StoreHolder.INSTANCE; 
 	}
 	
+	/**
+	 * Get's the name of the store
+	 * @return the name of the store
+	 */
 	public String getName() {
 		return name;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getCapitalString() {
 		return "$"+String.format("%,.2f", capital);
 	}
 	
+	/**
+	 * 
+	 * @param arrayList
+	 * @throws StockException
+	 */
 	public void loadInventory(ArrayList<String[]> arrayList) throws StockException {
 		for (String[] list : arrayList) {
 			Item item = null;
@@ -68,7 +85,10 @@ public class Store {
 		}		
 	}
 
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public String[][] getInventoryArray() {
 
 		ArrayList<String[]> inventoryList = inventory.getArrayList();
@@ -84,11 +104,15 @@ public class Store {
 		return data;
 	}
 
+	/**
+	 * 
+	 * @param log
+	 * @throws StockException
+	 */
 	public void loadSales(HashMap<String, Integer> log) throws StockException {
 		for (Entry<String, Integer> entry : log.entrySet()) {
 		    String key = entry.getKey();
 		    int value = entry.getValue();
-		    //System.out.println(key + "=" + value); 
 		    for(Item item : inventory.toSet()) {
 		    	if (item.getItemName().equals(key)) {
 		    		inventory.removeItems(item, value);
@@ -97,12 +121,36 @@ public class Store {
 		    }
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public String generateManifest() {
 		Manifest manifest = new Manifest(inventory);
 		this.inventory.addStock(manifest.getReorderStock());
 		capital -= manifest.getTotalCost();
 		return manifest.getStockString();
+	}
+
+	public double getCapital() {
+		return capital;
+	}
+
+	public Stock getStock() {
+		return inventory;
+	}
+
+	public void addCapital(double i) {
+		capital += i;
+	}
+
+	public void removeCapital(double i) {
+		capital -= i;
+	}
+
+	public void addStock(Stock stock) {
+		inventory.addStock(stock);
 	}
 
 }
