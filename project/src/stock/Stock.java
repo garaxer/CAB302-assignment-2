@@ -99,10 +99,12 @@ public class Stock {
 			} else {
 				stock.put(item, newQuantity);
 			}
-		} catch (Exception e) {
+		} catch (StockException e){
+			throw new StockException("The quantity of the item in stock is too low to remove that amount");
+		}catch (Exception e) {
 			throw new StockException("This item doesn't exist in the stock");
 		}
-				
+
 	}
 
 	/**

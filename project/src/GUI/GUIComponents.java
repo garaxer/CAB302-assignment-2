@@ -50,57 +50,6 @@ public class GUIComponents extends JPanel implements ActionListener{
 		initialiseComponents();	 
 	}
 	
-	public void getInventory() {
-		ArrayList<String[]> lists = null;
-		boolean workingFile = true;
-		File dir = new File("item_properties.csv");
-		try {
-			lists = csv.processInventory(dir);
-			store.loadInventory(lists); 
-			workingFile = true;
-		} catch (CSVFormatException e1) {
-			JOptionPane.showMessageDialog(null, "Manifest CSV file is incorrect. "+e1);
-			//e1.printStackTrace();
-			workingFile = false;
-		}  catch (java.io.FileNotFoundException e1) {
-			JOptionPane.showMessageDialog(null, "Manifest File not found. Please Select one.... "+e1);
-			workingFile = false;
-		} catch (IOException e1) {
-			JOptionPane.showMessageDialog(null, "IO error "+e1);
-			//e1.printStackTrace();
-			workingFile = false;
-		} catch (StockException e) {
-			JOptionPane.showMessageDialog(null, "Issue with Manifest CSV "+e);
-			//e1.printStackTrace();
-			workingFile = false;
-		}
-
-		while (!workingFile){ 
-			JFileChooser chooser = new JFileChooser();
-			chooser.setCurrentDirectory(new File(".\\"));
-			chooser.showOpenDialog(this);	
-			try {
-				lists = csv.processInventory(chooser.getSelectedFile());
-				workingFile = true;
-				store.loadInventory(lists); 
-			} catch (CSVFormatException e1) {
-				JOptionPane.showMessageDialog(null, "Manifest CSV file is incorrect. "+e1);
-				//e1.printStackTrace();
-				workingFile = false;
-			}  catch (java.io.FileNotFoundException e1) {
-				JOptionPane.showMessageDialog(null, "Manifest File not found. Please Select one....  "+e1);
-				workingFile = false;
-			} catch (IOException e1) {
-				JOptionPane.showMessageDialog(null, "IO error "+e1);
-				//e1.printStackTrace();
-				workingFile = false;
-			} catch (StockException e) {
-				JOptionPane.showMessageDialog(null, "Issue with Manifest CSV "+e);
-				//e1.printStackTrace();
-				workingFile = false;
-			}
-		}
-	}
 
 	/**
 	 * Adds components to the GUI
@@ -223,5 +172,61 @@ public class GUIComponents extends JPanel implements ActionListener{
 		writer.write(manifest);
 		writer.close();
 		JOptionPane.showMessageDialog(null, file.getName()+" has been saved successfully");
+	}
+	
+	/**
+	 * Loads a store with a list generated from the CSV.
+	 * Keeps looping until it has found a file with the correct format
+	 */
+	public void getInventory() {
+		ArrayList<String[]> lists = null;
+		boolean workingFile = true;
+		File dir = new File("item_properties.csv");
+		try {
+			lists = csv.processInventory(dir);
+			store.loadInventory(lists); 
+			workingFile = true;
+		} catch (CSVFormatException e1) {
+			JOptionPane.showMessageDialog(null, "Manifest CSV file is incorrect. "+e1);
+			//e1.printStackTrace();
+			workingFile = false;
+		}  catch (java.io.FileNotFoundException e1) {
+			JOptionPane.showMessageDialog(null, "Manifest File not found. Please Select one.... "+e1);
+			workingFile = false;
+		} catch (IOException e1) {
+			JOptionPane.showMessageDialog(null, "IO error "+e1);
+			//e1.printStackTrace();
+			workingFile = false;
+		} catch (StockException e) {
+			JOptionPane.showMessageDialog(null, "Issue with Manifest CSV "+e);
+			//e1.printStackTrace();
+			workingFile = false;
+		}
+
+		while (!workingFile){ 
+			JFileChooser chooser = new JFileChooser();
+			chooser.setCurrentDirectory(new File(".\\"));
+			chooser.showOpenDialog(this);	
+			try {
+				lists = csv.processInventory(chooser.getSelectedFile());
+				workingFile = true;
+				store.loadInventory(lists); 
+			} catch (CSVFormatException e1) {
+				JOptionPane.showMessageDialog(null, "Manifest CSV file is incorrect. "+e1);
+				//e1.printStackTrace();
+				workingFile = false;
+			}  catch (java.io.FileNotFoundException e1) {
+				JOptionPane.showMessageDialog(null, "Manifest File not found. Please Select one....  "+e1);
+				workingFile = false;
+			} catch (IOException e1) {
+				JOptionPane.showMessageDialog(null, "IO error "+e1);
+				//e1.printStackTrace();
+				workingFile = false;
+			} catch (StockException e) {
+				JOptionPane.showMessageDialog(null, "Issue with Manifest CSV "+e);
+				//e1.printStackTrace();
+				workingFile = false;
+			}
+		}
 	}
 }
