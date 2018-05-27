@@ -75,7 +75,7 @@ public class RefrigeratedTruckTest {
 		int temp = ice.getItemTemperature();
 		Truck refrigerated = new RefrigeratedTruck();
 		refrigerated.addStock(stock);
-		double cost = (900.0 + 200.0*Math.pow(0.7, (temp/5)));
+		double cost = (900.0 + 200.0*Math.pow(0.7, (double)(temp/5)));
 		assertEquals(cost, refrigerated.getCost(), 0);
 	}
 	
@@ -86,7 +86,7 @@ public class RefrigeratedTruckTest {
 		int temp = iceCream.getItemTemperature();
 		Truck refrigerated = new RefrigeratedTruck();
 		refrigerated.addStock(stock);
-		double cost = (900.0 + 200.0*Math.pow(0.7, (temp/5)));
+		double cost = (900.0 + 200.0*Math.pow(0.7, (double)(temp/5)));
 		assertEquals(cost, refrigerated.getCost(), 0);
 	}
 	

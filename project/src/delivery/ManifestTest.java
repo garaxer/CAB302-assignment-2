@@ -174,15 +174,5 @@ public class ManifestTest {
 		}
 	}
 	
-	@Test
-	public void testStringTwoRefrigeratedTrucks() throws StockException {
-		stock.addItems(nuts, 100);
-		stock.removeItems(ice, 200);
-		stock.removeItems(frozenMeat, 200);
-		Manifest manifest = new Manifest(stock);
-		String manifestString = ">Refrigerated\nfrozen meat,550\nice cream,250\n>Refrigerated\nice,325\nfrozen meat,25\n";
-		assertTrue((manifestString.equals(manifest.getStockString())));
-	}
-	
 
 }
