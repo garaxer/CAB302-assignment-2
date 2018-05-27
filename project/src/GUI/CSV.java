@@ -6,10 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-
 import delivery.DeliveryException;
 import delivery.Manifest;
 import delivery.OrdinaryTruck;
@@ -25,11 +21,6 @@ import stock.StockException;
  *
  */
 public class CSV {
-
-	private ArrayList<String[]> lists; //initial list of inventory //TODO:Change to stock object
-	
-
-	
 	/**
 	 * Populates the contents of the file into an ArrayList
 	 * @param fileName the file to read and populate the array list with
@@ -67,6 +58,7 @@ public class CSV {
 	 * @throws IOException if the file isn't readable
 	 * @throws CSVFormatException 
 	 */
+	@SuppressWarnings("resource")
 	public  HashMap<String, Integer> processSales(File file) throws IOException, CSVFormatException {
 		HashMap<String, Integer> salesLog;
 		FileReader reader = new FileReader(file.getAbsolutePath());
@@ -81,19 +73,26 @@ public class CSV {
 
 			System.out.println(line);
 			String[] lineStart = line.split(",");
-			salesLog.put(lineStart[0], Integer.parseInt(lineStart[1]) ); 
-
+			try {
+				salesLog.put(lineStart[0], Integer.parseInt(lineStart[1]) ); 
+			} catch (Exception e) {
+				throw new CSVFormatException("Saleslog CSV format isn't correct. Error when splitting first line into seperate commas" + e);
+			}
 			while((line = bufferedReader.readLine())!= null) {
 				System.out.println(line);
 				lineStart = line.split(",");
-				salesLog.put(lineStart[0], Integer.parseInt(lineStart[1])); 
+				try {
+					salesLog.put(lineStart[0], Integer.parseInt(lineStart[1])); 
+				} catch (Exception e) {
+					throw new CSVFormatException("Saleslog CSV format isn't correct. Error when splitting other line into seperate commas" + e);
+				}
 			}
 
 		}
 		bufferedReader.close();
 		return salesLog;
 	}
-	
+
 	/**
 	 * read in the manifest file and 
 	 * @param selectedFile
