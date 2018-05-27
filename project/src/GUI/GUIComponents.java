@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -43,10 +44,64 @@ public class GUIComponents extends JPanel implements ActionListener{
 	 */
 	public GUIComponents(){
 		this.store = Store.getInstance();
+		//Load inventory into store. TODO make the below return a stock to give to store, surround with try catch
+		getInventory();
 		// Initialize the GUI Components
 		initialiseComponents();	 
 	}
 	
+	public void getInventory() {
+		ArrayList<String[]> lists = null;
+		boolean workingFile = true;
+		File dir = new File("item_properties.csv");
+		try {
+			lists = csv.processInventory(dir);
+			store.loadInventory(lists); 
+			workingFile = true;
+		} catch (CSVFormatException e1) {
+			JOptionPane.showMessageDialog(null, "Manifest CSV file is incorrect. "+e1);
+			//e1.printStackTrace();
+			workingFile = false;
+		}  catch (java.io.FileNotFoundException e1) {
+			JOptionPane.showMessageDialog(null, "Manifest File not found. Please Select one.... "+e1);
+			workingFile = false;
+		} catch (IOException e1) {
+			JOptionPane.showMessageDialog(null, "IO error "+e1);
+			//e1.printStackTrace();
+			workingFile = false;
+		} catch (StockException e) {
+			JOptionPane.showMessageDialog(null, "Issue with Manifest CSV "+e);
+			//e1.printStackTrace();
+			workingFile = false;
+		}
+
+		while (!workingFile){ 
+			JFileChooser chooser = new JFileChooser();
+			chooser.setCurrentDirectory(new File(".\\"));
+			chooser.showOpenDialog(this);	
+			try {
+				lists = csv.processInventory(chooser.getSelectedFile());
+				workingFile = true;
+				store.loadInventory(lists); 
+			} catch (CSVFormatException e1) {
+				JOptionPane.showMessageDialog(null, "Manifest CSV file is incorrect. "+e1);
+				//e1.printStackTrace();
+				workingFile = false;
+			}  catch (java.io.FileNotFoundException e1) {
+				JOptionPane.showMessageDialog(null, "Manifest File not found. Please Select one....  "+e1);
+				workingFile = false;
+			} catch (IOException e1) {
+				JOptionPane.showMessageDialog(null, "IO error "+e1);
+				//e1.printStackTrace();
+				workingFile = false;
+			} catch (StockException e) {
+				JOptionPane.showMessageDialog(null, "Issue with Manifest CSV "+e);
+				//e1.printStackTrace();
+				workingFile = false;
+			}
+		}
+	}
+
 	/**
 	 * Adds components to the GUI
 	 */
@@ -59,7 +114,7 @@ public class GUIComponents extends JPanel implements ActionListener{
 		topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.X_AXIS));
 
 		JButton redButton = new JButton("Generate manifest");
-		redButton.setBackground(Color.RED);
+		redButton.setBackground(Color.YELLOW);
 		redButton.addActionListener(this);
 		topPanel.add(redButton);
 		
@@ -74,7 +129,7 @@ public class GUIComponents extends JPanel implements ActionListener{
 
 		topPanel.add(Box.createHorizontalGlue());
 		JButton blueButton = new JButton("Load in sales logs");
-		blueButton.setBackground(Color.BLUE);
+		blueButton.setBackground(Color.WHITE);
 		blueButton.addActionListener(this);
 		topPanel.add(blueButton);
 
@@ -106,9 +161,12 @@ public class GUIComponents extends JPanel implements ActionListener{
 		String buttonString = e.getActionCommand();
 		try {
 			if (buttonString.equals("Load in sales logs")) {
-				store.loadSales(csv.loadSalesLog(this));
-				JOptionPane.showMessageDialog(null, "sales log loaded successfully");
+				JFileChooser choosers = new JFileChooser();
+				choosers.setCurrentDirectory(new File(".\\"));
+				choosers.showOpenDialog(this);	
+				store.loadSales(csv.processSales(choosers.getSelectedFile()));
 				updateGUI();
+				JOptionPane.showMessageDialog(null, "sales log loaded successfully");
 			} 
 			else if (buttonString.equals("Generate manifest")) {
 				JFileChooser chooser = new JFileChooser();
@@ -125,22 +183,20 @@ public class GUIComponents extends JPanel implements ActionListener{
 				store.importManifest(csv.processManifest(chooser.getSelectedFile()));
 				JOptionPane.showMessageDialog(null, "manifest loaded successfully");
 				updateGUI();
-				System.out.println(store.getCapital());
 			}
 		} catch (StockException e1) {
-			JOptionPane.showMessageDialog(null, "Error: "+e1);
+			JOptionPane.showMessageDialog(null, "Error ProcessingStock:  "+e1);
 		} catch (CSVFormatException e1) {
 			JOptionPane.showMessageDialog(null, "CSV file is incorrect. "+e1);
-			e1.printStackTrace();
+			//e1.printStackTrace();
 		}  catch (java.io.FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(null, "File not found. "+e1);
 		} catch (IOException e1) {
-			JOptionPane.showMessageDialog(null, "IO"+e1);
-			e1.printStackTrace();
+			JOptionPane.showMessageDialog(null, "IO error "+e1);
+			//e1.printStackTrace();
 		} catch (DeliveryException e1) {
-			JOptionPane.showMessageDialog(null, "Delivery "+e1);
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Delivery Error "+e1);
+			//e1.printStackTrace();
 		}
 	}
 
