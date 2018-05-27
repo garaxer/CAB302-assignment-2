@@ -35,7 +35,12 @@ public class Manifest {
 		// TODO Auto-generated constructor stub
 		//System.out.println("Yep");
 		trucks = truckList;
-		System.out.println(this.getStockString());
+		//System.out.println(this.getStockString());
+		reorder = new Stock();
+		
+		for (Truck truck : truckList) {
+			reorder.addStock(truck.getStock());
+		}
 	}
 
 	/**
