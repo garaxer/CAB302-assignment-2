@@ -5,6 +5,11 @@ import javax.swing.JFrame;
 import stock.StockException;
 
 @SuppressWarnings("serial")
+/**
+ * The GUI for the Store. Sets the title and adds the components.
+ * @author Gary Bagnall
+ *
+ */
 public class GUI extends JFrame {
 
 	public GUI(Store store) throws StockException {

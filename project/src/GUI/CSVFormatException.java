@@ -1,6 +1,9 @@
 package GUI;
 
 @SuppressWarnings("serial")
+/**
+ * An exception for when Processing CSV's
+ */
 public class CSVFormatException extends Exception {
 
 	public CSVFormatException() {

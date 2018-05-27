@@ -86,6 +86,7 @@ public class Store {
 	}
 
 	/**
+	 * Changes the Inventory to a Table readable format
 	 * @return a String[][] of items to be used with the GUI's table
 	 */
 	public String[][] getInventoryArray() {
@@ -104,7 +105,7 @@ public class Store {
 	}
 
 	/**
-	 * 
+	 * Loads the sales from a CSVB
 	 * @param log the sales log data passed in from reading a csv
 	 * @throws StockException could be thrown if removing an item that doesn't exist.
 	 */
@@ -135,6 +136,7 @@ public class Store {
 	}
 
 	/**
+	 * Gets capital
 	 * @return the current store's captial
 	 */
 	public double getCapital() {
@@ -142,6 +144,7 @@ public class Store {
 	}
 
 	/**
+	 * Get's the store's inventory
 	 * @return the Store's stock
 	 */
 	public Stock getStock() {
@@ -149,6 +152,7 @@ public class Store {
 	}
 
 	/**
+	 * Adds capital
 	 * @param money adds capital 
 	 */
 	public void addCapital(double money) {
@@ -156,6 +160,7 @@ public class Store {
 	}
 	
 	/**
+	 * Removes capital
 	  * @param money
 	 */
 	public void removeCapital(double money) {
@@ -163,24 +168,28 @@ public class Store {
 	}
 
 	/**
-	 * @return the Store's stock
+	 * Adds stock to inventory
+	 * @param stock stock
 	 */
 	public void addStock(Stock stock) {
 		inventory.addStock(stock);
 	}
 
 	/**
-	 * @return the Store's stock
+	 * sets the name of the store
+	 * @param string name
 	 */
 	public void setName(String string) {
 		name = string;
 	}
 
-	public void importManifest(Manifest manifest) {
-		
+	/**
+	 * Imports a manifest
+	 * @param manifest the manifest to import
+	 */
+	public void importManifest(Manifest manifest) {	
 		this.inventory.addStock(manifest.getReorderStock());	
 		capital -= manifest.getTotalCost();
-		//System.out.println(manifest.getStockString());
 	}
 
 }

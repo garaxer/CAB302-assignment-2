@@ -1,6 +1,9 @@
 package delivery;
 
 @SuppressWarnings("serial")
+/**
+ * An exception for when Processing Deliveries
+ */
 public class DeliveryException extends Exception {
 
 	public DeliveryException() {

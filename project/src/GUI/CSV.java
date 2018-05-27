@@ -24,7 +24,7 @@ public class CSV {
 	/**
 	 * Populates the contents of the file into an ArrayList
 	 * @param fileName the file to read and populate the array list with
-	 * @return
+	 * @return an ArrayList of items
 	 * @throws IOException if something is wrong with the file
 	 * @throws CSVFormatException 
 	 */

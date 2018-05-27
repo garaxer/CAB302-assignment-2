@@ -185,7 +185,7 @@ public class Stock {
 	}
 	
 	/**
-	 * @return an ArrayList<String[]> where each String[] is an item and its
+	 * @return an arraylist where each String is an item and its
 	 * properties
 	 */
 	public ArrayList<String[]> getArrayList() {

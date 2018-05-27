@@ -26,7 +26,7 @@ import stock.StockException;
 
 @SuppressWarnings("serial")
 /**
- * Used to hold the GUI components and their methods.
+ *  Used to hold the GUI components and their methods.
  * @author Gary Bagnall
  *
  */
@@ -40,7 +40,6 @@ public class GUIComponents extends JPanel implements ActionListener{
 	/**
 	 * The Constructor for the GUI Components
 	 * Gets a current instance of the store
-	 * @param store
 	 */
 	public GUIComponents(){
 		this.store = Store.getInstance();

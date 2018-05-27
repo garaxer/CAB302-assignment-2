@@ -68,7 +68,7 @@ public class OrdinaryTruckTests {
 	
 	/**
 	 * 	Test 7: Error if going over capacity
-	 * @throws DeliveryException
+	 * @throws DeliveryException when it is over capacity
 	 */
 	@Test(expected = DeliveryException.class)
 	public void setUpOverCapacityTruck() throws DeliveryException {
@@ -78,7 +78,7 @@ public class OrdinaryTruckTests {
 	
 	/**
 	 * 	Test 8: Error if adding a Stock with temperature controlled good(s)
-	 * @throws DeliveryException
+	 * @throws DeliveryException when it has cold goods
 	 */
 	@Test(expected = DeliveryException.class)
 	public void setColdTruck() throws DeliveryException {
