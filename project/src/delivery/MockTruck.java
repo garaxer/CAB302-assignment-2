@@ -2,15 +2,15 @@ package delivery;
 
 import stock.Stock;
 
-//Make sure Truck has the correct abstract methods
+/**
+ * A mock truck to ensure the Truck class has the correct abstract classes
+ * @author garybagnall
+ *
+ */
 public class MockTruck extends Truck {
 	
 	public MockTruck(Stock stock) throws DeliveryException {
 		super(5,stock);
-	}
-	
-	public int getCapacity() {
-		return 0;
 	}
 	
 	public double getCost() {
