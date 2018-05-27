@@ -53,7 +53,7 @@ public class Stock {
 	
 	/**
 	 * @param name
-	 * @returns the int value of the quantity of an item using
+	 * @return the int value of the quantity of an item using
 	 * the itemName. If the item is not present 0 is returned. 
 	 */
 	public int getQuantity(String name) {
@@ -69,7 +69,7 @@ public class Stock {
 	
 	/**
 	 * @param item
-	 * @returns the int value of the quantity of an item using
+	 * @return the int value of the quantity of an item using
 	 * the Item. If the item is not present 0 is returned. 
 	 */
 	public int getQuantity(Item item) {
@@ -108,7 +108,7 @@ public class Stock {
 	}
 
 	/**
-	 * @returns a string of the items contained in stock. Each row in an item and its properties
+	 * @return a string of the items contained in stock. Each row in an item and its properties
 	 * E.g. "itemName,itemCost,itemPrice,itemReorderPoint,itemReorderAmount,[itemTemperate,N/A]\n"
 	 */
 	public String getList() {
@@ -177,7 +177,7 @@ public class Stock {
 	}
 
 	/**
-	 * @returns a Set<Item> to assist in iterating through a stock array
+	 * @return a Set<Item> to assist in iterating through a stock array
 	 */
 	public Set<Item> toSet() {
 		Set<Item> items= stock.keySet();
@@ -185,7 +185,7 @@ public class Stock {
 	}
 	
 	/**
-	 * @returns an ArrayList<String[]> where each String[] is an item and its
+	 * @return an ArrayList<String[]> where each String[] is an item and its
 	 * properties
 	 */
 	public ArrayList<String[]> getArrayList() {
@@ -213,7 +213,7 @@ public class Stock {
 	}
 
 	/**
-	 * @returns the total quantity of all items in the stock as an int
+	 * @return the total quantity of all items in the stock as an int
 	 */
 	public int getTotalQuantity() {
 		Set<Item> keyset = stock.keySet();

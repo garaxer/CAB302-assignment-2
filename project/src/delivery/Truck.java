@@ -64,14 +64,14 @@ public abstract class Truck {
 	
 		
 	/**
-	 * @returns the int value for capacity
+	 * @return the int value for capacity
 	 */
 	public int getCapacity() {
 		return capacity;
 	}
 	
 	/**
-	 * @returns the Stock object
+	 * @return the Stock object
 	 */
 	public Stock getStock() {
 		return stock;
@@ -88,7 +88,7 @@ public abstract class Truck {
 
 	/**
 	 * Abstract method.
-	 * @returns the double cost. The calculation for this is different for different
+	 * @return the double cost. The calculation for this is different for different
 	 * truck types
 	 */
 	public abstract double getCost();
@@ -101,13 +101,13 @@ public abstract class Truck {
 	
 	/**
 	 * Abstract method. 
-	 * @returns the remaining capacity in a truck i.e(capacity-totalStockQuantity)
+	 * @return the remaining capacity in a truck i.e(capacity-totalStockQuantity)
 	 */
 	public abstract int getRemainingCapacity();
 
 	/**
 	 * Abstract method. 
-	 * @returns the a string of the stock contained in a truck in the format 
+	 * @return the a string of the stock contained in a truck in the format 
 	 * used by Manifest. This takes the form >type\nitem,quantity\nitem,quantity\n.."
 	 * @throws StockException
 	 */

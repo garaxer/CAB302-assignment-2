@@ -56,42 +56,42 @@ public class Item {
 	}
 
 	/**
-	 * @returns the name of the item as a string
+	 * @return the name of the item as a string
 	 */
 	public String getItemName() {
 		return name;
 	}
 	
 	/**
-	 * @returns the cost of the item as an int
+	 * @return the cost of the item as an int
 	 */
 	public int getItemCost() {
 		return manufactureCost;
 	}
 	
 	/**
-	 * @returns the price of the item as an int
+	 * @return the price of the item as an int
 	 */
 	public int getItemPrice() {
 		return sellPrice;
 	}
 	
 	/**
-	 * @returns as an int the quantity of the item to reorder when it drops below the reorder point
+	 * @return as an int the quantity of the item to reorder when it drops below the reorder point
 	 */
 	public int getItemReorderAmount() {
 		return reorderAmount;
 	}
 	
 	/**
-	 * @returns as an int the threshold below which the item needs to be reordered
+	 * @return as an int the threshold below which the item needs to be reordered
 	 */
 	public int getItemReorderPoint() {
 		return reorderPoint;
 	}
 	
 	/**
-	 * @returns the temperature the item must be transported at. 
+	 * @return the temperature the item must be transported at. 
 	 * In the case where an item can be transported at any temperature, the returned int is 1000
 	 */
 	public int getItemTemperature() {
