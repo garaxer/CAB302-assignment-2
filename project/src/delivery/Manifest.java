@@ -31,6 +31,18 @@ public class Manifest {
 		populateTrucks();
 	}
 	
+	public Manifest(ArrayList<Truck> truckList) {
+		// TODO Auto-generated constructor stub
+		//System.out.println("Yep");
+		trucks = truckList;
+		//System.out.println(this.getStockString());
+		reorder = new Stock();
+		
+		for (Truck truck : truckList) {
+			reorder.addStock(truck.getStock());
+		}
+	}
+
 	/**
 	 * Populate the trucks
 	 * First get everything that need to reorder. Then place items with their reorder amount into trucks
@@ -100,6 +112,7 @@ public class Manifest {
 				} else {
 					newTruck = new OrdinaryTruck(truckStock);
 				}
+				//newTruck.addStock(truckStock);
 				trucks.add(newTruck);
 			} catch (DeliveryException e) {
 				e.printStackTrace();

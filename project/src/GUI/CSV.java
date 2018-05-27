@@ -2,6 +2,7 @@ package GUI;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,6 +10,15 @@ import java.util.HashMap;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+
+import delivery.DeliveryException;
+import delivery.Manifest;
+import delivery.OrdinaryTruck;
+import delivery.RefrigeratedTruck;
+import delivery.Truck;
+import stock.Item;
+import stock.Stock;
+import stock.StockException;
 
 /**
  * Used to import CSV files that are used in the store
@@ -154,6 +164,78 @@ public class CSV {
 	    }	
 	    
 	    return salesLog;
+	}
+
+	/**
+	 * read in the manifest file
+	 * @param selectedFile
+	 * @return a manifest
+	 * @throws CSVFormatException 
+	 * @throws IOException 
+	 * @throws StockException 
+	 * @throws DeliveryException 
+	 */
+	public Manifest processManifest(File selectedFile) throws CSVFormatException, IOException, StockException, DeliveryException {
+		Store store = Store.getInstance();
+		Manifest manifest = null;
+		FileReader reader = new FileReader(selectedFile.getAbsolutePath());
+		BufferedReader bufferedReader = new BufferedReader(reader);
+		String line = bufferedReader.readLine();
+		if (line == null) {	
+			bufferedReader.close();
+			throw new CSVFormatException("The file was empty, please select another");	
+		} else { 
+			ArrayList<Truck> truckList = new ArrayList<Truck>();
+			
+			System.out.println(line);
+			//String[] lineStart = line.split(",");
+			//salesLog.put(lineStart[0], Integer.parseInt(lineStart[1]) ); 
+			boolean cold = false;
+			if (line.equals(">Refrigerated")) {
+				cold = true;
+			} else if (line.equals(">Ordinary")) {
+				cold = false;
+			} else {
+				bufferedReader.close();
+				throw new CSVFormatException("Refridgereated or Ordinary truck not found in first line: "+line);
+			}
+			
+			while((line = bufferedReader.readLine())!= null) {
+				System.out.println(line);
+				Stock stock = new Stock();
+				if (!( line.equals(">Refrigerated") || line.equals(">Ordinary"))) {
+					
+					String[] lineStart = line.split(",");
+					Item item = store.getStock().getItem(lineStart[0]);
+					if (item == null) {
+						bufferedReader.close();
+						throw new CSVFormatException("Item not found: "+line);
+					}
+					stock.addItems(item, Integer.parseInt(lineStart[1]));
+				} else {
+					Truck truck = null;
+					if (stock.getTotalQuantity() > 0) {
+						if (cold) {
+							truck = new RefrigeratedTruck(stock);
+							truckList.add(truck);
+						}
+						else {
+							truck = new OrdinaryTruck(stock);
+							truckList.add(truck);
+						}
+					}
+					if (line.equals(">Refrigerated")) {
+						cold = true;
+					} else if (line.equals(">Ordinary")) {
+						cold = false;
+					} 
+					
+				}
+			}
+			manifest = new Manifest(truckList);
+		}
+		bufferedReader.close();
+		return manifest;
 	}
 	
 }

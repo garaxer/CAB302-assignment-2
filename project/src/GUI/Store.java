@@ -129,8 +129,8 @@ public class Store {
 	 */
 	public String generateManifest() {
 		Manifest manifest = new Manifest(inventory);
-		this.inventory.addStock(manifest.getReorderStock());
-		capital -= manifest.getTotalCost();
+		//this.inventory.addStock(manifest.getReorderStock());
+		//capital -= manifest.getTotalCost();
 		return manifest.getStockString();
 	}
 
@@ -174,6 +174,14 @@ public class Store {
 	 */
 	public void setName(String string) {
 		name = string;
+	}
+
+	public void importManifest(Manifest manifest) {
+		if (manifest != null) {
+			this.inventory.addStock(manifest.getReorderStock());
+		}
+		
+		capital -= manifest.getTotalCost();
 	}
 
 }
