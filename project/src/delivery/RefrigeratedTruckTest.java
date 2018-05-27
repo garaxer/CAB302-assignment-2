@@ -20,17 +20,25 @@ import org.junit.Test;
 
 public class RefrigeratedTruckTest {
 	
+	/**
+	 * Create some variables to test the class with
+	 */
 	Item chocolate = new Item("chocolate", 5, 8, 250, 375);
 	Item ice = new Item("ice", 2, 5, 225, 325, -10);
 	Item iceCream = new Item("ice cream", 8, 14, 175, 250, -20);
 
-	// 1: Test if a RefrigeratedTruck object can be constructed
+	/**
+	 * Ensure that creating a truck object does not throw any errors
+	 */
 	@Test
 	public void checkCreation() {
 		Truck refrigerated = new RefrigeratedTruck();
 	}
 	
-	// 
+	/**
+	 * Ensure that a Truck object can also be created with a Stock Object
+	 * @throws DeliveryException
+	 */
 	@Test
 	public void checkCreationwithStock() throws DeliveryException {
 		Stock stock = new Stock();
@@ -38,7 +46,10 @@ public class RefrigeratedTruckTest {
 		Truck refrigerated = new RefrigeratedTruck(stock);
 	}
 	
-	// 
+	/**
+	 * Ensure that stock can be added to the truck after creation
+	 * @throws DeliveryException
+	 */
 	@Test
 	public void checkAddingStock() throws DeliveryException {
 		Truck refrigerated = new RefrigeratedTruck();
@@ -46,6 +57,12 @@ public class RefrigeratedTruckTest {
 		refrigerated.addStock(stock);		
 	}
 	 
+	/**
+	 * Check that the stock contained in the truck is the same as the stock added
+	 * to the truck
+	 * @throws DeliveryException
+	 * @throws StockException
+	 */
 	@Test
 	public void checkStock() throws DeliveryException, StockException {
 		Stock stock = new Stock();
@@ -60,6 +77,12 @@ public class RefrigeratedTruckTest {
 		}
 	}
 	
+	/**
+	 * Ensure that a Truck object does not add a Stock object with more quantity than 
+	 * the truck's capacity. To ensure this, the Truck object should throw an 
+	 * exception to pass the test. 
+	 * @throws DeliveryException
+	 */
 	@Test (expected = DeliveryException.class)
 	public void tooMuchStock()  throws DeliveryException{
 		Truck refrigerated = new RefrigeratedTruck();	
@@ -68,6 +91,12 @@ public class RefrigeratedTruckTest {
 		refrigerated.addStock(stock);
 	}
 	
+	/**
+	 * Check that the truck returns the correct cost using the given stock
+	 * with a temperature requirement -10
+	 * @throws DeliveryException
+	 * @throws StockException
+	 */
 	@Test
 	public void checkCost() throws DeliveryException, StockException{
 		Stock stock = new Stock();
@@ -79,6 +108,12 @@ public class RefrigeratedTruckTest {
 		assertEquals(cost, refrigerated.getCost(), 0);
 	}
 	
+	/**
+	 * Check that the truck returns the correct cost for the given stock 
+	 * with a temperature requirement of -20
+	 * @throws StockException
+	 * @throws DeliveryException
+	 */
 	@Test
 	public void checkCost2() throws StockException, DeliveryException {
 		Stock stock = new Stock();
@@ -90,7 +125,11 @@ public class RefrigeratedTruckTest {
 		assertEquals(cost, refrigerated.getCost(), 0);
 	}
 	
-	
+	/**
+	 * Check that the truck returns the correct remaining capacity 
+	 * after being loaded with stock
+	 * @throws DeliveryException
+	 */
 	@Test
 	public void checkCapacity() throws DeliveryException {	 
 		Stock stock = new Stock();
@@ -100,7 +139,11 @@ public class RefrigeratedTruckTest {
 		assertEquals(100, refrigerated.getRemainingCapacity());
 	}
 	
-	
+	/**
+	 * Check that the truck returns the correct remaining capacity after
+	 * having stock added to it twice
+	 * @throws DeliveryException
+	 */
 	@Test
 	public void checkCapacity2() throws DeliveryException {	 
 		Stock stock = new Stock();
@@ -113,6 +156,13 @@ public class RefrigeratedTruckTest {
 		assertEquals(400, refrigerated.getRemainingCapacity());
 	}
 	
+	/**
+	 * Check that the truck produces the appropriate string
+	 * in the format used by Manifest. 
+	 * For one item the format will be: ">Refrigerated\nitem,quantity\n"
+	 * @throws DeliveryException
+	 * @throws StockException
+	 */
 	@Test
 	public void checkManifest() throws DeliveryException, StockException {
 		String dummyManifest = ">Refrigerated\nchocolate,50\nice,500\n";
