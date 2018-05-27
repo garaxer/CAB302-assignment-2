@@ -11,7 +11,7 @@ import stock.StockException;
 
 
 /**
- * 
+ * Tests the OrdinaryTruck class
  * @author Gary Bagnall
  *
  */

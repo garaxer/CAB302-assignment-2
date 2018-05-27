@@ -17,7 +17,7 @@ public class TruckTests  {
 	
 	Item item;
 	
-	@SuppressWarnings("deprecation")
+
 	@Test
 	public void testAbstractMethods() throws DeliveryException {
 		Stock mockStock = new Stock();

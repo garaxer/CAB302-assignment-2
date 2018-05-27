@@ -1,13 +1,8 @@
 package delivery;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
+
 
 import stock.Item;
 import stock.Stock;
@@ -23,18 +18,24 @@ public class Manifest {
 
 	private Stock storeStock;
 	private Stock reorder; //Final stock to reorder
-	private Stock reducingStock; //Stock to add to truckls
+	private Stock reducingStock; //Stock to add to trucks
 	ArrayList<Truck> trucks;
 	
+	/**
+	 * Creates an lists of trucks and populates them with the items that need to be reordered.
+	 * @param storeStock the stock to generate a manifest from
+	 */
 	public Manifest(Stock storeStock) {
 		this.storeStock = storeStock;
 		trucks = new ArrayList<>();
 		populateTrucks();
 	}
 	
+	/**
+	 * Populate the trucks
+	 * First get everything that need to reorder. Then place items with their reorder amount into trucks
+	 */
 	private void populateTrucks()  {
-		//first get everything we have to reorder. Then sort through and place them into trucks
-
 		//Get the amounts that need to be reordered
 		reorder = new Stock();
 		reducingStock = new Stock();
@@ -51,7 +52,7 @@ public class Manifest {
 		sortedItem.sort((Item o1, Item o2)-> (compareTo(o1,o2))); //A list of sorted item by their temp Desc
 		int i = 0;
 		int leftOver = 0; 
-		//while (reducingStock.getTotalQuantity() > 0) {
+
 		while (i < sortedItem.size()) {
 			Item start = sortedItem.get(i);
 			Truck newTruck;
@@ -78,8 +79,6 @@ public class Manifest {
 					leftOver=0;
 				}
 				//if there is room add it.	
-				//System.out.println("remainingCapacity"+remainingCapacity);
-				//System.out.println("itemQuantity"+itemQuantity);
 				if (remainingCapacity >= itemQuantity) {
 					truckStock.addItems(start, itemQuantity);
 					remainingCapacity-=itemQuantity;
@@ -93,6 +92,7 @@ public class Manifest {
 					remainingCapacity = 0;
 				}
 			}
+			//place the stock into truck
 			try {
 				if (cold){
 					newTruck = new RefrigeratedTruck(truckStock);
@@ -103,16 +103,26 @@ public class Manifest {
 				trucks.add(newTruck);
 			} catch (DeliveryException e) {
 				e.printStackTrace();
+				
 			}
 		}
 	}
 
+	/**
+	 * A comparator that finds the smallest Item's temperature
+	 * @param o an Item
+	 * @param o2 an Item
+	 * @return the comparison between two items
+	 */
 	private int compareTo(Item o, Item o2) {
 		return Integer.compare(o.getItemTemperature(), o2.getItemTemperature());
 	}
-	 
+	
+	/**
+	 * Get the cost of the trucks and the items within them.
+	 * @return the total cost of the trucks and the items within them
+	 */
 	public double getTotalCost() {
-
 		double cost = 0;
 		double itemcost = 0;
 		for (Truck truck : trucks) {
@@ -123,10 +133,17 @@ public class Manifest {
 		}
 		return cost+itemcost;
 	}
+	
+	/**
+	 * @return the item's to reorder
+	 */
 	public Stock getReorderStock() {
 		return reorder;
 	}
 
+	/**
+	 * @return A string of trucks and their items
+	 */
 	public String getStockString() {
 		String list ="";
 		for (Truck truck : trucks) {
